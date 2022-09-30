@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "main": {
+      "type": "plak-mounting-main",
+      "settings": {
+      }
+    },
+    "main-1": {
+      "type": "plak-mounting-content",
+      "settings": {
+        "full_image": "shopify:\/\/shop_images\/diagaram_aaf1d5c8-3013-4d9c-b1b8-e60befbf2465.jpg",
+        "main_image": "shopify:\/\/shop_images\/plakmount.callout1.1024x864_f032f267-103e-489d-850a-4c76c78863d3.jpg",
+        "content": "<p><strong>How it works<\/strong><\/p><p>During plak mounting, the poster is mounted on a sturdy, 3\/8” thick superior quality engineered wood. The edges are finely beveled and finished in black. The wood and the poster image are sealed with <br\/> a UV-resistant matte (non-glare) laminate. Comes ready to hang with a centered keyhole slot.<\/p><p><strong>A permanent change<\/strong><\/p><p>[warning icon] During this mounting process, the poster is permanently changed. <br\/> Any permanent change to the poster significantly decreases the collector value of the poster.<\/p>"
+      }
+    },
+    "main-2": {
+      "type": "plak-mounting-feature-collection",
+      "blocks": {
+        "e6cbb681-fcee-4fd4-97d8-6e5925fa2658": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Frame your favorites",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/genre-action"
+          }
+        },
+        "7f975085-df92-4bf3-b62c-2ed146e56781": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "johnny-depp-curated",
+            "feature_collection_title": "He-e-e-e-re’s Johnny",
+            "feature_collection_link_text": "Shop Johnny Depp",
+            "feature_collection_link": "shopify:\/\/collections\/johnny-depp"
+          }
+        }
+      },
+      "block_order": [
+        "e6cbb681-fcee-4fd4-97d8-6e5925fa2658",
+        "7f975085-df92-4bf3-b62c-2ed146e56781"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1",
+    "main-2"
+  ]
+}

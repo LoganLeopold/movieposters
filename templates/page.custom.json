@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-frames-main",
+      "settings": {
+      }
+    },
+    "main-1": {
+      "type": "custom-frames-content",
+      "blocks": {
+        "4aede96d-4e5b-491f-bc00-b5069e0af1ec": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom.TraditionalWood.Callout_b8dd880c-c1fb-439d-b991-1ec8c9a1d178.jpg",
+            "headline": "Wood – Thick",
+            "content": "Made from high quality, solid wood and show natural visible grain."
+          }
+        },
+        "a71fca3b-423b-404f-a6b6-39ee23798692": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom.ContemporaryWood.Callout_522b931b-cc0a-4cc5-8bc7-ecfedea00e5f.jpg",
+            "headline": "Wood – Thin",
+            "content": "Sophisticated yet simple, with a wide range of colours."
+          }
+        },
+        "12183017-f5f7-4a0d-8a4d-ea4e146c6fc1": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom.ContemporaryMetal.Callout_a3fe297f-06d8-4008-bb2c-d53798841ab1.jpg",
+            "headline": "Metal – Contemporary",
+            "content": "Strong and sleek, and in a wide range  of colors."
+          }
+        }
+      },
+      "block_order": [
+        "4aede96d-4e5b-491f-bc00-b5069e0af1ec",
+        "a71fca3b-423b-404f-a6b6-39ee23798692",
+        "12183017-f5f7-4a0d-8a4d-ea4e146c6fc1"
+      ],
+      "settings": {
+        "main_image": "shopify:\/\/shop_images\/CustomFrameCall.jpg",
+        "content": "<p><strong>Shatterproof clear acrylic<\/strong><\/p><p>All frames come standard with lightweight and shatterproof clear acrylic that protects the posters from dust and fingerprints.<\/p><p>Additionally, non-glare acrylic is available which minimizes reflections and glare, while still being lightweight and shatterproof.<\/p><p><\/p><p><strong>Dry mounted-backing<\/strong><\/p><p>[warning icon] During this mounting process, the poster is permanently changed. <br\/> Any permanent change to the poster significantly decreases the collector value of the poster.<\/p><p>Dry mounting is the bonding of the poster to a foam core using heat-activated adhesive. This prevents any stretching and wrinkling of the poster. It is highly recommended for reprint posters.<\/p>"
+      }
+    },
+    "main-2": {
+      "type": "custom-frames-feature-collection",
+      "blocks": {
+        "9d45f97c-2b77-42d1-93a9-41c035b5da5a": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Frame your favorites",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/genre-action"
+          }
+        },
+        "01bf9592-c2b3-461b-ad71-7f74a7876e23": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "colors",
+            "feature_collection_title": "Colors of the wind",
+            "feature_collection_link_text": "Shop By Color",
+            "feature_collection_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "9d45f97c-2b77-42d1-93a9-41c035b5da5a",
+        "01bf9592-c2b3-461b-ad71-7f74a7876e23"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1",
+    "main-2"
+  ]
+}

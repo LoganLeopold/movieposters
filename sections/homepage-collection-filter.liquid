@@ -1,0 +1,93 @@
+<div class="feature-filter" data-feature-filter-container>
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12">
+        <div class="feature-filter__menu-container">
+          <ul class="feature-filter__menu">
+            {% for block in section.blocks %}
+              {% assign collection = collections[block.settings.filter_collection] %}
+              <li class="feature-filter__menu-item feature-filter__menu-item--{{ forloop.index }} text-light{% if forloop.first %} is-active{% endif %}{% if block.settings.filter_show_mobile == blank %} medium-down--hide{% endif %}" tabindex="0" data-handle="{{ collection.handle }}" data-feature-filter-trigger>
+                {% if block.settings.filter_collection_underline_color != blank %}
+                  <style>
+                    .feature-filter__menu li.feature-filter__menu-item--{{ forloop.index }}.is-active span,
+                    .feature-filter__menu li.feature-filter__menu-item--{{ forloop.index }}:hover span{
+                      border-color: {{ block.settings.filter_collection_underline_color }};
+                    }
+                  </style>
+                {% endif %}
+
+                <span>
+                  {% if block.settings.filter_collection_title == 'Searchspring' %}
+                    Suggested
+                  {% elsif block.settings.filter_collection_title != blank %}
+                    {{ block.settings.filter_collection_title }}
+                  {% else %}
+                    {{ collection.title }}
+                  {% endif %}
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-filter__sliders">
+    {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.filter_collection] %}
+      {% if block.settings.filter_collection_title == 'Searchspring' %}
+    	<div class="feature-filter__slider searchspring-recs {% if forloop.first %} is-active{% endif %}">
+          <script type="searchspring/personalized-recommendations" profile="home"></script>
+        </div>
+      {% else %}
+        <div class="feature-filter__slider{% if forloop.first %} is-active{% endif %}" data-feature-filter-slider data-feature-filter data-handle="{{ collection.handle }}">
+          {% for product in collection.products limit: 10 %}
+            {% include 'collection-item',
+              product: product,
+              is_slide: true,
+              attrs: 'data-feature-filter-slide'
+            %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name":"Feature Filters",
+    "blocks":[
+      {
+        "type":"feature-filter",
+        "name":"Feature Filter",
+        "settings":[
+          {
+            "type":"checkbox",
+            "id":"filter_show_mobile",
+            "label":"Show Filter on Mobile",
+            "default": true
+          },
+          {
+            "type":"collection",
+            "id":"filter_collection",
+            "label":"Filter Collection"
+          },
+          {
+            "type":"text",
+            "id":"filter_collection_title",
+            "label":"Filter Collection Title",
+            "info":"If left blank output will default to collection name"
+          },
+          {
+            "type":"color",
+            "id":"filter_collection_underline_color",
+            "label":"Filter Title Underline Colour",
+            "default":"#ffffff"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,95 @@
+<nav class="{{ classes }}" role="navigation" {{ attrs }}>
+  <ul>
+    {% for link in linklists[link_list].links %}
+      {% if link.links != blank %}
+        {% assign link_title = link.title | handleize %}
+
+        {% assign single_column_active = true %}
+        {% if link.links.size > 4 %}
+          {% assign single_column_active = false %}
+        {% endif %}
+
+        <li class="site-nav--has-dropdown site-nav__item{% if link.active %} site-nav--active{% endif %}" data-nav-dropdown-trigger data-nav-trigger>
+          <a href="{{ link.url }}" class="site-nav__link">
+            {{ link.title }}
+            <span class="icon icon-arrow-down-16"></span>
+          </a>
+
+          <div class="site-nav__dropdown" data-nav-dropdown>
+            <div class="wrapper">
+              <div class="grid">
+                <div class="grid__item all--12 xxlarge-up--10 push--xxlarge-up--1">
+                  <div class="site-dropdown__columns">
+                    {% for block in section.blocks %}
+                      {% assign block_title = block.settings.dropdown_link_title | handleize %}
+
+                      {% if block_title == link_title and block.settings.left_column_enable != blank %}
+                        <div class="site-dropdown__column site-dropdown__column--left">
+                          {% if block.settings.left_column_menu != blank %}
+                            {% include 'nav-dropdown',
+                              link_list: block.settings.left_column_menu,
+                              classes: 'site-dropdown__nav',
+                              single_column: true
+                            %}
+                          {% endif %}
+
+                          {% if block.settings.left_column_original_badge %}
+                            {% include 'original-badge' %}
+                          {% endif %}
+                        </div>
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+
+                    <div class="site-dropdown__column">
+                      {% include 'nav-dropdown',
+                        link_list: link_title,
+                        classes: 'site-dropdown__nav site-dropdown__main-nav',
+                        single_column: single_column_active
+                      %}
+                    </div>
+
+                    {% for block in section.blocks %}
+                      {% assign block_title = block.settings.dropdown_link_title | handleize %}
+
+                      {% if block_title == link_title and block.settings.right_column_enable != blank %}
+                        <div class="site-dropdown__column site-dropdown__column--right">
+                          {% if block.settings.right_column_menu != blank %}
+                            {% include 'nav-dropdown',
+                              link_list: block.settings.right_column_menu,
+                              classes: 'site-dropdown__nav',
+                              single_column: true
+                            %}
+                          {% endif %}
+
+                          {% if block.settings.right_column_callout_enable %}
+                            <div class="site-dropdown__callout">
+                              <a href="{{ block.settings.right_column_callout_link }}" class="site-dropdown__callout-image lazyload" data-bgset="{{ block.settings.right_column_callout_image | img_url: ' 224 x 248' }}">
+                                <span class="visually-hidden">{{ block.settings.right_column_callout }}</span>
+                              </a>
+                              <p>{{ block.settings.right_column_callout }}</p>
+                              {% include 'component-link',
+                                link_url: block.settings.right_column_callout_link,
+                                link_text: block.settings.right_column_callout_link_text,
+                                has_icon: true
+                              %}
+                            </div>
+                          {% endif %}
+                        </div>
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% else %}
+        <li class="site-nav__item{% if link.active %} site-nav--active{% endif %}">
+          <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

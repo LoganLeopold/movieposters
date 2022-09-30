@@ -1,0 +1,68 @@
+ <div class="grid__item all--12">
+{% if section.settings.enable_instagram_section %}
+  <div class="instagram" data-instagram-slider>
+    {% for block in section.blocks %}
+      {% assign even = forloop.index | modulo: 2 %}
+      {% if even == 0 %}
+        {% assign desktop_1x = '288x' %}
+        {% assign desktop_2x = '576x' %}
+      {% else %}
+        {% assign desktop_1x = '224x' %}
+        {% assign desktop_2x = '448x' %}
+      {% endif %}
+
+      {%- capture picture_sources %}
+        {% include 'component-source',
+          source_image_1x: block.settings.instagram_image,
+          source_size_1x: desktop_1x,
+          source_image_2x: block.settings.instagram_image,
+          source_size_2x: desktop_2x
+        %}
+      {% endcapture %}
+
+      <div class="instagram__post">
+        <a href="{{ block.settings.instagram_link }}" target="_blank">
+          {% include 'component-picture',
+            sources: picture_sources,
+            resource: block.settings.instagram_image,
+            default_size: '224x',
+            alt: block.settings.instagram_image.alt
+          %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+</div>
+{% schema %}
+  {
+    "name":"Instagram",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"enable_instagram_section",
+        "label":"Enable Instagram Section",
+        "default": true
+      }
+    ],
+    "blocks":[
+      {
+        "type":"instagram-post",
+        "name":"Instagram Post",
+        "limit": 5,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"instagram_image",
+            "label":"Instagram Image"
+          },
+          {
+            "type":"url",
+            "id":"instagram_link",
+            "label":"Instagram Post Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

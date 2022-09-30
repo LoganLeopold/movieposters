@@ -1,0 +1,260 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "rewards-hero",
+      "blocks": {
+        "6bd6613d-4a46-4f29-b1dd-6238ae7197be": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-thatsdancingstill_5222d26c-52d3-49f5-8229-222450535f78.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "171",
+            "item_position_top": "12",
+            "item_position_left": "-2",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "96",
+            "item_position_top_mobile": "3",
+            "item_position_left_mobile": "5"
+          }
+        },
+        "70234400-63df-40d4-bd24-3abcbbbbf389": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-2001-aspaceodyssey_copy_2_97528870-961f-4c55-aa30-e64ec84d8adb.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "112",
+            "item_position_top": "60",
+            "item_position_left": "10",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "96",
+            "item_position_top_mobile": "-2",
+            "item_position_left_mobile": "75"
+          }
+        },
+        "1fd663bf-2287-43ae-bcc4-e1c543f1ab31": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-waynesworld_4080e196-0d28-4c7c-b3a3-b7e1b089e575.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "152",
+            "item_position_top": "2",
+            "item_position_left": "23",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "208",
+            "item_position_top_mobile": "50",
+            "item_position_left_mobile": "50"
+          }
+        },
+        "ce8268e1-de80-410e-af45-bb1b3d01f12b": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-2001-aspaceodyssey_c9b01992-f995-4deb-ac34-cf1c811e7dbe.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "112",
+            "item_position_top": "0",
+            "item_position_left": "65",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "208",
+            "item_position_top_mobile": "50",
+            "item_position_left_mobile": "50"
+          }
+        },
+        "920a36e2-0ebc-4c5f-a5ba-832ceaec88dc": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-2001-aspaceodyssey_copy_3c243972-bfc3-4d3d-a91a-227827ca5c0a.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "112",
+            "item_position_top": "82",
+            "item_position_left": "75",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "72",
+            "item_position_top_mobile": "90",
+            "item_position_left_mobile": "65"
+          }
+        },
+        "624579b5-d1f1-47cb-995d-2b2343d7488c": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-still-starisborn_bbf496a9-78d9-49c7-b270-3226363f989d.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "124",
+            "item_position_top": "40",
+            "item_position_left": "83",
+            "item_show_mobile": true,
+            "item_image_width_mobile": "208",
+            "item_position_top_mobile": "50",
+            "item_position_left_mobile": "50"
+          }
+        },
+        "307e963e-a6a4-4750-9b55-78f6ba5fa9da": {
+          "type": "reward-poster-item",
+          "settings": {
+            "item_image": "shopify:\/\/shop_images\/product-poster-waynesworld_68e08a6b-5e96-42a1-881c-eb34a8249b34.jpg",
+            "item_is_product": false,
+            "item_product": "",
+            "item_show_desktop": true,
+            "item_image_width": "95",
+            "item_position_top": "-4",
+            "item_position_left": "90",
+            "item_show_mobile": false,
+            "item_image_width_mobile": "208",
+            "item_position_top_mobile": "50",
+            "item_position_left_mobile": "50"
+          }
+        }
+      },
+      "block_order": [
+        "6bd6613d-4a46-4f29-b1dd-6238ae7197be",
+        "70234400-63df-40d4-bd24-3abcbbbbf389",
+        "1fd663bf-2287-43ae-bcc4-e1c543f1ab31",
+        "ce8268e1-de80-410e-af45-bb1b3d01f12b",
+        "920a36e2-0ebc-4c5f-a5ba-832ceaec88dc",
+        "624579b5-d1f1-47cb-995d-2b2343d7488c",
+        "307e963e-a6a4-4750-9b55-78f6ba5fa9da"
+      ],
+      "settings": {
+        "section_enable": true,
+        "headline": "This is the beginning of a rewarding friendship.",
+        "content": "Shop and share to earn points for loyalty discounts, free gifts, and more. Signing up is easy and free, join today and receive 250 points on us!"
+      }
+    },
+    "main-2": {
+      "type": "rewards",
+      "blocks": {
+        "754f611e-a198-4ad3-b1b4-c7f22a14af3d": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "200",
+            "point_details": "Sign up"
+          }
+        },
+        "1e159c97-3075-426c-a842-98913c686b43": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "500",
+            "point_details": "Celebrate a birthday"
+          }
+        },
+        "8fd97ba2-4fa8-45d2-8afd-f7d9a70dae28": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "5",
+            "point_details": "For every $1 spent"
+          }
+        },
+        "3288f622-799d-439a-a6b0-b4ff9a03e95d": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "50",
+            "point_details": "Like on Facebook"
+          }
+        },
+        "fc3e7d2c-8c01-4133-ab4f-490801706eb3": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "25",
+            "point_details": "Share on Facebook"
+          }
+        },
+        "17b92207-170c-4349-af7d-edfe0b5ca1ee": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "50",
+            "point_details": "Follow on Instagram"
+          }
+        },
+        "4e3f5434-66ad-4a16-b1b2-4c259e8ab1db": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "50",
+            "point_details": "Follow on Twitter"
+          }
+        },
+        "39703f3c-7a41-4e1b-81a9-32a130363e32": {
+          "type": "earn-rewards",
+          "settings": {
+            "point_value": "25",
+            "point_details": "Share on Twitter"
+          }
+        },
+        "e7f0bf63-2622-4d45-a086-01c7633e70b8": {
+          "type": "redeem-rewards",
+          "settings": {
+            "point_value": "1K",
+            "point_details": "$10 off discount"
+          }
+        },
+        "908f8fa9-8dd4-438f-a201-48d281d80965": {
+          "type": "redeem-rewards",
+          "settings": {
+            "point_value": "2K",
+            "point_details": "$20 off discount"
+          }
+        },
+        "a753b64f-1cca-4ae0-8fc9-2f12d2ea26e1": {
+          "type": "redeem-rewards",
+          "settings": {
+            "point_value": "3K",
+            "point_details": "$30 off discount"
+          }
+        }
+      },
+      "block_order": [
+        "754f611e-a198-4ad3-b1b4-c7f22a14af3d",
+        "1e159c97-3075-426c-a842-98913c686b43",
+        "8fd97ba2-4fa8-45d2-8afd-f7d9a70dae28",
+        "3288f622-799d-439a-a6b0-b4ff9a03e95d",
+        "fc3e7d2c-8c01-4133-ab4f-490801706eb3",
+        "17b92207-170c-4349-af7d-edfe0b5ca1ee",
+        "4e3f5434-66ad-4a16-b1b2-4c259e8ab1db",
+        "39703f3c-7a41-4e1b-81a9-32a130363e32",
+        "e7f0bf63-2622-4d45-a086-01c7633e70b8",
+        "908f8fa9-8dd4-438f-a201-48d281d80965",
+        "a753b64f-1cca-4ae0-8fc9-2f12d2ea26e1"
+      ],
+      "settings": {
+        "section_enable": true,
+        "earn_title": "Ways to earn",
+        "redeem_title": "Ways to redeem",
+        "points_title": "CREDITS"
+      }
+    },
+    "main-3": {
+      "type": "rewards-feature-collection",
+      "blocks": {
+        "153e53ed-c47d-4e99-bcbc-d55cf83eefeb": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "rewards-curated",
+            "feature_collection_title": "The best of friends",
+            "feature_collection_link_text": "Shop Disney",
+            "feature_collection_link": "shopify:\/\/collections\/franchise-disney"
+          }
+        }
+      },
+      "block_order": [
+        "153e53ed-c47d-4e99-bcbc-d55cf83eefeb"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2",
+    "main-3"
+  ]
+}

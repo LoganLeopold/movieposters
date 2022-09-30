@@ -1,0 +1,56 @@
+{% if section.settings.enable_section %}
+<div class="original-poster-recs">
+	<div class="wrapper">
+		<div class="grid">
+			<div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+				<div class="original-poster-art__content">
+					<h2>{{ section.settings.headline }}</h2>
+					<p>{{ section.settings.content }}</p>
+				</div>
+				<div
+					class="
+						grid__item
+						medium-up--12
+						searchspring-original-recommendations
+					"
+				>
+					<script
+						type="searchspring/personalized-recommendations"
+						profile="trending-category"
+					>
+						options = {
+							categories: [ "originals" ]
+						};
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"SS Recommendations",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"enable_section",
+        "label":"Enable Trending Recommendations Section",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"headline",
+        "label":"Headline",
+        "default":"Trending in Original Posters"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"See what's popular."
+      }
+    ]
+  }
+{% endschema %}

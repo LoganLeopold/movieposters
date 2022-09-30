@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart-main",
+      "blocks": {
+        "b0411d1f-2438-4ece-8204-db6a39191dac": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "HOLIDAY SCHEDULE",
+            "content": "Please note that all EXPEDITED shipments placed AFTER 1pm EST Thursday Sept 29 will NOT be shipped until Monday October 3rd.  Thank you!",
+            "content_link": "",
+            "content_link_text": ""
+          }
+        },
+        "6fd9831b-a00f-49a2-9676-fb2f457087b2": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "SHIPPING",
+            "content": "We ship all over the world.",
+            "content_link": "https:\/\/www.movieposters.com\/pages\/shipping",
+            "content_link_text": "See Rates Here"
+          }
+        },
+        "e083dab2-b306-4f18-8c00-0be58bc1730f": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "NEW RELEASES UPDATE",
+            "content": "Join our weekly email newsletter for all the latest and hottest new movie posters!",
+            "content_link": "https:\/\/manage.kmail-lists.com\/subscriptions\/subscribe?a=LBrLBi&g=NVnYRh",
+            "content_link_text": "SIGN UP HERE"
+          }
+        },
+        "59a4c87e-a359-42e7-b451-e30a9339a00d": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "Custom Frames",
+            "content": "Poster will be shipped in the selected frame or mounted to a canvas or plak.",
+            "content_link": "shopify:\/\/pages\/custom-frames",
+            "content_link_text": "View Details"
+          }
+        },
+        "e4eed78a-d72e-4001-aeec-ee647c46ce4c": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "ReadyMade Frames",
+            "content": "These frames are shipped separately, and take 2 to 3 weeks to arrive.",
+            "content_link": "shopify:\/\/products\/readymade-frame",
+            "content_link_text": "View Details"
+          }
+        },
+        "2de808a0-d769-43c7-bdca-5a137f082fa4": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "Returns",
+            "content": "You can return unframed and unmounted items within 10 days of receipt.",
+            "content_link": "shopify:\/\/pages\/returns",
+            "content_link_text": "View Details"
+          }
+        },
+        "e0331a63-461e-4215-89a1-2680dbf48a9f": {
+          "type": "content-block",
+          "settings": {
+            "content_title": "Contact Us",
+            "content": "1-877-876-7837<br>\nsupport@movieposters.com",
+            "content_link": "",
+            "content_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "b0411d1f-2438-4ece-8204-db6a39191dac",
+        "6fd9831b-a00f-49a2-9676-fb2f457087b2",
+        "e083dab2-b306-4f18-8c00-0be58bc1730f",
+        "59a4c87e-a359-42e7-b451-e30a9339a00d",
+        "e4eed78a-d72e-4001-aeec-ee647c46ce4c",
+        "2de808a0-d769-43c7-bdca-5a137f082fa4",
+        "e0331a63-461e-4215-89a1-2680dbf48a9f"
+      ],
+      "settings": {
+        "enable_section": true,
+        "section_title": "Add a companion product",
+        "section_content": "Cost-effective ways to display and protect your poster (shipped separately)",
+        "collection": "companion-products",
+        "enable_section_normal": true,
+        "section_title_normal": "Add a companion product",
+        "section_content_normal": "Cost-effective ways to display and protect your poster (shipped separately)",
+        "collection_normal": "companion-products",
+        "image": "shopify:\/\/shop_images\/empty_061a0bba-13a1-4f71-b762-12dcb00e54b5.jpg",
+        "background_colour": "#000000",
+        "poster": "jaws-a70-13888",
+        "text_colour": "",
+        "headline": "You're going to need a bigger selection, the cart is empty.",
+        "cta_link": "shopify:\/\/collections\/all",
+        "cta_link_text": "Continue Shopping"
+      }
+    },
+    "main-1": {
+      "type": "cart-feature-collection",
+      "blocks": {
+        "e3c29168-d4a0-4b4d-b8b3-83d28a6f44fe": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Did you see these?",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/action-curated"
+          }
+        }
+      },
+      "block_order": [
+        "e3c29168-d4a0-4b4d-b8b3-83d28a6f44fe"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1"
+  ]
+}

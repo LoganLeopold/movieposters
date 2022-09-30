@@ -1,0 +1,201 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "product-frame-main",
+      "blocks": {
+        "ba33c863-6e4b-41b6-b7d3-f66050d5878c": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "14",
+            "frame_height": "11"
+          }
+        },
+        "be10c35e-f35b-4a6d-995b-c82f563029e3": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "11",
+            "frame_height": "17"
+          }
+        },
+        "67840d1e-0361-4c6f-aac9-04a9bfdeb562": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "14",
+            "frame_height": "36"
+          }
+        },
+        "9b8cec55-99d0-467d-be30-d0a3eca88315": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "22.25",
+            "frame_height": "34"
+          }
+        },
+        "1cea2974-21de-43c5-9740-b0ae1a019d7c": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "24",
+            "frame_height": "30"
+          }
+        },
+        "b7146755-61ea-4d02-af02-ca73bd4e8e43": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "24",
+            "frame_height": "36"
+          }
+        },
+        "0b2d4ab3-4548-4725-951c-fec95383715e": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "26.5",
+            "frame_height": "38.5"
+          }
+        },
+        "14c0a34f-7e53-40a9-ab27-e6914a6d5481": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "28",
+            "frame_height": "22"
+          }
+        },
+        "dd469698-08b8-4d4c-9fa8-02cca9622c2f": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "27",
+            "frame_height": "39"
+          }
+        },
+        "e4dace0f-10a7-414e-8138-baa78d2bcc20": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "27",
+            "frame_height": "40"
+          }
+        },
+        "f501fa50-ced6-4259-b7c4-1350910f8553": {
+          "type": "frame-size",
+          "settings": {
+            "frame_width": "27",
+            "frame_height": "41"
+          }
+        }
+      },
+      "block_order": [
+        "ba33c863-6e4b-41b6-b7d3-f66050d5878c",
+        "be10c35e-f35b-4a6d-995b-c82f563029e3",
+        "67840d1e-0361-4c6f-aac9-04a9bfdeb562",
+        "9b8cec55-99d0-467d-be30-d0a3eca88315",
+        "1cea2974-21de-43c5-9740-b0ae1a019d7c",
+        "b7146755-61ea-4d02-af02-ca73bd4e8e43",
+        "0b2d4ab3-4548-4725-951c-fec95383715e",
+        "14c0a34f-7e53-40a9-ab27-e6914a6d5481",
+        "dd469698-08b8-4d4c-9fa8-02cca9622c2f",
+        "e4dace0f-10a7-414e-8138-baa78d2bcc20",
+        "f501fa50-ced6-4259-b7c4-1350910f8553"
+      ],
+      "settings": {
+        "custom_size_enable": true
+      }
+    },
+    "main-2": {
+      "type": "readymade-social",
+      "blocks": {
+        "c57757ce-fcad-4c02-b339-6f6ef9a9464a": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Instagram",
+            "social_link": "https:\/\/www.instagram.com\/ilovemovieposters\/",
+            "social_handle": "@ilovemovieposters"
+          }
+        },
+        "7d1e6b4f-6bc9-4ae0-97a2-ca0bac0fe2af": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Twitter",
+            "social_link": "https:\/\/twitter.com\/iloveposters",
+            "social_handle": "@iloveposters"
+          }
+        },
+        "be84d650-3da5-438f-8ffe-91088789359a": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Facebook",
+            "social_link": "https:\/\/www.facebook.com\/iloveposters\/",
+            "social_handle": "@iloveposters"
+          }
+        }
+      },
+      "block_order": [
+        "c57757ce-fcad-4c02-b339-6f6ef9a9464a",
+        "7d1e6b4f-6bc9-4ae0-97a2-ca0bac0fe2af",
+        "be84d650-3da5-438f-8ffe-91088789359a"
+      ],
+      "settings": {
+        "social_title": "Join Our Wall of Frame",
+        "social_content": "We love seeing your framed posters in action! Share a photo on social media and tag us to be featured in our Wall of Frame!"
+      }
+    },
+    "main-3": {
+      "type": "readymade-instagram",
+      "blocks": {
+        "b6836e28-a440-446f-bb1d-885047beac22": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_1.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "73c39ca2-a0f0-46bd-b2da-f9e338ce2fa1": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_2.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "3e8eb5de-9ceb-4999-9db8-9fe4f5bba403": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_3.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "814f991d-b11d-424e-aa02-1e87e256ce4a": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_4.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "12735dfa-fe32-450f-8890-630784929c37": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_5.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        }
+      },
+      "block_order": [
+        "b6836e28-a440-446f-bb1d-885047beac22",
+        "73c39ca2-a0f0-46bd-b2da-f9e338ce2fa1",
+        "3e8eb5de-9ceb-4999-9db8-9fe4f5bba403",
+        "814f991d-b11d-424e-aa02-1e87e256ce4a",
+        "12735dfa-fe32-450f-8890-630784929c37"
+      ],
+      "settings": {
+        "enable_instagram_section": true
+      }
+    },
+    "main-4": {
+      "type": "product-frame-bottom",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2",
+    "main-3",
+    "main-4"
+  ]
+}

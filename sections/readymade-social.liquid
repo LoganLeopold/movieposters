@@ -1,0 +1,62 @@
+ <div class="grid__item medium-up--12 pdp__details">
+<div class="grid grid--flex">
+  <div class="grid__item medium-up--7 pdp__about">
+    <h2>{{ section.settings.social_title }}</h2>
+    <div class="pdp__description rte">
+      <p>{{ section.settings.social_content }}</p>
+    </div>
+  </div>
+  <div class="grid__item medium-up--5 pdp__credits">
+    <table>
+      {% for block in section.blocks %}
+        <tr>
+          <td>{{ block.settings.social_platform }}</td>
+          <td><a href="{{ block.settings.social_link }}">{{ block.settings.social_handle }}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+</div>
+{% schema %}
+  {
+    "name":"Social Details",
+    "settings":[
+      {
+        "type":"text",
+        "id":"social_title",
+        "label":"Social Title",
+        "default":"Join Our Wall of Frame"
+      },
+      {
+        "type":"textarea",
+        "id":"social_content",
+        "label":"Social Content",
+        "default":"We love seeing your framed posters in action! Share a photo on social media and tag us to be featured in our Wall of Frame!"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"social",
+        "name":"Social",
+        "settings":[
+          {
+            "type":"text",
+            "id":"social_platform",
+            "label":"Social Platform"
+          },
+          {
+            "type":"url",
+            "id":"social_link",
+            "label":"Social Link"
+          },
+          {
+            "type":"text",
+            "id":"social_handle",
+            "label":"Social Handle"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

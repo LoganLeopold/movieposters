@@ -1,0 +1,9 @@
+<div class="quantity-wrapper js-qty" data-quantity{% if is_addon %}-addon{% endif %}>
+  <div class="quantity-button quantity-down js-qty-down" data-quantity-minus data-quantity-adjust{% if is_addon %}-addon{% endif %}><span class="icon icon-subtract-16"></span></div>
+  <input type="number" min="1" name="updates[]" id="updates_{{ id }}" value="{{ quantity }}" class="quantity-input" data-quantity-input{% if is_addon %}-addon{% endif %}>
+  <div class="quantity-button quantity-up js-qty-up" data-quantity-plus data-quantity-adjust{% if is_addon %}-addon{% endif %}><span class="icon icon-add-16"></span></div>
+</div>
+
+{% assign id = nil %}
+{% assign quantity = nil %}
+{% assign is_addon = nil %}

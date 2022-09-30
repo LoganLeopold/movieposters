@@ -1,0 +1,349 @@
+/*============================================================================
+  Fonts
+==============================================================================*/
+
+
+@font-face {
+  font-family: 'neue-haas-grotesk-display';
+  src: url('NHaasGroteskDSPro-75Bd.eot') format('embedded-opentype'),
+      url('NHaasGroteskDSPro-75Bd.woff') format('woff'),
+      url('NHaasGroteskDSPro-75Bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'neue-haas-grotesk-text';
+  src: url('NHaasGroteskTXPro-55Rg.eot') format('embedded-opentype'),
+      url('NHaasGroteskTXPro-55Rg.woff') format('woff'),
+      url('NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'neue-haas-grotesk-text';
+  src: url('NHaasGroteskTXPro-75Bd.eot') format('embedded-opentype'),
+      url('NHaasGroteskTXPro-75Bd.woff') format('woff'),
+      url('NHaasGroteskTXPro-75Bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+$haas-display: 'neue-haas-grotesk-display', Helvetica, Arial, sans-serif;
+$haas-text: 'neue-haas-grotesk-text', Helvetica, Arial, sans-serif;
+
+$font-bold: 700;
+$font-normal: 400;
+
+/*============================================================================
+  Color variables
+==============================================================================*/
+
+// Primary colors
+$white: #fff;
+$black: #000;
+$offblack: #181717;
+$yellow: #F4CA34;
+$red: #EC4B3F;
+$red-light: #F97A71;
+$blue-light: #F0FDFF;
+$blue-grey: #CAE3E7;
+$grey: #9B9B9B;
+$grey-med: #BEBEBE;
+$grey-light: #F3F3F3;
+
+// Helper colors
+$error: $red;
+$success: #23AB42;
+
+/*============================================================================
+  Checkout
+==============================================================================*/
+body{
+  font-weight: normal;
+  font-family: $haas-text;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  color: $black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-family: $haas-display;
+  line-height: normal;
+  font-weight: $font-bold;
+  color: $black;
+
+  a {
+    text-decoration: none;
+    font-weight: inherit;
+  }
+}
+
+.main .field__input,
+.order-summary .field__input {
+  border-radius: 0;
+  height: 48px;
+  border: 2px solid $black;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  padding-top: 0;
+  padding-bottom: 0;
+  color: $black;
+
+  &:focus{
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: $black;
+  }
+
+  &:-ms-input-placeholder {
+    color: $black;
+  }
+
+  &::-ms-input-placeholder {
+    color: $black;
+  }
+}
+
+/* .floating-labels .field--show-floating-label .field__input{
+  padding-top: 16px;
+} */
+
+.main .input-checkbox{
+  border: 2px solid $black;
+  border-radius: 0;
+}
+
+.input-radio{
+  border: 2px solid $black;
+  border-color: #000 !important;
+}
+
+.btn,
+button.btn {
+  cursor: pointer;
+  height: 48px;
+  line-height: 40px;
+  padding: 0 16px;
+  width: auto;
+  margin: 0;
+  border: 4px solid transparent;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: all 0.25s cubic-bezier(0.46, 0.01, 0.32, 1);
+  color: $white;
+  border-radius: 0;
+  background-color: $black;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $black;
+    background-color: $yellow;
+  }
+
+  &[disabled],
+  .btn--disabled{
+    cursor: default;
+    background-color: $black;
+    color: $white;
+    opacity: 1;
+
+    &:hover{
+      background-color: $black;
+      color: $white;
+    }
+  }
+
+  .sidebar &{
+    background-color: $yellow;
+    color: $black;
+
+    &[disabled],
+    .btn--disabled{
+      cursor: default;
+      background-color: $yellow;
+      color: $black;
+      opacity: 1;
+
+      &:hover{
+        background-color: $yellow;
+        color: $black;
+      }
+    }
+  }
+}
+
+.order-summary{
+  .product{
+    .product__image{
+      .product-thumbnail{
+        border-radius: 0;
+        background-color: transparent;
+
+        &:after{
+          display: none;
+        }
+
+        .product-thumbnail__quantity{
+          background-color: $yellow;
+          color: $black;
+          font-weight: $font-bold;
+        }
+      }
+    }
+
+    .product__description{
+      .product__description__name{
+        font-family: $haas-display;
+        font-weight: $font-bold;
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: $white;
+      }
+    }
+  }
+
+  .order-summary__emphasis,
+  .payment-due__price{
+    font-weight: $font-bold;
+    color: $white;
+  }
+}
+
+h2.section__title,
+.content-box h2{
+  color: $black;
+  font-size: 24px;
+}
+
+h2.os-header__title{
+  color: $black;
+  font-size: 32px;
+}
+
+.content-box h3{
+  color: $black;
+  text-transform: uppercase;
+}
+
+.order-summary__section ~ .order-summary__section{
+  border-top: 2px solid $white;
+}
+
+.order-summary__section--product-list+.order-summary__section{
+  border-width: 0;
+}
+
+.sidebar .total-line-table__tbody+.total-line-table__footer .total-line th::before,
+.sidebar .total-line-table__tbody+.total-line-table__footer .total-line td::before,
+.order-summary__section--product-list::after{
+  background-color: $white;
+  height: 2px;
+}
+
+.total-line th,
+.sidebar .payment-due-label__total {
+  text-transform: uppercase;
+  font-weight: $font-bold;
+  color: $white;
+}
+
+.sidebar:after{
+  box-shadow: none;
+  background-color: $black;
+}
+
+.alternative-payment-separator::after,
+.alternative-payment-separator::before{
+  background-color: $black;
+  height: 2px;
+}
+
+.alternative-payment-separator__content{
+  font-weight: $font-bold;
+  color: $black;
+}
+
+.dynamic-checkout__content,
+.dynamic-checkout__title::before,
+.dynamic-checkout__title::after{
+  border: 2px solid $black;
+  border-radius: 0;
+}
+
+.dynamic-checkout__content{
+  border-top: 0;
+}
+
+.dynamic-checkout__title::before{
+  border-bottom: 0;
+  border-right: 0;
+}
+
+.dynamic-checkout__title::after{
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.dynamic-checkout__title{
+  color: $black;
+  text-transform: uppercase;
+  font-weight: $font-bold;
+}
+
+.content-box{
+  border: none;
+}
+
+.review-block ~ .review-block,
+.content-box__row ~ .content-box__row{
+  border-top: 2px solid $black;
+}
+
+.content-box__row{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.review-block__label{
+  color: $black;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+}
+
+.review-block__content,
+.display-table .radio__label__primary{
+  color: $black;
+}
+
+.content-box__emphasis{
+  color: $black;
+  font-weight: $font-bold;
+}
+
+.content-box__row--secondary{
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 999px){
+  .checkout_image_wrapper{
+    display: none;
+  }
+}
+@media only screen and (min-width: 1000px){
+  .order-summary__sections{
+    height: auto !important;
+  }
+}

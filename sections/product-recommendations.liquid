@@ -1,0 +1,44 @@
+<div id="recommended-products"
+     data-product-id="{{ product.id }}"
+     data-limit="5" style="display: none;background: white;">
+  <h2>Recommended: </h2>
+  {% if recommendations.performed %}
+  {% if recommendations.products_count > 0 %}
+  {% for product in recommendations.products %}
+  {{ product.title | link_to: product.url }} <br>
+  {% endfor %}
+  {% endif %}
+  {% else %}
+  <div class="placeholder">[Placeholder animation goes here]</div>
+  {% endif %}
+</div>
+
+
+
+
+<script>
+  function ProductRecommendations(container) {
+    var $container = (this.$container = $(container));
+    var productId = $container.data('product-id');
+    var limit = $container.data('limit');
+    var productRecommendationsUrlAndContainerClass =
+        '/recommendations/products?&section_id=product-recommendations&limit=' + limit + '&product_id=' + productId;
+    $container.parent().load(productRecommendationsUrlAndContainerClass);
+  };
+  document.addEventListener("DOMContentLoaded", function() { 
+    ProductRecommendations($('#recommended-products'));
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,104 @@
+{%- capture main_picture_sources %}
+  {% include 'component-source',
+    source_image_1x: section.settings.main_image,
+    source_size_1x: '512x432',
+    source_image_2x: section.settings.main_image,
+    source_size_2x: '1024x864',
+    source_crop: 'top'
+  %}
+{% endcapture %}
+
+{% capture warning_icon %}
+  {% include 'svg-caution-16px' %}
+{% endcapture %}
+
+<div class="framing__content framing__content--custom-frames">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+        <div class="framing__content-blocks">
+          {% for block in section.blocks %}
+            {%- capture picture_sources %}
+              {% include 'component-source',
+                source_image_1x: block.settings.image,
+                source_size_1x: '336x336',
+                source_image_2x: block.settings.image,
+                source_size_2x: '672x672',
+                source_crop: 'center'
+              %}
+            {% endcapture %}
+
+            <div class="framing__content-block">
+              {% include 'component-picture',
+                sources: picture_sources,
+                resource: block.settings.image,
+                default_size: '336x336',
+                alt: block.settings.headline,
+                picture_crop: 'center'
+              %}
+              <h3>{{ block.settings.headline }}</h3>
+              <p>{{ block.settings.content }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="framing__details">
+          <div class="framing__details-image">
+            {% include 'component-picture',
+              sources: main_picture_sources,
+              resource: section.settings.main_image,
+              default_size: '512x432',
+              alt: page.title,
+              picture_crop: 'top'
+            %}
+          </div>
+
+          <div class="framing__details-content">
+            {{ section.settings.content | replace: '[warning icon]', warning_icon }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name":"Page Content",
+    "settings":[
+      {
+        "type":"image_picker",
+        "id":"main_image",
+        "label":"Image"
+      },
+      {
+        "type":"richtext",
+        "id":"content",
+        "label":"Content"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"content-block",
+        "name":"Content Block",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"headline",
+            "label":"Headline"
+          },
+          {
+            "type":"textarea",
+            "id":"content",
+            "label":"Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

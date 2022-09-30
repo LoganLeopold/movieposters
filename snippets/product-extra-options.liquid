@@ -1,0 +1,58 @@
+{% if size_option != blank %}
+  <div class="pdp__sizes">
+    <div class="pdp__dropdown-trigger" data-size-dropdown-trigger>
+      <span data-size-trigger-text>Select Size (Inches)</span>
+      {% include 'component-icon',
+        icon_name: 'icon-arrow-down-16',
+      %}
+    </div>
+
+    <div class="pdp__size-dropdown" data-size-dropdown>
+      {% for variant in product.variants %}
+        {% unless size_values contains variant[size_option] %}
+          <span class="pdp__size"
+            data-option-trigger>
+            {{ variant[size_option] }}
+          </span>
+
+          {% assign size_values = variant[size_option] | append: ',' | append: size_values %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% if color_option != blank %}
+  <div class="pdp__colors">
+    <h3 class="pdp__finish-headline">Pick a Color</h3>
+
+    <div class="pdp__color-options">
+      {% for variant in product.variants %}
+        {% unless color_values contains variant[color_option] %}
+          {% assign variant_handle = variant[color_option] | handleize %}
+          {% for image in product.images %}
+            {% assign alt_handle = image.alt | handleize %}
+            {% if alt_handle contains variant_handle %}
+              {% assign feature_image = image %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          <span class="pdp__color"
+            data-option-trigger
+            data-option-image="{{ feature_image | img_url: '1536x' }}"
+          >
+            <div class="pdp__color-image">
+              {{ variant.image | img_url: '208x72', crop: 'center' | img_tag }}
+            </div>
+            <span class="pdp__color-title">
+              {{ variant[color_option] }}
+            </span>
+          </span>
+
+          {% assign color_values = variant[color_option] | append: ',' | append: color_values %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

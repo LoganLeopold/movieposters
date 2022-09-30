@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "search-SEOManagerTags-1",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1"
+  ],
+  "layout": false
+}

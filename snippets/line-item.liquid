@@ -1,0 +1,304 @@
+{% assign product_info = product_info | remove_first: ', ' %}
+{% assign product_meta = product_meta | remove_first: ', ' %}
+
+{% assign poster_condition = nil %}
+{% assign condition_keywords = settings.condition_keywords | split: ',' %}
+{% assign product_description = line_item.product.description | handleize | remove: '-' %}
+
+{% for condition_keyword in condition_keywords %}
+{% assign condition_keyword_handle = condition_keyword | handleize | remove: '-' %}
+
+{% if product_description contains condition_keyword_handle %}
+{% assign condition_keyword_string = condition_keyword | strip | capitalize %}
+{% assign condition_keyword_url = ', <a href="/collections/all#?search_return=all&Description=' | append: condition_keyword_string |append: '">' | append: condition_keyword_string | append: '</a>' %}
+{% assign poster_condition = poster_condition | append: condition_keyword_url %}
+{% assign product_info = product_info | append: ', ' | append: condition_keyword %}
+{% endif %}
+{% endfor %}
+
+{% assign glossary_condition = nil %}
+{% assign glossary_keywords = settings.glossary_keywords | split: ',' %}
+
+{% for glossary_keyword in glossary_keywords %}
+{% for tag in product.tags %}
+{% if glossary_keyword == tag %} 
+{% assign keyword = tag | split: '--' | last | strip | capitalize %}
+{% assign glossary_condition = glossary_condition | append: keyword %}
+{% assign glossary_condition = glossary_condition | append: ', ' %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{% for option in line_item.product.options_with_values %}
+{% assign option_handle = option.name | handleize %}
+{% if option_handle contains 'color' or option_handle contains 'colour' %}
+{% capture color_option %}option{{ forloop.index }}{% endcapture %}
+{% break %}
+{% endif %}
+{% endfor %} 
+
+{% assign feature_image = line_item.image %}
+
+{% if color_option != blank %}
+{% assign variant_color_handle = line_item.variant[color_option] | handleize %}
+{% for image in line_item.product.images %}
+{% assign alt_handle = image.alt | handleize %}
+{% if alt_handle contains variant_color_handle %}
+{% assign feature_image = image %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% endif %} 
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 767px)',
+source_image_1x: feature_image,
+source_size_1x: '96x',
+source_image_2x: feature_image,
+source_size_2x: '192x'
+%}
+{% include 'component-source',
+    source_image_1x: feature_image,
+source_size_1x: '112x',
+source_image_2x: feature_image,
+source_size_2x: '224x'
+%}
+{% endcapture %}
+
+{% for tag in line_item.product.tags %}
+{% if tag contains 'width--' %}
+{% assign width =  tag | split: '--' | last %}
+{% elsif tag contains 'height--' %}
+{% assign height =  tag | split: '--' | last %}
+{% elsif tag == 'original' or tag == 'print' or tag == 'reprint' or tag ==  'DVD/Video' %}
+{% assign print_type_handle = tag | split: '--' | last %}
+{% assign print_type = print_type_handle | capitalize %}
+{% elsif tag contains '19' or tag contains '20' %}
+{% assign tag_numeric = tag | plus: 0 %}
+{% if tag_numeric > 0 or tag contains 'year--' %}
+{% assign year = tag | split: '--' | last %}
+{% endif %}
+
+{% elsif tag contains 'sided--' %}
+{% assign sided = tag | split: '--' | last | remove: 'sided' | capitalize | append: ' Sided' %}
+{% elsif tag contains 'folded-or-rolled--' %}
+{% assign packing_type = tag | split: '--' | last | capitalize %}
+{% elsif tag contains 'sleeves-hangers' %}
+{% for option in line_item.product.options_with_values %}
+{% assign option_handle = option.name | handleize %}
+{% if option_handle contains 'size' %}
+{% capture size_option %}option{{ forloop.index }}{% endcapture %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% assign extra_dimensions = line_item.variant[size_option] %}
+{% endif %}
+{% endfor %}
+
+{% if width == blank and line_item.product.metafields.dimensions.width != blank %}
+{% assign width = line_item.product.metafields.dimensions.width %}
+{% endif %}
+
+{% if height == blank and line_item.product.metafields.dimensions.height != blank %}
+{% assign height = line_item.product.metafields.dimensions.height %}
+{% endif %}
+
+
+<div class="line-item{% if is_order %} line-item--account{% endif %} {% if line_item.properties["_from"] != blank and line_item.properties["_from"] == "Nextopia" %} add-properties {% endif %}"
+     data-line-item data-key="{{ line_item.key }}"
+     data-product-handle="{{ line_item.product.handle }}"
+     data-variant-id="{{ line_item.variant.id }}"
+     data-product-title="{{ line_item.product.title }}"
+     {% if width != blank %}data-product-width="{{ width }}&quot;"{% endif %}
+     {% if height != blank %}data-product-height="{{ height }}&quot;"{% endif %}
+     >
+ {% if line_item.properties["_from"] != blank and line_item.properties["_from"] == "Nextopia" %}
+  <div class="hide add-properties__details"> 
+    {% include 'product-tags', product: line_item.product %}
+    {% include 'product-properties', product: line_item.product %}
+  </div>
+  {% endif %}
+
+  <a href="{{ line_item.product.url }}" class="line-item__image">
+    {% include 'component-picture',
+      sources: picture_sources,
+    resource: feature_image,
+    default_size: '112x',
+    alt: line_item.product.title
+    %}
+  </a>
+
+  <div class="line-item__content-container">
+    <div class="line-item__content">
+      {% if line_item.sku != blank %}
+      <p class="line-item__sku">{{ line_item.sku }}</p>
+      {% endif %}
+
+      <h3 class="line-item__title"><a href="{{ line_item.product.url }}">{{ line_item.product.title | replace: "'", "&rsquo;" }}</a></h3>
+
+      {%- if year != blank -%}
+      <div class="pdp__year">
+        <span class="pdp__year-content"><a href="/collections/search-results#?search_return=all&Tags={{ year }}">{{ year }}</a></span>
+      </div>
+      {%- endif -%}
+      <div class="line-item__details">
+        {% if width != blank and height != blank %}
+        <p class="line-item__dimensions">{{ width }}&quot; &times; {{ height }}&quot;<span class="medium-up--hide">,</span>
+        </p>
+        {% endif %}
+
+        {% if line_item.properties["Frame width"] != blank and line_item.properties["Frame height"] != blank %}
+        <p class="line-item__dimensions">{{ line_item.properties["Frame width"] }} &times; {{ line_item.properties["Frame height"] }}<span class="medium-up--hide">,</span></p>
+        {% endif %}
+
+        {% if extra_dimensions %}
+        <p class="line-item__dimensions">{{ extra_dimensions }}<span class="medium-up--hide">,</span></p>
+        {% endif %} 
+
+        <p class="line-item__meta">  
+          {% if print_type != blank %}
+          {{ print_type }},
+          {% elsif line_item.variant.title != 'Default Title' %}
+          {% for option in line_item.product.options_with_values %}
+          {% assign option_handle = option.name | handleize %}
+          {% if option_handle contains 'color' or option_handle contains 'colour' %}
+          {% capture color_option %}option{{ forloop.index }}{% endcapture %}
+          {% break %}
+          {% endif %}
+          {% endfor %}
+          {{ line_item.variant[color_option] }}
+          {% endif %}
+
+          {% if sided != blank %}
+          {{ sided }},
+          {% endif %}
+
+          {% if packing_type != blank %}
+          {{ packing_type }}
+          {% endif %}
+
+          {%- if poster_condition != nil -%}
+          {{- poster_condition -}}
+          {%- endif -%}
+          
+          {% for tag in line_item.product.tags %} 
+          {%if tag contains 'format--'%}
+          {{tag | remove_first: 'format--' }}
+          {%endif%}
+          {%endfor%}
+          
+          {%comment%}
+          {% for property in line_item.properties %}
+          {% if property.first == "_product_glossary"%}
+          {{ property.last }}
+          {% endif %}
+          {% endfor %}
+          {%endcomment%}
+           <span class="icon icon-question-16 js-open-glossary"></span>
+        </p>
+
+        {% if line_item.properties["_custom_finish"] != blank %}
+          <p class="line-item__property">
+            <span>Custom Finish:</span>
+            {{ line_item.properties["_custom_finish"] }}
+            {% if line_item.properties["_custom_finish_addon"] %}
+            , {{ line_item.properties["_custom_finish_addon"] }}
+            {% endif %}
+          </p>
+        {% endif %}
+
+        {% for property in line_item.properties %}
+       
+          <span data-line-item-property data-property-key="{{ property.first }}" data-property-value="{{ property.last }}"{% if property.first == '_custom_finish_id' %} data-line-item-custom-finish-id{% elsif property.first == "_custom_finish_addon_id" %} data-line-item-custom-finish-addon-id{% endif %}></span>
+        {% endfor %}
+      </div>
+      
+      
+      <div class="line-item__actions">
+        {% if is_order %}
+          {% if line_item.fulfillment and line_item.fulfillment.tracking_url %}
+            <a href="{{ line_item.fulfillment.tracking_url }}" class="line-item__action">
+              {{ 'customer.order.track_shipment' | t }}
+              {% if line_item.fulfillment.tracking_number %}
+                - {{ line_item.fulfillment.tracking_number }}
+              {% endif %}
+            </a>
+          {% endif %}
+        {% else %}
+          <span class="line-item__action re_mo_ve remove-item" ><span class="icon icon-remove-16"></span>Remove</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="line-item__total medium-up--text-right">
+      <p class="line-item__price">
+        {% unless line_item.properties["_custom_finish_price"] %}
+          {{ line_item.price | money_with_currency }}
+        {% else %}
+          {{ line_item.properties["_custom_finish_price"] }}
+        {% endunless %}
+      </p>
+      {% if is_order %}
+        <p class="line-item__qty">&times; {{ line_item.quantity }}</p>
+      {% else %}
+        <div class="line-item__qty {% if line_item.product.handle contains 'backlit' %} cart_back_qty{% endif %}">
+        
+          {% include 'quantity-selector',
+            id: line_item.id,
+            quantity: line_item.quantity
+          %}
+            
+        </div>
+      {% endif %}
+    </div>
+    {% if line_item.product.tags contains 'drop-shipping--MovieMarketPrints' or line_item.product.tags contains 'vendor--eurographics' %}
+      <div class="line-item__shipped-separately">This product is shipped separately in 1 week</div>
+    {% endif %}
+  </div>
+
+  {% unless is_order %}
+  
+  
+  {% if line_item.product.type == 'poster' or line_item.product.type == 'Poster' %}
+ 
+  {% unless line_item.properties["_custom_finish"] != blank %}
+      {% if  line_item.properties["_addon_selected"] == blank or line_item.properties["_addon_selected"] == 'false' %}
+  
+        {% if  line_item.product.tags contains "dimensions--27x40"  %}
+        {% render 'cart-addon' %}
+        {% else %}
+        {% render 'cart-addon-normal' %}
+        {% endif %}
+
+      
+      {% endif %}
+   {% endunless %}
+  
+  
+    {% endif %} 
+ 
+   
+    {% if line_item.product.type == 'poster' or line_item.product.type == 'Poster' %}
+      {% if line_item.properties["_addon_selected"] != blank %}
+        {% for _line_item in cart.items %}
+          {% if _line_item.properties["_addon_poster_key"] == line_item.key %}
+            {% include 'line-item-addon' %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endunless %}
+</div>
+
+{% assign width = nil %}
+{% assign height = nil %}
+{% assign year = nil %}
+{% assign type = nil %}
+{% assign sided = nil %}
+{% assign packing_type = nil %}
+{% assign is_order = nil %}
+{% assign extra_dimensions = nil %}
+{% assign print_type = nil %}
+{% assign color_option = nil %}

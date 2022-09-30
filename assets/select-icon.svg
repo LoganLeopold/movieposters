@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="10px" viewBox="0 0 16 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Cart-readymade-popup" transform="translate(-1045.000000, -404.000000)" stroke="#000000">
+            <g id="ready-made-frame-overlay" transform="translate(0.000000, 227.000000)">
+                <g id="left-side" transform="translate(649.000000, 157.000000)">
+                    <g id="size-variant">
+                        <g id="arrow-down-16px" transform="translate(396.000000, 17.000000)">
+                            <g id="Path-2" transform="translate(3.000000, 6.000000)">
+                                <polyline id="Path" stroke-width="4.11428571" points="10 0 5 4 0 2.22044605e-15"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

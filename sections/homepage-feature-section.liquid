@@ -1,0 +1,110 @@
+{% if section.settings.feature_content_enable %}
+  {% if section.settings.mobile_image != blank %}
+    {% capture responsive_image %}{% include 'responsive-bg-image', image: section.settings.image, mobile_image: section.settings.mobile_image %}{% endcapture %}
+  {% else %}
+    {% capture responsive_image %}{% include 'responsive-bg-image', image: section.settings.image %}{% endcapture %}
+  {% endif %}
+
+  <div class="feature-section lazyload" data-desktop-image="{{ section.settings.image | img_url: '1440x', format: 'pjpg' }}"{% if section.settings.mobile_image != blank %} data-mobile-image="{{ section.settings.mobile_image | img_url: '767x', format: 'pjpg' }}"{% endif %} data-responsive-image-swap>
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="feature-section__content">
+            <h2 class="{{ section.settings.text_colour }}">{{ section.settings.title }}</h2>
+
+            {% if section.settings.content != blank %}
+              <p class="{{ section.settings.text_colour }}">{{ section.settings.content }}</p>
+            {% endif %}
+
+            {% if section.settings.link != blank %}
+              {% include 'component-link',
+                link_url: section.settings.link,
+                link_text: section.settings.link_text,
+                classes: section.settings.text_colour,
+                has_icon: true
+              %}
+            {% endif %}
+          </div>
+
+          {% if section.settings.original_badge_enable %}
+            {% include 'original-badge' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Feature Content Section",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"feature_content_enable",
+        "label":"Enable Feature Content",
+        "default":true
+      },
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Feature Content Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Feature Content Mobile Image"
+      },
+      {
+        "type":"checkbox",
+        "id":"original_badge_enable",
+        "label":"Enable Original Badge",
+        "default": true
+      },
+      {
+        "type":"select",
+        "id":"text_colour",
+        "label":"Text Colour",
+        "options": [
+          {
+            "value":"",
+            "label":"Dark"
+          },
+          {
+            "value":"text-light",
+            "label":"Light"
+          }
+        ]
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Feature Content Title",
+        "default":"Original<br>Posters"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Feature Content",
+        "default":"From the studio to your wall,<br>own a piece of movie history."
+      },
+      {
+        "type":"url",
+        "id":"link",
+        "label":"Feature Content Link"
+      },
+      {
+        "type":"text",
+        "id":"link_text",
+        "label":"Feature Content Link",
+        "default":"Discover"
+      }
+    ],
+	"presets": [
+    {
+    "name": "Featured Content",
+    "category": "Custom"
+    }
+    ]
+  }
+{% endschema %}

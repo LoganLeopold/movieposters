@@ -1,0 +1,27 @@
+{% assign button_text = 'cart.general.checkout' | t %}
+{% capture button %}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    button_name: 'checkout',
+    button_classes: 'btn--primary btn--full',
+    button_text: button_text
+  -%}
+{% endcapture %}
+
+<div class="summary">
+  <h3 class="small--hide">Summary</h3>
+  <div class="summary__details">
+    <p><span class="summary__title">{{ 'cart.general.subtotal' | t }}</span><span data-summary-subtotal>{{ cart.total_price | money_with_currency }}</span></p>
+
+    <p><span class="summary__title">Taxes and Shipping <span class="summary__subline">{{ 'cart.general.shipping_at_checkout' | t }}</span></span>–</p>
+  </div>
+
+  <div class="summary__total">
+    <p><span class="summary__title">Total</span><span data-summary-total>{{ cart.total_price | money_with_currency }}</span></p>
+  </div>
+
+  <div class="summary__actions">
+    {{ button }}
+  </div>
+</div>

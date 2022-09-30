@@ -1,0 +1,17 @@
+<div class="pdp__finish-block grid__item small--6 medium-up--6 {{ classes }}"
+  {% if variant_id != blank %}data-variant-id="{{ variant_id }}" data-variant-title="{{ finish_title }}" {% endif %}
+  data-frame-title="{{ product.title }}"
+  data-frame-handle="{{ finish_handle }}"
+  data-image-src="{{ finish_image | img_url: '208x72', crop: 'center' }}"
+  data-feature-image="{{ finish_feature_image | img_url: '1536x' }}"
+  data-frame-supplier-code="{%- if finish_variant.metafields.supplier.code != blank -%}{{ finish_variant.metafields.supplier.code }}{%- else -%}false{%- endif -%}"
+  data-finish-block
+  {{ attrs }}
+  >
+  <div class="pdp__finish-image">
+    {{ finish_image | img_url: '208x72', crop: 'center' | img_tag }}
+  </div>
+  <span class="pdp__finish-title">
+    {{ finish_title }}
+  </span>
+</div>

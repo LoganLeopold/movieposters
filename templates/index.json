@@ -1,0 +1,220 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "hero",
+      "blocks": {
+        "feb4da75-c6e6-45e0-8a2e-10e9a9bad063": {
+          "type": "hero_slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ensemble.slider.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/ENSEMBLE.mob.jpg",
+            "background_colour": "#000000",
+            "text_colour": "text-light",
+            "headline": "STUDDED WITH STARS",
+            "cta_link": "shopify:\/\/collections\/theme-ensembles",
+            "cta_link_text": "SHOP ENSEMBLE FILMS"
+          }
+        },
+        "cd9cb206-517d-4e95-8e5f-4bdcd86872e1": {
+          "type": "hero_slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/femaleaction.slider.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/femaleaction.mob.jpg",
+            "background_colour": "",
+            "text_colour": "text-light",
+            "headline": "STRONG FEMALE LEADS",
+            "cta_link": "shopify:\/\/collections\/theme-female-action-heroes",
+            "cta_link_text": "SHOP FEMALE ACTION HEROES"
+          }
+        },
+        "7c271735-f64c-4f6a-8ee0-5a3e99d370c2": {
+          "type": "hero_slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/lgbtq.slider_382fd64f-8834-400d-bbcd-5f2bfcf17323.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/lgbtq.mob_c0d385d1-a361-47aa-b237-810464d36e4b.jpg",
+            "background_colour": "",
+            "text_colour": "",
+            "headline": "LOVE IS LOVE IS LOVE",
+            "cta_link": "shopify:\/\/collections\/theme-lgbtq",
+            "cta_link_text": "SHOP LGBTQ+ FILMS"
+          }
+        }
+      },
+      "block_order": [
+        "feb4da75-c6e6-45e0-8a2e-10e9a9bad063",
+        "cd9cb206-517d-4e95-8e5f-4bdcd86872e1",
+        "7c271735-f64c-4f6a-8ee0-5a3e99d370c2"
+      ],
+      "settings": {
+      }
+    },
+    "main-2": {
+      "type": "homepage-collection-filter",
+      "blocks": {
+        "881ed250-2491-4fbe-a87b-e7c0f485945e": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "",
+            "filter_collection_title": "Searchspring",
+            "filter_collection_underline_color": "#ffffff"
+          }
+        },
+        "d5cc5e7a-5949-40eb-b3ed-627ca36ae1d0": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "top-selling",
+            "filter_collection_title": "Top Selling",
+            "filter_collection_underline_color": "#ff6e15"
+          }
+        },
+        "a6e4a57f-3ff9-48d8-aa88-c9f545c3396d": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "originals-curated",
+            "filter_collection_title": "Originals",
+            "filter_collection_underline_color": "#f8db40"
+          }
+        },
+        "80a5bfe3-0b3e-4506-a3ff-a7e5d321a4f1": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "action-curated",
+            "filter_collection_title": "Action",
+            "filter_collection_underline_color": "#f5332b"
+          }
+        },
+        "531dc0ea-fbe3-4585-b2e9-92aabbc422ef": {
+          "type": "feature-filter",
+          "disabled": true,
+          "settings": {
+            "filter_show_mobile": false,
+            "filter_collection": "family-curated",
+            "filter_collection_title": "Family",
+            "filter_collection_underline_color": "#972bf5"
+          }
+        },
+        "3a26136d-d1a8-4fe8-a444-ac9bad42de43": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "horror-curated",
+            "filter_collection_title": "Horror",
+            "filter_collection_underline_color": "#ffffff"
+          }
+        },
+        "cf385501-88bf-441f-846f-d35b3b4784d1": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "comics-curated",
+            "filter_collection_title": "Comics",
+            "filter_collection_underline_color": "#5ff8ed"
+          }
+        },
+        "df316d72-1b1c-473b-b30d-fa99381d1b36": {
+          "type": "feature-filter",
+          "settings": {
+            "filter_show_mobile": true,
+            "filter_collection": "romance-curated",
+            "filter_collection_title": "Romance",
+            "filter_collection_underline_color": "#f13666"
+          }
+        }
+      },
+      "block_order": [
+        "881ed250-2491-4fbe-a87b-e7c0f485945e",
+        "d5cc5e7a-5949-40eb-b3ed-627ca36ae1d0",
+        "a6e4a57f-3ff9-48d8-aa88-c9f545c3396d",
+        "80a5bfe3-0b3e-4506-a3ff-a7e5d321a4f1",
+        "531dc0ea-fbe3-4585-b2e9-92aabbc422ef",
+        "3a26136d-d1a8-4fe8-a444-ac9bad42de43",
+        "cf385501-88bf-441f-846f-d35b3b4784d1",
+        "df316d72-1b1c-473b-b30d-fa99381d1b36"
+      ],
+      "settings": {
+      }
+    },
+    "main-3": {
+      "type": "homepage-feature-section",
+      "settings": {
+        "feature_content_enable": true,
+        "image": "shopify:\/\/shop_images\/feature-content-desktop.1.2_2880x_2b263c6f-c3f0-4b84-9619-7df967151855.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/feature-content-mobile1.2_1534x_58909309-0abb-4424-a5d6-462df2d8d036.jpg",
+        "original_badge_enable": true,
+        "text_colour": "",
+        "title": "Original Posters",
+        "content": "From the studio to your wall,<br>own a piece of movie history.",
+        "link": "shopify:\/\/pages\/original-posters",
+        "link_text": "Discover"
+      }
+    },
+    "main-4": {
+      "type": "homepage-feature-collection",
+      "blocks": {
+        "8c6629ba-c5a4-4b5b-98ce-84ca9cfb6bd4": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "future-releases-curated",
+            "feature_collection_title": "Coming Soon",
+            "feature_collection_link_text": "Shop Future Releases",
+            "feature_collection_link": "shopify:\/\/collections\/new-releases-originals"
+          }
+        },
+        "ed14f86b-d53b-484e-a9c5-ec35fe90139f": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "actor-marilyn-monroe",
+            "feature_collection_title": "Blonde Beauty",
+            "feature_collection_link_text": "SHOP MARILYN MONROE",
+            "feature_collection_link": ""
+          }
+        },
+        "c3ac282f-d54e-41a8-b11e-d403fd7cc3e2": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "beyond-tv-shows-curated",
+            "feature_collection_title": "On The Tube",
+            "feature_collection_link_text": "SHOP TV SHOWS",
+            "feature_collection_link": "shopify:\/\/collections\/beyond-tv-shows"
+          }
+        },
+        "99e3c8e1-373a-4946-b556-90c4c7ebbb9c": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "mini-prints-11x17-curated",
+            "feature_collection_title": "Small But Mighty",
+            "feature_collection_link_text": "SHOP 11X17 CLASSICS",
+            "feature_collection_link": "shopify:\/\/collections\/mini-prints-11x17"
+          }
+        }
+      },
+      "block_order": [
+        "8c6629ba-c5a4-4b5b-98ce-84ca9cfb6bd4",
+        "ed14f86b-d53b-484e-a9c5-ec35fe90139f",
+        "c3ac282f-d54e-41a8-b11e-d403fd7cc3e2",
+        "99e3c8e1-373a-4946-b556-90c4c7ebbb9c"
+      ],
+      "settings": {
+      }
+    },
+    "main-5": {
+      "type": "newsletter",
+      "settings": {
+        "newsletter_enable": false,
+        "newsletter_form_action": "",
+        "newsletter_title": "You&rsquo;ve got mail!"
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2",
+    "main-3",
+    "main-4",
+    "main-5"
+  ]
+}

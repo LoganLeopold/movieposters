@@ -1,0 +1,226 @@
+<header class="site-header" role="banner" data-header data-sticky-header>
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12">
+        <div class="site-header__content">
+          <div class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            <a href="/" itemprop="url">
+              <span class="large-down--hide">
+                {% include 'svg-logo' %}
+              </span>
+
+              <span class="xlarge-up--hide mobile_logo">
+                {% include 'svg-logo-mobile' %} 
+              </span> 
+            </a>
+          </div>
+
+          <div class="site-header__nav site-header__nav--mobile large-up--hide">
+            <div class="site-header__nav-actions">
+               <span class="search__icon_mob site-header__nav-action">{% include 'svg-search-icon' %}</span>
+              
+              <button type="button" class="wisp_extra_count site-header__nav-action site-header__nav-action--menu" data-mobile-nav-trigger>
+                {% include 'component-icon',
+                  icon_name: 'icon-hamburger-32'
+                %}
+              </button>
+              
+              {% comment %}
+				<a title="Switch Currencies" class=" site-header__nav-action switch switch-currency" >
+                <span class="icon icon-close-48" title="Cancel" style="display:none"></span> 
+                
+               <span id="Capa_1" title="change {{ cart.currency.iso_code }} currency">{{ cart.currency.iso_code }}</span>
+                {% form 'currency' %} 
+                <select name="currency" >
+                  {% for currency in shop.enabled_currencies %}
+                  {% if currency == cart.currency %}
+                  <option selected="true">{{currency.iso_code}}</option>
+                  {% else %}
+                  <option>{{currency.iso_code}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+<!--                 <button type="submit">Submit</button> -->
+                {% endform %}
+              </a>
+              {% endcomment %}
+              <a href="/cart" class="site-header__nav-action site-header__nav-action--cart{% if cart.item_count > 0 %} has-items{% endif %}" data-cart-count>
+                <span></span>
+              </a>
+            </div>
+          </div>
+		 
+          <div class="site-header__nav medium-down--hide">
+            {% include 'nav-header',
+              link_list: section.settings.main_menu,
+              classes: 'site-nav medium-down--hide',
+              attrs: 'data-header-nav'
+            %}
+
+            <div class="site-header__nav-actions ">
+              <span class="wisp wisp_desktop site-header__nav-action">
+                <a class="iWishViews" href="#swym-wishlist">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3893 17.4151C18.2416 15.5283 21.2449 15.5283 23.0972 17.4151L24 18.3347L24.9028 17.4151C26.7551 15.5283 29.7584 15.5283 31.6107 17.4151C33.4631 19.3019 33.4631 22.361 31.6107 24.2478L24 32L16.3893 24.2478C14.5369 22.361 14.5369 19.3019 16.3893 17.4151Z" stroke="#fff" stroke-linecap="round"></path>
+                </svg>
+                </a>
+                  </span>
+              
+              <span class="search__icon_desk site-header__nav-action">{% include 'svg-search-icon' %}</span>
+              
+              <a title="Switch Currencies" class=" site-header__nav-action switch sec switch-currency" >
+                <span class="icon icon-close-48" title="Cancel" style="display:none"></span>
+                <span id="Capa_1"  title="change {{ cart.currency.iso_code }} currency">{{ cart.currency.iso_code }}</span>
+                
+                {% form 'currency' %} 
+                <select name="currency" >
+                  {% for currency in shop.enabled_currencies %}
+                  {% if currency == cart.currency %}
+                  <option selected="true">{{currency.iso_code}}</option>
+                  {% else %}
+                  <option>{{currency.iso_code}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+<!--                 <button type="submit">Submit</button> -->
+                {% endform %}
+              </a>
+              
+              <a href="/account" class="site-header__nav-action site-header__nav-action--account">
+                {% if customer %}
+                  {% include 'svg-account-icon-active' %}
+                {% else %}
+                  {% include 'svg-account-icon' %}
+                {% endif %}
+              </a>
+              <a href="/cart" class="site-header__nav-action site-header__nav-action--cart{% if cart.item_count > 0 %} has-items{% endif %}" data-cart-count>
+                    
+                <span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__item all--12">
+        <div class="site-header__search" data-header-search-container>
+          {% include 'search-bar' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% include 'nav-mobile',
+  link_list: section.settings.mobile_main_menu,
+  classes: 'mobile-nav large-up--hide',
+  attrs: 'data-mobile-nav'
+%}
+
+<style>
+  .wisp_desktop svg {
+    position: relative;
+    top: 8px;
+    height: 48px;
+    width: 48px;
+  }
+  .wisp_desktop svg path {
+  stroke-width: 2px;
+  }
+  
+  header.site-header.is-active .wisp_desktop svg path {
+  stroke: #000 !important;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu",
+        "default": "main-menu"
+      },
+      {
+        "type":"link_list",
+        "id":"mobile_main_menu",
+        "label":"Mobile Main Menu"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"dropdown-content",
+        "name":"Dropdown Content",
+        "settings":[
+          {
+            "type":"text",
+            "id":"dropdown_link_title",
+            "label":"Dropdown Link Title"
+          },
+          {
+            "type":"header",
+            "content":"Left Column Content"
+          },
+          {
+            "type":"checkbox",
+            "id":"left_column_enable",
+            "label":"Enable Left Column",
+            "default":true
+          },
+          {
+            "type":"link_list",
+            "id":"left_column_menu",
+            "label":"Left Column Menu"
+          },
+          {
+            "type":"checkbox",
+            "id":"left_column_original_badge",
+            "label":"Enable Original Poster Badge"
+          },
+          {
+            "type":"header",
+            "content":"Right Column Content"
+          },
+          {
+            "type":"checkbox",
+            "id":"right_column_enable",
+            "label":"Enable Right Column",
+            "default":true
+          },
+          {
+            "type":"link_list",
+            "id":"right_column_menu",
+            "label":"Right Column Menu"
+          },
+          {
+            "type":"checkbox",
+            "id":"right_column_callout_enable",
+            "label":"Enable Content Callout"
+          },
+          {
+            "type":"image_picker",
+            "id":"right_column_callout_image",
+            "label":"Callout Image"
+          },
+          {
+            "type":"text",
+            "id":"right_column_callout",
+            "label":"Callout"
+          },
+          {
+            "type":"url",
+            "id":"right_column_callout_link",
+            "label":"Callout Link"
+          },
+          {
+            "type":"text",
+            "id":"right_column_callout_link_text",
+            "label":"Callout Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

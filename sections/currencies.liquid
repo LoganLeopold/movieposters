@@ -1,0 +1,46 @@
+<ul class="curr_select__terms">
+  {% comment %}
+  {% for block in section.blocks %}
+      {% if block.settings.currency_visible %}
+          <li data-curr_select-term>
+            <h4><a href="?currency={{ block.settings.curr_select_term_title }}"><span class="icon icon-arrow-down-16"></span> {{ block.settings.curr_select_term_title }}</a></h4>
+            {% if block.settings.curr_select_term_content != blank %}
+            <p>{{ block.settings.curr_select_term_content }}</p>
+            {% endif %}
+          </li>
+        {% endif %}
+  {% endfor %}
+  {% endcomment %}
+
+  
+
+</ul>
+
+{% schema %}
+  {
+    "name":"Currency",
+    "blocks":[
+      {
+        "type":"currency-addition",
+        "name":"Currency",
+        "settings":[
+          {
+            "type":"checkbox",
+            "id":"currency_visible",
+            "label":"Currency Visible on Product Page"
+          },
+          {
+            "type":"text",
+            "id":"curr_select_term_title",
+            "label":"Currency ISO-code"
+          },
+          {
+            "type":"textarea",
+            "id":"curr_select_term_content",
+            "label":"Currency Info"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

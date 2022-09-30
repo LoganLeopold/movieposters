@@ -1,0 +1,137 @@
+{% if section.settings.section_enable %}
+  <div class="original-poster-formats">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="original-poster-formats__content">
+            <h2>{{ section.settings.headline }}</h2>
+            <p>{{ section.settings.content }}</p>
+          </div>
+
+          <div class="original-poster-formats__visual">
+            <ul>
+              {% for block in section.blocks %}
+                {% if block.type == 'format-visual' %}
+                  {%- capture picture_sources %}
+                    {% include 'component-source',
+                      source_image_1x: block.settings.format_image,
+                      source_size_1x: '208x',
+                      source_image_2x: block.settings.format_image,
+                      source_size_2x: '416x'
+                    %}
+                  {% endcapture %}
+
+                  {% unless forloop.index == 3 %}
+                    <li>
+                  {% endunless %}
+
+                    {% include 'component-picture',
+                      sources: picture_sources,
+                      resource: block.settings.format_image,
+                      default_size: '208x',
+                      set_width: '208',
+                      alt: block.settings.format_text
+                    %}
+                    <p>{{ block.settings.format_text }}</p>
+
+                  {% unless forloop.index == 2 %}
+                    </li>
+                  {% endunless %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="original-poster-formats__info">
+            <h4>Original Sizes</h4>
+
+            <ul>
+              {% for block in section.blocks %}
+                {% if block.type == 'format-info' %}
+                  <li data-format-term>
+                    <h4>
+                      {{ block.settings.format_text | replace: ' x ', ' &times; ' }}
+
+                      {% include 'component-icon',
+                        icon_name: 'icon-arrow-down-16',
+                        icon_classes: 'large-up--hide',
+                        icon_attrs: 'data-format-term-trigger'
+                      %}
+                    </h4>
+                    <p>{{ block.settings.format_size | replace: ' x ', ' &times; ' }}</p>
+                    <p>{{ block.settings.format_content }}</p>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Common Formats Section",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"section_enable",
+        "label":"Enable Common Formats Section",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"headline",
+        "label":"Headline",
+        "default":"Common Formats"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"There have been many kinds of print materials used to promote the film in the theaters."
+      }
+    ],
+    "blocks":[
+      {
+        "type":"format-visual",
+        "name":"Common Format Visual",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"format_image",
+            "label":"Format Image"
+          },
+          {
+            "type":"text",
+            "id":"format_text",
+            "label":"Format Title"
+          }
+        ]
+      },
+      {
+        "type":"format-info",
+        "name":"Common Format Name",
+        "settings":[
+          {
+            "type":"text",
+            "id":"format_text",
+            "label":"Format Text"
+          },
+          {
+            "type":"text",
+            "id":"format_size",
+            "label":"Format Size"
+          },
+          {
+            "type":"textarea",
+            "id":"format_content",
+            "label":"Format Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

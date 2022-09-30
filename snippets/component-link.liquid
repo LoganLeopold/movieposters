@@ -1,0 +1,22 @@
+<a href="{{ link_url }}"{% if new_tab %} target="_blank"{% endif %} class="text-link {{ classes }}" {{ attrs }}>
+  {% if has_reverse_icon %}
+    {% include 'component-icon',
+      icon_name: 'icon-back-16'
+    %}
+  {% endif %}
+
+  {{ link_text }}
+
+  {% if has_icon %}
+    {% include 'component-icon',
+      icon_name: 'icon-fwd-16'
+    %}
+  {% endif %}
+</a>
+
+{% assign link_url = nil %}
+{% assign new_tab = nil %}
+{% assign classes = nil %}
+{% assign has_icon = nil %}
+{% assign has_reverse_icon = nil %}
+{% assign attrs = nil %}

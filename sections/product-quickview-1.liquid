@@ -1,0 +1,177 @@
+{% layout none %} 
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% if product.handle contains 'readymade-frame' %}
+  {% assign is_readymade = true %}
+{% endif %}
+
+{% for option in product.options_with_values %}
+  {% assign option_handle = option.name | handleize %}
+  {% if option_handle contains 'color' or option_handle contains 'colour' %}
+    {% capture color_option %}option{{ forloop.index }}{% endcapture %}
+  {% elsif option_handle contains 'size' %}
+    {% capture size_option %}option{{ forloop.index }}{% endcapture %}
+  {% endif %}
+{% endfor %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_image_1x: product.featured_image,
+    source_size_1x: '224x',
+    source_image_2x: product.featured_image,
+    source_size_2x: '448x'
+  %}
+{% endcapture %}
+
+<div class="quickview__item" data-variant-id="{{ current_variant.id }}" data-product-handle="{{ product.handle }}" data-quickview>
+  <div class="grid">
+    <div class="grid__item all--12 medium-up--4">
+      <div class="quickview__details cc">
+        <div class="quickview__image"{% if is_readymade %} data-frame-image{% endif %}>
+          {% include 'component-picture',
+            sources: picture_sources,
+            resource: product.featured_image,
+            default_size: '224x',
+            alt: product.title,
+          %}
+        </div>
+        <div class="quickview__content">
+          {% if product.metafields.quickview.title != blank %}
+            <h3>{{ product.metafields.quickview.title }}</h3>
+          {% else %}
+            <h3>{{ product.title }}</h3>
+          {% endif %}
+
+          {% if product.metafields.quickview.description != blank %}
+            <p>{{ product.metafields.quickview.description | strip_html }}</p>
+          {% else %}
+            <p>{{ product.description | strip_html }}</p>
+          {% endif %}
+
+          <p class="quickview__price" data-quickview-price>{{ current_variant.price | money_with_currency }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__item all--12 medium-up--8">
+      <div class="quickview__form">
+        <form class="form-vertical"
+          action="/cart/add" method="post"
+          enctype="multipart/form-data"
+          data-quickview-form>
+          <div class="quickview__options">
+            <select name="id" id="productSelect" data-product-selected-variant>
+              {% for variant in product.variants %}
+                <option
+                  {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}
+                  data-sku="{{ variant.sku }}"
+                  value="{{ variant.id }}"
+                  data-variant-price="{{ variant.price | money_with_currency }}">
+                  {{ variant.title }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {% if is_readymade %}
+            {% include 'readymade-custom-size' %}
+
+            {% include 'readymade-finishes' %}
+            <span data-custom-frame-error class="readymade__custom-size-error"></span>
+          {% else %}
+            {% include 'product-extra-options' %}
+          {% endif %}
+          
+          {% include 'product-properties' %}
+
+          <button type="submit" name="add" class="pdp__submit btn btn--primary btn--full disabled" data-add-to-cart disabled>
+            <span data-add-to-cart-price>{{ current_variant.price | money_with_currency }}</span>
+            <span data-add-to-cart-text> &ndash; {{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var selectCallback = function(variant, selector) {
+    {% if is_readymade %}
+      if($('[data-frame-finish-select].selected').length > 0){
+        if(variant ==  null){
+          $('[data-custom-frame-error]').text('Frame is not available in this customization');
+          $('[data-add-to-cart]').prop('disabled', true).addClass('disabled');
+        }else{
+          $('[data-custom-frame-error]').text('');
+          $('[data-add-to-cart]').prop('disabled', false).removeClass('disabled');
+
+          const price = $(selector.variantIdField).find('option[value="'+$(selector.variantIdField).val()+'"]').attr('data-variant-price');
+          $('[data-add-to-cart-price]').text(price);
+          $('[data-quickview-price]').text(price);
+        }
+      }
+    {% else %}
+      if(variant ==  null){
+        if(!$('[data-add-to-cart]').disabled){
+          $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').removeClass('unavailable');
+        }
+        $('[data-add-to-cart-text]').text(' – Unavailable');
+      }else{
+        if(variant.available == false){
+          $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').addClass('unavailable');
+          $('[data-add-to-cart-text]').text(' – Sold Out');
+        }else{
+          $('[data-add-to-cart]').prop('disabled', false).removeClass('disabled').removeClass('unavailable');
+          $('[data-add-to-cart-text]').text(' – Add to Cart');
+        }
+
+        const price = $(selector.variantIdField).find('option[value="'+$(selector.variantIdField).val()+'"]').attr('data-variant-price');
+        $('[data-add-to-cart-price]').text(price);
+        $('[data-product-price]').text(price);
+      }
+    {% endif %}
+  };
+
+  new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: false
+    });
+
+  {% if size_option == blank and color_option == blank and product.variants.size > 1 %}
+    $('.selector-wrapper').addClass('is-visible');
+  {% endif %}
+</script>
+{% schema %}
+  {
+    "name":"ReadyMade Frame Sizes",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"custom_size_enable",
+        "label":"Enable Custom Size",
+        "default": true
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Frame Size",
+        "type":"frame-size",
+        "settings":[
+          {
+            "type":"text",
+            "id":"frame_width",
+            "label":"Frame Width",
+            "info":"Only use numeric values"
+          },
+          {
+            "type":"text",
+            "id":"frame_height",
+            "label":"Frame Height",
+            "info":"Only use numeric values"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

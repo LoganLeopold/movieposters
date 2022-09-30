@@ -1,0 +1,84 @@
+<nav class="{{ classes }}" {{ attrs }}>
+  {% for link in linklists[link_list].links %}
+    {% assign link_title_handle = link.title | handleize %}
+    {% if link_title_handle contains 'follow' %}
+      {% assign new_window = true %}
+    {% endif %}
+
+    <ul>
+      <li class="accordion"><h4 class="text-light">{{ link.title }}</h4>  <span class="icon icon-arrow-down-16"></span></li>
+      <li class="panel">
+      {% for childlink in link.links %}
+      <a href="{{ childlink.url }}"{% if new_window %} target="_blank"{% endif %} class="text-light">{{ childlink.title }}</a>
+      {% endfor %}
+      </li>
+    </ul>
+
+    {% assign new_window = nil %}
+  {% endfor %}
+</nav>
+<style>
+  .accordion > h4.text-light {
+    font-size: 14px;
+}
+  nav.site-footer__nav.large-up--hide {
+    max-width: 150px;
+    margin: 0 auto;
+}
+  .accordion>.icon {
+    color: #f4ca34;
+    margin-left: 4px;
+    display: inline-block;
+    float: right;
+}
+   .accordion.active>.icon{
+    transform: rotate(180deg);
+}
+.accordion {
+ 
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+
+}
+  .site-footer__nav.large-up--hide ul li{width:100%;}
+  
+.site-footer__nav ul li.panel a
+{
+  display: block;
+  padding: 5px 0;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+  .panel {
+    
+  }
+.site-footer__nav ul li.panel {
+    display: none;
+    margin-top: 10px;
+}
+</style>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>

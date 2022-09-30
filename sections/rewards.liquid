@@ -1,0 +1,134 @@
+{% if section.settings.section_enable %}
+  {%- capture button -%}
+    {%- include 'component-button',
+      button_classes: 'btn--primary btn--full',
+      button_text: 'Join Now'
+      button_url: '/account/register'
+    -%}
+  {%- endcapture -%}
+
+  {% capture button_secondary %}
+    {%- include 'component-button',
+      button_classes: 'btn--secondary btn--full',
+      button_text: 'Sign In',
+      button_url: '/account/login'
+    -%}
+  {% endcapture %}
+
+  <div class="rewards">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="rewards__details">
+            <div class="rewards__details-actions">
+              <span class="rewards__details-action is-active" data-rewards-details-trigger data-rewards-details-handle="earn">
+                {{ section.settings.earn_title }}
+              </span>
+
+              <span class="rewards__details-action" data-rewards-details-trigger data-rewards-details-handle="redeem">
+                {{ section.settings.redeem_title }}
+              </span>
+            </div>
+
+            <div class="rewards__details-content">
+              <ul class="rewards__details-rewards is-active" data-rewards-details data-rewards-details-handle="earn">
+                {% for block in section.blocks %}
+                  {% if block.type == 'earn-rewards' %}
+                    <li>
+                      <span class="rewards__detail-value">{{ block.settings.point_value }}</span>
+                      <span class="rewards__detail-points">{{ section.settings.points_title }}</span>
+                      <span class="rewards__detail-info">{{ block.settings.point_details }}</span>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+
+              <ul class="rewards__details-rewards" data-rewards-details data-rewards-details-handle="redeem">
+                {% for block in section.blocks %}
+                  {% if block.type == 'redeem-rewards'%}
+                    <li>
+                      <span class="rewards__detail-value">{{ block.settings.point_value }}</span>
+                      <span class="rewards__detail-points">{{ section.settings.points_title }}</span>
+                      <span class="rewards__detail-info">{{ block.settings.point_details }}</span>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="rewards__actions">
+            {{ button }}
+            {{ button_secondary }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Rewards",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"section_enable",
+        "label":"Enable Section",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"earn_title",
+        "label":"Earn Rewards Title",
+        "default":"Ways to earn"
+      },
+      {
+        "type":"text",
+        "id":"redeem_title",
+        "label":"Redeem Rewards Title",
+        "default":"Ways to redeem"
+      },
+      {
+        "type":"text",
+        "id":"points_title",
+        "label":"Name of Points",
+        "default":"Points"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"earn-rewards",
+        "name":"Earn Rewards",
+        "settings":[
+          {
+            "type":"text",
+            "id":"point_value",
+            "label":"Point Value"
+          },
+          {
+            "type":"text",
+            "id":"point_details",
+            "label":"Point Details"
+          }
+        ]
+      },
+      {
+        "type":"redeem-rewards",
+        "name":"Redeem Rewards",
+        "settings":[
+          {
+            "type":"text",
+            "id":"point_value",
+            "label":"Point Value"
+          },
+          {
+            "type":"text",
+            "id":"point_details",
+            "label":"Point Details"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

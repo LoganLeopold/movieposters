@@ -1,0 +1,102 @@
+{
+  "sections": {
+    "main": {
+      "type": "framing-finishes-main",
+      "settings": {
+      }
+    },
+    "main-1": {
+      "type": "framing-finishes-content",
+      "blocks": {
+        "d4325181-5661-4d16-8473-3059c2ae48ed": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/CustomFrameCallOut672x672_85762bf3-39db-4a82-8d9e-55cb84fe98af.jpg",
+            "link": "shopify:\/\/pages\/custom-frames",
+            "headline": "Custom Frames",
+            "content": "A unique and customized method to preserve and display your posters."
+          }
+        },
+        "1b5e0b38-366e-45d7-915d-87ad48b3854b": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/f2.jpg",
+            "link": "shopify:\/\/products\/readymade-frame",
+            "headline": "ReadyMade Frames",
+            "content": "The easy solution to framing your poster. These frames are shipped separately."
+          }
+        },
+        "6a35d809-6ae8-4c76-9d57-9d1020d6f057": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/f3.jpg",
+            "link": "shopify:\/\/pages\/backlit-frames",
+            "headline": "Backlit Frames",
+            "content": "Designed to illuminate 27in x 40in  double sided movie posters."
+          }
+        },
+        "f62cfb79-3652-4b1a-9130-0c74cf15d05d": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/f4.jpg",
+            "link": "shopify:\/\/pages\/mounted-on-plak",
+            "headline": "Plak Mounting",
+            "content": "A durable and modern poster mounting method without a frame."
+          }
+        },
+        "a3376000-71f7-446f-b279-b47b73c5a7f5": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/f5.jpg",
+            "link": "shopify:\/\/pages\/canvas-mounting",
+            "headline": "Canvas Mounting",
+            "content": "A durable and elegant option to display your poster - perfect for home theaters."
+          }
+        },
+        "38dae850-5149-4ec8-bc0d-e501e1580717": {
+          "type": "content-block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/f6.jpg",
+            "link": "shopify:\/\/collections\/sleeves-hangers",
+            "headline": "Sleeves & Hangers",
+            "content": "An easy and cost effective way to display your posters."
+          }
+        }
+      },
+      "block_order": [
+        "d4325181-5661-4d16-8473-3059c2ae48ed",
+        "1b5e0b38-366e-45d7-915d-87ad48b3854b",
+        "6a35d809-6ae8-4c76-9d57-9d1020d6f057",
+        "f62cfb79-3652-4b1a-9130-0c74cf15d05d",
+        "a3376000-71f7-446f-b279-b47b73c5a7f5",
+        "38dae850-5149-4ec8-bc0d-e501e1580717"
+      ],
+      "settings": {
+      }
+    },
+    "main-2": {
+      "type": "framing-finishes-feature-collection",
+      "blocks": {
+        "c33a2dab-3a66-4c61-aecc-f620dd072f2a": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Frame your favorites",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/genre-action"
+          }
+        }
+      },
+      "block_order": [
+        "c33a2dab-3a66-4c61-aecc-f620dd072f2a"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1",
+    "main-2"
+  ]
+}

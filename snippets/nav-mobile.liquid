@@ -1,0 +1,94 @@
+<div class="{{ classes }}" {{ attrs }}>
+  <div class="wrapper">
+    {% for link in linklists[link_list].links %}
+      {% assign link_midpoint = link.links.size | plus: 0.0 | divided_by: 2 | ceil %}
+
+      <div class="mobile-nav__items">
+        {% unless link.title == "Top Level" %}
+          <h4>{{ link.title }}</h4>
+        {% endunless %}
+
+        <ul>
+          {% for childlink in link.links %}
+            <li class="mobile-nav__item"><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+            {% if forloop.index == link_midpoint %}
+              </ul><ul>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="wisp_mobile">
+    <span class="wisp">
+      <a class="iWishViews" href="#swym-wishlist">WISHLIST</a>
+    </span>
+  </div>
+  
+  <div class="mobile-nav__actions">
+    {% include 'component-button',
+      button_text: 'Login to your account',
+      button_classes: 'btn--primary btn--full',
+      button_url: '/account'
+    %}
+  </div>
+      <div class="site-header__nav mob_curr_main site-header__nav--mobile large-up--hide">
+        <a title="Switch Currencies" class=" mob_crr site-header__nav-action switch sec switch-currency" >
+                <span class="icon icon-close-48" title="Cancel" style="display:none"></span>
+                <span id="Capa_1"  title="change {{ cart.currency.iso_code }} currency">{{ cart.currency.iso_code }}</span>
+                
+                {% form 'currency' %} 
+                <select name="currency" >
+                  {% for currency in shop.enabled_currencies %}
+                  {% if currency == cart.currency %}
+                  <option selected="true">{{currency.iso_code}}</option>
+                  {% else %}
+                  <option>{{currency.iso_code}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+<!--                 <button type="submit">Submit</button> -->
+                {% endform %}
+              </a>
+  </div>
+</div>
+
+
+<style>
+  .wisp_mobile {
+    padding: 0 24px 24px;
+  }
+  .mob_curr_main
+  {
+    margin-bottom: 20px;
+  }
+  
+  .wisp_mobile .wisp {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  .mob_crr.switch-currency span.icon
+  {
+    position: relative;
+    background: #fff;
+    left: -20px;
+  }
+/*   .mob_crr #Capa_1
+  {
+      margin-right: 20px;
+  } */
+  .mob_crr .shopify-currency-form.in-switch {
+    left: auto;
+        right: -20px;
+    position: absolute;
+    top: -6px;
+}
+  a.mob_crr.site-header__nav-action.switch.sec.switch-currency {
+    text-align: right;
+    width: 100%;
+    margin-right: 30px;
+}
+</style>

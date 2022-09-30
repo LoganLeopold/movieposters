@@ -1,0 +1,53 @@
+ <div class="readymade__size-dropdown" data-frame-dropdown>
+   
+  {% for block in section.blocks %}
+  
+    <span class="readymade__size"
+      data-frame-width="{{ block.settings.frame_width }}"
+      data-frame-height="{{ block.settings.frame_height }}"
+      data-frame-square-inch="{{ block.settings.frame_width | times: block.settings.frame_height }}"
+      data-frame-size-trigger>
+      {{ block.settings.frame_width }}&quot; &times; {{ block.settings.frame_height }}&quot;
+    </span>
+  {% endfor %}  
+   
+
+  {% if section.settings.custom_size_enable %}
+    <span class="readymade__size readymade__size--custom" data-custom-frame-size-trigger>Custom Size</span>
+  {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name":"ReadyMade Frame Sizes",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"custom_size_enable",
+        "label":"Enable Custom Size",
+        "default": true
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Frame Size",
+        "type":"frame-size",
+        "settings":[
+          {
+            "type":"text",
+            "id":"frame_width",
+            "label":"Frame Width",
+            "info":"Only use numeric values"
+          },
+          {
+            "type":"text",
+            "id":"frame_height",
+            "label":"Frame Height",
+            "info":"Only use numeric values"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

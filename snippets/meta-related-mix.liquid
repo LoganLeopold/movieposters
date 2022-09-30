@@ -1,0 +1,155 @@
+<!-- 	     start related              -->
+{% assign related_product_new_array = nil %}
+
+{% assign product_down = product.title | downcase %}
+{% assign current_page = 1 %}
+
+{% paginate collections.all.products by 1000 %}
+{% for i in (1..59) %}
+
+{% assign current_page = i %}
+{% assign offset_page = i | minus: 1 |  times: paginate.page_size %}
+{% assign offset_page_num = offset_page |  times: 1 %}
+{% for product_ink in collections.all.products offset:offset_page_num %}
+
+{% assign product_ink_down = product_ink.title | downcase %}
+{% if product_down == product_ink_down %}
+{% assign related_product_new_array = related_product_new_array | append: product_ink.title | append: '-' | append: product_ink.first_available_variant.sku | append: '//'  %} 
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+{% endpaginate %}
+
+
+<!--   Not Used    --> 
+
+{% comment %}
+{% assign pro_title_hand =  product.title  | append: '-' | append: product.first_available_variant.sku | downcase | handleize %}
+{% for pro_title in all_products[pro_title_hand] %} 
+{{ pro_title}} <br/>
+{% endfor %}
+{% endcomment %}
+
+<!--       Get All Collections related to the product    --> 
+{% for collection in product.collections %}
+
+
+<!--         get the the products has the same Decade   --> 
+
+{% if collection.title contains 'Decade' %}
+{% unless collection.title contains 'Original' %}
+{% assign collection_decade = collection.title | handleize %}
+{% for product_decade in collections[collection_decade].products limit: 10 %}
+{% unless product_decade.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_decade.title | append: '-' | append: product_decade.first_available_variant.sku | append: '//'  %} 
+{% endunless %}
+{% endfor %}  
+{% endunless %}
+{% endif %}
+
+<!--         get the the products has the same Actress   -->
+
+{% if collection.title contains 'Actress' %}
+{% assign collection_actress = collection.title | handleize %}
+{% for product_actress in collections[collection_actress].products limit: 10 %}
+{% unless product_actress.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_actress.title | append: '-' | append: product_actress.first_available_variant.sku | append: '//'  %}
+{% endunless %}
+{% endfor %} 
+{% endif %}
+
+<!--         get the the products has the same Actor   -->
+
+{% if collection.title contains 'Actor' %}
+{% assign collection_actor = collection.title | handleize %}
+{% for product_actor in collections[collection_actor].products  limit: 10 %}
+{% unless product_actor.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_actor.title | append: '-' | append: product_actor.first_available_variant.sku | append: '//'  %}
+{% endunless %}
+{% endfor %} 
+{% endif %}
+
+<!--         get the the products has the same Directors   -->
+
+{% if collection.title contains 'Directors' %}
+{% assign collection_directors = collection.title | handleize %}
+{% for product_directors in collections[collection_directors].products limit: 10  %}
+{% unless product_directors.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_directors.title | append: '-' | append: product_directors.first_available_variant.sku | append: '//'  %}
+{% endunless %}
+{% endfor %} 
+{% endif %}
+
+<!--         get the the products has the same Genre   -->
+
+{% if collection.title contains 'Genre' %}
+{% assign collection_genre = collection.title | handleize %}
+{% for product_genre in collections[collection_genre].products limit: 10  %}
+{% unless product_genre.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_genre.title | append: '-' | append: product_genre.first_available_variant.sku | append: '//' %}
+{% endunless %}
+{% endfor %}
+{% endif %}
+
+
+
+{% if related_product_new_array == nil  %}
+{% assign collection_mix = collection.title | handleize %}
+{% for product_mix in collections[collection_mix].products limit: 10  %}
+{% unless product_mix.title contains product.title %}
+{% assign related_product_new_array = related_product_new_array | append: product_mix.title | append: '-' | append: product_mix.first_available_variant.sku | append: '//'  %}
+{% endunless %}
+{% endfor %} 
+{% endif %}
+ 
+{% endfor %} 
+
+<!--         end related           -->
+
+{% if related_product_new_array != nil %}
+{% assign related_product_new_array_uniq = related_product_new_array | split: '//' | uniq | join: '//'   %}
+{% assign related_product_new_array_uniq_uniq = related_product_new_array | split: '//' | uniq | join: '//'   %}
+
+{% assign related_product_new_array_split = related_product_new_array_uniq_uniq | split: '//'     %}
+
+
+
+<div class="feature-collection meta-related meta-mix" style="padding: 20px 0 50px 0 ;">
+  <div class="wrapper"> 
+    <div class="grid">
+      <div class="grid__item all--12">
+        <div class="feature-collection__title">
+          <h2 class="text-light">Collect More</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-collection__slider" data-collection-slider>
+    {% for related_product_mix in related_product_new_array_split %}
+
+    {% assign related_product_hand =  related_product_mix | handleize %}
+    {% assign _product_mix = all_products[related_product_hand] %}
+     
+   
+    {% include 'collection-item'
+          product: _product_mix,
+    is_slide: true,
+    attrs: 'data-collection-slide'
+    %}
+  
+    {% endfor %}
+    
+    
+  </div>
+</div>
+{% endif %}
+
+
+
+<style>
+  .meta-div .meta-div {
+    display: none;
+  }
+</style>

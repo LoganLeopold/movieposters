@@ -1,0 +1,40 @@
+{% assign button_class = 'btn--primary btn--full' %}
+{%- capture button -%}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    button_classes: button_class,
+    button_text: 'Reset'
+  -%}
+{%- endcapture -%}
+
+<div class="login__form is-active">
+  {% form 'reset_customer_password' %}
+    <div class="account__header">
+      <h1>{{ 'customer.reset_password.title' | t }}</h1>
+      <p>{{ 'customer.reset_password.subtext' | t: email: email }}</p>
+
+      {% if form.errors %}
+        <span class="input__message is-error">{{ form.errors | default_errors }}</span>
+      {% endif %}
+    </div>
+
+    <label for="ResetPassword" class="label-hidden">{{ 'customer.reset_password.password' | t }}</label>
+    <input type="password"
+      name="customer[password]"
+      id="ResetPassword"
+      class="{% if form.errors contains 'password' %}input-error{% endif %}"
+      placeholder="{{ 'customer.reset_password.password' | t }}">
+
+    <label for="PasswordConfirmation" class="label-hidden">{{ 'customer.reset_password.password_confirm' | t }}</label>
+    <input type="password"
+      name="customer[password_confirmation]"
+      id="PasswordConfirmation"
+      class="{% if form.errors contains 'password_confirmation' %}input-error{% endif %}"
+      placeholder="{{ 'customer.reset_password.password_confirm' | t }}">
+
+    <div class="input__actions text-center">
+      {{ button }}
+    </div>
+  {% endform %}
+</div>

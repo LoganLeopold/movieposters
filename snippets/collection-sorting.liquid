@@ -1,0 +1,35 @@
+{% capture sort_by_title %}
+  {% case collection.sort_by %}
+    {% when 'manual' %}
+      {{ 'collections.sorting.featured' | t }}
+    {% when 'best-selling' %}
+      {{ 'collections.sorting.best_selling' | t }}
+    {% when 'title-ascending' %}
+      {{ 'collections.sorting.az' | t }}
+    {% when 'title-descending' %}
+      {{ 'collections.sorting.za' | t }}
+    {% when 'price-ascending' %}
+      {{ 'collections.sorting.price_ascending' | t }}
+    {% when 'price-descending' %}
+      {{ 'collections.sorting.price_descending' | t }}
+    {% when 'created-descending' %}
+      {{ 'collections.sorting.date_descending' | t }}
+    {% when 'created-ascending' %}
+      {{ 'collections.sorting.date_ascending' | t }}
+    {% else %}
+      {{ 'collections.sorting.title' | t }}
+  {% endcase %}
+{% endcapture %}
+
+<div class="collection__sorting medium-down--hide">
+  <p class="collection__sorting-title" data-collection-sorting-toggle>{{ sort_by_title }} <span class="icon icon-arrow-down-16"></span></p>
+  <ul class="collection__sorting-menu" data-collection-sorting>
+    <li data-value="best-selling">{{ 'collections.sorting.best_selling' | t }}</li>
+    <li data-value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</li>
+    <li data-value="price-descending">{{ 'collections.sorting.price_descending' | t }}</li>
+    <li data-value="created-descending">{{ 'collections.sorting.date_descending' | t }}</li>
+    <li data-value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</li>
+    <li data-value="title-ascending">{{ 'collections.sorting.az' | t }}</li>
+    <li data-value="title-descending">{{ 'collections.sorting.za' | t }}</li>
+  </ul>
+</div>

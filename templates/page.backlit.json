@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "backlit-frames-main",
+      "settings": {
+      }
+    },
+    "main-1": {
+      "type": "backlit-frames-content",
+      "settings": {
+        "main_image": "shopify:\/\/shop_images\/BackLit.Draft1.1024x864_c41092a2-e1c4-41d5-bfe0-6379e599c190.jpg",
+        "content": "<p><strong>How it works<\/strong><\/p><p>The Back Lit Movie Poster frame is designed to illuminate a double sided movie poster using diffused LED back lights. The 1 inch thick aluminum frame is constructed to 29.5in wide by 42in long, with a seamless finish and a sturdy hinge mechanism for simple poster exchange. The LED lights are both lightweight and low-energy, making wall-hanging easy and upkeep inexpensive.<\/p><p>Light diffusing optical acrylic and another layer of protective acrylic hold the poster in place and provide optimal visual impact. The frame plugs into a standard North American electrical outlet.<\/p>"
+      }
+    },
+    "main-2": {
+      "type": "backlit-frames-feature-collection",
+      "blocks": {
+        "717c055f-e064-4dcd-b2f7-40d08da97f58": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Frame your favorites",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/genre-action"
+          }
+        },
+        "8b850d70-6ba3-4019-ae09-f21621b2c060": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "johnny-depp-curated",
+            "feature_collection_title": "He-e-e-e-re's Johnny",
+            "feature_collection_link_text": "Shop Johnny Depp",
+            "feature_collection_link": "shopify:\/\/collections\/johnny-depp"
+          }
+        }
+      },
+      "block_order": [
+        "717c055f-e064-4dcd-b2f7-40d08da97f58",
+        "8b850d70-6ba3-4019-ae09-f21621b2c060"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1",
+    "main-2"
+  ]
+}

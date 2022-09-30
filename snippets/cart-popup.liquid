@@ -1,0 +1,22 @@
+<div class="cart-popup" data-cart-popup>
+  <h4><span class="icon icon-checkmark-16"></span>Added to Cart</h4>
+  <span class="cart-popup__close icon icon-close-24" data-cart-popup-close-trigger></span>
+  <div class="cart-popup__product" data-cart-popup-product>
+    <div class="cart-popup__image" data-cart-popup-image>
+    </div><!--
+ --><div class="cart-popup__details">
+      <div class="cart-popup__title" data-cart-popup-title></div><!--
+   --><div class="cart-popup__dimensions" data-cart-popup-dimensions></div><!--
+   --><div class="cart-popup__tags" data-cart-popup-tags>
+      </div><!--
+   --><div class="cart-popup__price" data-cart-popup-price>
+      </div><!--
+   --><div class="cart-popup__finish" data-cart-popup-finish>
+      </div>
+    </div>
+  </div>
+  <div class="cart-popup__buttons">
+    <button data-cart-popup-close-trigger class="btn btn--secondary">Keep Shopping</button><!--
+ --><a href="/cart" class="btn btn--primary" data-cart-popup-cart-link>View Cart (<span class="cart-popup__count" data-cart-popup-count>{{ cart.item_count }}</span>)</a>
+  </div>
+</div>

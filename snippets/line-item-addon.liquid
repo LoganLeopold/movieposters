@@ -1,0 +1,85 @@
+{% for option in _line_item.product.options_with_values %}
+  {% assign option_handle = option.name | handleize %}
+  {% if option_handle contains 'color' or option_handle contains 'colour' %}
+    {% capture color_option %}option{{ forloop.index }}{% endcapture %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign addon_image = _line_item.image %}
+
+{% if color_option != blank %}
+  {% assign variant_color_handle = _line_item.variant[color_option] | handleize %}
+  {% for image in _line_item.product.images %}
+    {% assign alt_handle = image.alt | handleize %}
+    {% if alt_handle contains variant_color_handle %}
+      {% assign addon_image = image %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 767px)',
+    source_image_1x: addon_image,
+    source_size_1x: '96x',
+    source_image_2x: addon_image,
+    source_size_2x: '192x'
+  %}
+  {% include 'component-source',
+    source_image_1x: addon_image,
+    source_size_1x: '112x',
+    source_image_2x: addon_image,
+    source_size_2x: '224x'
+  %}
+{% endcapture %}
+
+<div class="line-item line-item--addon" data-addon-line-item data-key="{{ _line_item.key }}" data-product-handle="{{ _line_item.product.handle }}" data-variant-id="{{ _line_item.variant.id }}">
+  <a href="{{ _line_item.product.url }}" class="line-item__image">
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: addon_image,
+      default_size: '112x',
+      alt: _line_item.product.title
+    %}
+  </a>
+
+  <div class="line-item__content-container">
+    <div class="line-item__content">
+      <h3 class="line-item__title"><a href="{{ _line_item.product.url }}">{{ _line_item.product.title }}</a></h3>
+
+      <div class="line-item__details">
+        {% if _line_item.properties["Frame width"] != blank and _line_item.properties["Frame height"] != blank %}
+          <p class="line-item__dimensions">{{ _line_item.properties["Frame width"] }} &times; {{ _line_item.properties["Frame height"] }}<span class="medium-up--hide">,</span></p>
+        {% endif %}
+
+        <p class="line-item__meta">
+          {{ _line_item.variant[color_option] }}
+        </p>
+
+        {% for property in _line_item.properties %}
+          <span data-addon-property data-property-key="{{ property.first }}" data-property-value="{{ property.last }}"></span>
+        {% endfor %}
+      </div>
+
+      <div class="line-item__actions">
+        <span class="line-item__action re_mo_ve remove-item"><span class="icon icon-remove-16"></span>Remove</span>
+        <span class="line-item__action" data-addon-edit-trigger data-product-handle="{{ _line_item.product.handle }}"><span class="icon icon-edit-16"></span>Edit</span>
+      </div>
+    </div>
+
+    <div class="line-item__total medium-up--text-right">
+      <p class="line-item__price">{{ _line_item.price | money_with_currency }}</p>
+      <div class="line-item__qty">
+          {% include 'quantity-selector',
+            id: _line_item.id,
+            quantity: _line_item.quantity,
+            is_addon: true
+          %}
+        </div>
+    </div>
+  </div>
+</div>
+
+{% assign color_option = nil %}

@@ -1,0 +1,125 @@
+{%- capture filter_button -%}
+  {%- include 'component-button',
+    is_action: true,
+    button_classes: 'btn--full btn--secondary is-active',
+    button_text: '<span class="icon icon-arrow-up-24 small--hide"></span> <span class="small--hide">Hide&nbsp;</span> Filters',
+    button_attr: 'data-filter-toggle'
+  -%}
+{%- endcapture -%}
+
+{% paginate collection.products by 48 %}
+  <div class="collection">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12">
+          <div class="collection__header is-active" data-collection-header>
+            <div class="collection__filter-toggle">
+              {{ filter_button }}
+            </div>
+
+            <div class="collection__title">
+              <h1>{{ collection.title }}</h1>
+            </div>
+
+            <div class="collection__view">
+              {% if settings.ss_enable == false %}
+                <span>View</span>
+                <select name="view-count" id="viewCount">
+                  <option value="12">12</option>
+                  <option value="24" >24</option>
+                  <option value="48" selected >48</option>
+                  <option value="96">96</option>
+                </select>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__item all--12 pos_relative">
+          <span class="close_x">X</span>
+          <div class="collection__container">
+            
+            <div class="collection__filters is-active" data-collection-filters>
+              {% if settings.ss_enable %}
+              	<div id="searchspring-sidebar"></div>
+              {% endif %}              
+            </div>
+
+            <div class="collection__content" data-collection-content>
+              {% if settings.ss_enable %}
+              	<div id="searchspring-content"></div>
+              {% else %}
+                <div class="collection__content-actions">
+                  {% include 'collection-sorting' %}
+                </div>
+
+                <div class="collection__items fgfgfgf">
+                  <div class="grid grid--uniform">
+                    {% for product in collection.products %}
+                      {% include 'collection-item' %}
+                    {% else %}
+                      <h3 class="text-center">{{ collection.general.no_matches }}</h3>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+		
+        {% if settings.ss_enable == false %}
+          <div class="grid__item all--12">
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endpaginate %}
+
+<style>
+  
+  @media only screen and (min-width: 768px) {
+  .collection__filters {
+        position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 100px;
+   
+  }
+  .site-container {
+    overflow-x: unset;
+}
+    
+}
+  
+  .close_x
+  {
+    opacity: 0;
+    z-index: 99999999;
+    position: absolute;
+    top: -35px;
+    color: #fff;
+    right: 0px;
+  }
+   .template-collection.drawer-active .close_x
+  {
+    opacity: 1;
+  }
+  .pos_relative
+  {
+    position: relative; 
+  }
+/*   .template-collection.drawer-active .collection__container::before {
+    content: "X";
+    position: absolute;
+    color: #fff;
+    z-index: 999999;
+    top: -26px;
+    right: 0;
+}  */
+</style>

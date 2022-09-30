@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "page-1",
+      "settings": {
+      }
+    },
+    "main-2": {
+      "type": "page-feature-collection",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2"
+  ]
+}

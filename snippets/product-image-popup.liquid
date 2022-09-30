@@ -1,0 +1,26 @@
+{% for image in _product.images %}
+  {% capture product_image_state %}
+    {% unless _image == image %}
+      hide
+    {% endunless %}
+  {% endcapture %}
+
+  {%- capture picture_sources %}
+    {% include 'component-source',
+      source_image_1x: image,
+      source_size_1x: '900x',
+      source_image_2x: image,
+      source_size_2x: '1800x',
+    %}
+  {% endcapture %}
+
+  <div class="popup__image {{ product_image_state }}" data-image-id="{{ image.id }}" data-product-image-zoom>
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: image,
+      default_size: '900x',
+      set_width: '900',
+      alt: product.title,
+    %}
+  </div>
+{% endfor %}

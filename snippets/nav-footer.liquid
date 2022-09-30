@@ -1,0 +1,17 @@
+<nav class="{{ classes }}" {{ attrs }}>
+  {% for link in linklists[link_list].links %}
+    {% assign link_title_handle = link.title | handleize %}
+    {% if link_title_handle contains 'follow' %}
+      {% assign new_window = true %}
+    {% endif %}
+
+    <ul>
+      <li><h4 class="text-light">{{ link.title }}</h4></li>
+      {% for childlink in link.links %}
+        <li><a href="{{ childlink.url }}"{% if new_window %} target="_blank"{% endif %} class="text-light">{{ childlink.title }}</a></li>
+      {% endfor %}
+    </ul>
+
+    {% assign new_window = nil %}
+  {% endfor %}
+</nav>

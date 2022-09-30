@@ -1,0 +1,106 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% for option in product.options_with_values %}
+  {% assign option_handle = option.name | handleize %}
+  {% if option_handle contains 'color' or option_handle contains 'colour' %}
+    {% capture color_option %}option{{ forloop.index }}{% endcapture %}
+  {% elsif option_handle contains 'size' %}
+    {% capture size_option %}option{{ forloop.index }}{% endcapture %}
+  {% endif %}
+{% endfor %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_image_1x: product.featured_image,
+    source_size_1x: '768x944',
+    source_image_2x: product.featured_image,
+    source_size_2x: '1536x1888',
+  %}
+{% endcapture %}
+
+<div class="pdp">
+  <div class="wrapper">
+
+    <div class="grid" data-product>
+      <div class="grid__item medium-up--12 pdp__content">
+        <div class="grid pdp__grid-wrapper">
+          <div class="grid__item medium-up--7">
+            <div class="pdp__images{% if product.handle contains 'hanger' %} full-width{% endif %}" style="background-color: {{ settings.pdp_background }};" data-frame-image>
+              <div class="pdp__images--inner active{% if product.handle contains 'hanger' %}  full-width{% endif %}">
+                <div data-product-image class="active">
+                  <div id="ImageWrapper-{{ product.featured_image.id }}" data-image-id="{{ product.featured_image.id }}" class="pdp__image" data-product-image-wrapper>
+                    {% include 'component-picture',
+                      sources: picture_sources,
+                      resource: product.featured_image,
+                      default_size: '768x944',
+                      alt: product.featured_image.alt,
+                    %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="grid__item medium-up--5 pdp__info-wrapper">
+            <div class="pdp__info"
+               data-readymade
+               data-variant-id="{{ current_variant.id }}"
+               data-price="{{ current_variant.price }}"
+               data-compare-price="{{ current_variant.compare_at_price }}"
+             >
+
+              <span class="pdp__sku">{{ current_variant.sku }}</span>
+              <h1>{{ product.title }}</h1>
+
+              <form class="form-vertical"
+                    action="/cart/add" method="post"
+                    enctype="multipart/form-data"
+                    data-product-form>
+
+                <div class="pdp__meta">
+                  <div class="pdp__meta-details">
+                    {{ product.description }}
+                    <span class="pdp__meta-tags hide" data-product-meta>
+                      {{ current_variant[color_option] }}
+                    </span>
+                  </div>
+
+                  <span class="pdp__price" data-product-price>
+                    {{ current_variant.price | money_with_currency }}
+                  </span>
+
+                  {% if product.compare_at_price_max > product.price %}
+                    <span class="pdp__price pdp__price--compare" data-product-compare-price>
+                      {{ current_variant.compare_at_price | money_with_currency }}
+                    </span>
+                  {% endif %}
+                </div>
+
+                <select name="id" id="productSelect" data-product-selected-variant>
+                  {% for variant in product.variants %}
+                    <option
+                      {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}
+                      data-sku="{{ variant.sku }}"
+                      value="{{ variant.id }}"
+                      data-variant-price="{{ variant.price | money_with_currency }}"
+                      data-variant-title="{{ variant.title | replace: ' / ', ', ' }}">
+                      {{ variant.title }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+                {% include 'product-extra-options' %}
+
+                <button type="submit" name="add" class="pdp__submit btn btn--primary disabled" data-add-to-cart disabled>
+                  <span data-add-to-cart-price>{{ current_variant.price | money_with_currency }}</span>
+                  <span data-add-to-cart-text> &ndash; {{ 'products.product.add_to_cart' | t }}</span>
+                </button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+   

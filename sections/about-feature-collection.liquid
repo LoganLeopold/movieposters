@@ -1,0 +1,47 @@
+<div class="feature-collections">
+  {% for block in section.blocks %}
+    {% include 'featured-collection',
+      collection_handle: block.settings.feature_collection,
+      collection_title: block.settings.feature_collection_title,
+      collection_link_text: block.settings.feature_collection_link_text,
+      collection_link: block.settings.feature_collection_link
+    %}
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name":"Feature Collections",
+    "blocks":[
+      {
+        "type":"feature-collection",
+        "name":"Feature Collection",
+        "settings":[
+          {
+            "type":"collection",
+            "id":"feature_collection",
+            "label":"Feature Collection"
+          },
+          {
+            "type":"text",
+            "id":"feature_collection_title",
+            "label":"Feature Collection Title",
+            "info":"If left blank output will default to selected collection name"
+          },
+          {
+            "type":"text",
+            "id":"feature_collection_link_text",
+            "label":"Feature Collection Link Text",
+            "info":"If left blank output will default to collection name"
+          },
+          {
+            "type":"url",
+            "id":"feature_collection_link",
+            "label":"Feature Colletion Link",
+            "info":"Override link in the CTA. If left blank output will default to collection link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

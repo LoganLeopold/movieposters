@@ -1,0 +1,20 @@
+{%- assign button_tag = 'a' -%}
+{% if is_action %}
+  {% assign button_tag = 'button' %}
+{%- endif -%}
+
+<{{ button_tag }} {% if is_input %}type="submit" {% endif %}{% if button_name %}name="{{ button_name }}" {% endif %}class="btn {{ button_classes }}" {% unless is_action %}href="{{ button_url }}"{% endunless %} {{ button_attr }} tabindex="0">
+  {{ button_text }}
+  {% if has_icon %}
+    {% include 'component-icon',
+      icon_name: 'icon-fwd-16'
+    %}
+  {% endif %}
+</{{ button_tag }}>
+
+{% assign is_action = nil %}
+{% assign is_input = nil %}
+{% assign button_classes = nil %}
+{% assign button_text = nil %}
+{% assign has_icon = nil %}
+{% assign button_attr = nil %}

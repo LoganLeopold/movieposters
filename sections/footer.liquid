@@ -1,0 +1,270 @@
+{% if section.settings.newsletter_enable %}
+  <div class="newsletter">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 large-up--8 push--large-up--2">
+          <div class="newsletter__form text-center">
+            <h3>{{ section.settings.newsletter_title }}</h3>
+            {{ section.settings.newsletter_form_action }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<footer class="site-footer" role="contentinfo">
+  <div class="wrapper">
+    <div class="site-footer__info text-center">
+      <h4 class="text-light large-up--hide">{{ section.settings.mobile_information_title }}</h4>
+      {% for block in section.blocks %}
+        <div class="text-light site-footer__info-block">
+          <h4 class="medium-down--hide">{{ block.settings.information_title }}</h4>
+          <p>
+            {% if block.settings.information_link != blank %}
+              <a href="{{ block.settings.information_link }}" class="text-light"{% if block.settings.information_new_tab %} target="_blank"{% endif %}>
+            {% endif %}
+
+            {{ block.settings.information }}
+
+            {% if block.settings.information_link != blank %}
+              </a>
+            {% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div style="max-width: 400px;" class="site-footer__text-logo text-center">
+      <a href="/">
+        {% include 'svg-logo-text-white' %}
+      </a>
+    </div>
+
+    {% include 'nav-footer',
+      link_list: section.settings.footer_menu,
+      classes: 'site-footer__nav text-center medium-down--hide'
+    %}
+
+    {% include 'nav-footer-mob',
+      link_list: section.settings.footer_menu,
+      classes: 'site-footer__nav large-up--hide'
+    %}
+
+    <div class="site-footer__copyright">
+      <ul class="text-center">
+        <li class="text-light">&copy; {{ 'now' | date: '%Y' }} Movieposters.com All rights reserved.</li>
+
+        {% for link in linklists[section.settings.fine_print_menu].links %}
+          <li><a href="{{ link.url }}" class="text-light">{{ link.title }}.</a></li>
+        {% endfor %}
+
+        <!--<li><a href="https://pointercreative.com" target="_blank" class="text-light">Site by Pointer</a></li>-->
+
+      </ul>
+      <ul class="secure-chechout">
+        <li class="title-sec">Secure Checkout By <img class="custom-img" data-src="{{section.settings.img1 | img_url : '100px'}}"></li>
+        
+        <li style="padding: 8px 3px;border: 3px solid white;border-radius: 3px;"><img class="custom-img" data-src="{{section.settings.img2 | img_url : '100px'}}"></li> 
+        <li><img class="custom-img" data-src="{{section.settings.img3 | img_url : '100px'}}"></li> 
+        <li><img class="custom-img" data-src="{{section.settings.img4 | img_url : '100px'}}"></li>
+        <li style="background: white;padding: 2px 2px 1px 2px;border: 0px solid;border-radius: 3px;"><img class="custom-img" data-src="{{section.settings.img5 | img_url : '100px'}}"></li>
+        <li style="background: white;padding: 2px 2px 1px 2px;border: 0px solid;border-radius: 3px;"><img class="custom-img" data-src="{{section.settings.img6 | img_url : '100px'}}"></li> 
+        <li><img class="custom-img" data-src="{{section.settings.img7 | img_url : '100px'}}"></li> 
+        <li style="border: 2px solid;border-radius: 3px;"><img class="custom-img" data-src="{{section.settings.img8 | img_url : '100px'}}"></li> 
+      </ul>
+
+    </div>
+  </div>
+<!-- hide bottom logo <div class="site-footer__logo">
+    <span data-scroll data-scroll-target="top">
+      <span class="medium-down--hide">
+        {% include 'svg-logo' %}
+      </span>
+
+      <span class="large-up--hide">
+        {% include 'svg-logo-mobile' %}
+      </span>
+    </span>
+    
+  </div> -->
+  
+  <div class="back-to-top"  id="back-to-top"> 
+    <a href=""></a>  
+  </div>
+</footer>  
+
+<script>
+  $(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 500) {
+      $('#back-to-top').fadeIn(); 
+    } else {
+      $('#back-to-top').fadeOut();
+    }
+  });
+  $(document).ready(function() {
+    $("#back-to-top").click(function(event) { 
+      event.preventDefault();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      return false;
+    });
+
+    $('.switch-currency #Capa_1').click(function(){
+      $('.shopify-currency-form ').addClass('in-switch');
+      $('.switch-currency span.icon').css("display","inline-block");
+    });
+    $('.sec.switch-currency #Capa_1').click(function(){
+      $('.shopify-currency-form').eq(1).addClass('in-switch');
+      $('.switch-currency.sec span.icon').css("display","inline-block");
+    });
+    $('.switch-currency span.icon').click(function(){
+      $('.shopify-currency-form').removeClass('in-switch');
+      $(this).css("display","none");
+    });
+    $('.switch-currency.sec span.icon').click(function(){
+      $('.shopify-currency-form').eq(1).removeClass('in-switch');
+      $(this).css("display","none");
+    });
+  });
+  /*Scroll to top when arrow up clicked END*/
+</script>
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Newsletter"
+      },
+ 		{
+        "type":"checkbox",
+        "id":"newsletter_enable",
+        "label":"Enable Newsletter Section",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "newsletter_form_action",
+        "label": "Newsletter Form action URL"
+      },
+      {
+        "type":"text",
+        "id":"newsletter_title",
+        "label":"Newsletter Title",
+        "default":"You've got mail!"
+      },
+      {
+        "type": "header",
+        "content": "Menus"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu",
+        "label": "Footer Main Menu",
+        "default": "footer"
+      },
+      {
+        "type":"link_list",
+        "id":"footer_mobile_menu",
+        "label":"Footer Main Mobile Menu"
+      },
+      {
+        "type":"link_list",
+        "id":"fine_print_menu",
+        "label":"Fine Print Menu"
+      },
+      {
+        "type":"header",
+        "content":"Mobile Contact Information"
+      },
+      {
+        "type":"text",
+        "id":"mobile_information_title",
+        "label":"Mobile Information Title",
+        "default":"Get In Touch"
+      },
+	{
+	 "type":"image_picker",
+	 "id":"img1",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img2",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img3",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img4",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img5",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img6",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img7",
+	 "label":"Image"
+	},
+	{
+	 "type":"image_picker",
+	 "id":"img8",
+	 "label":"Image"
+	}
+    ],
+    "blocks":[
+      {
+        "type":"info-block",
+        "name":"Footer Information Block",
+        "limit":3,
+        "settings":[
+          {
+            "type":"text",
+            "id":"information_title",
+            "label":"Information Title"
+          },
+          {
+            "type":"textarea",
+            "id":"information",
+            "label":"Information"
+          },
+          {
+            "type":"url",
+            "id":"information_link",
+            "label":"Information Link"
+          },
+          {
+            "type":"checkbox",
+            "id":"information_new_tab",
+            "label":"Open link in new browser tab"
+          }
+        ]
+      },
+	  {
+        "type":"payment-icons",
+        "name":"Footer Payment Icons",
+        "limit":3,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"payment_icon",
+            "label":"Payment Icon"
+          }
+		]
+	   }
+    ]
+  }
+{% endschema %}

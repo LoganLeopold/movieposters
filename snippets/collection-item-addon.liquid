@@ -1,0 +1,41 @@
+{% assign featured_image = product.featured_image %}
+{% for image in product.images %}
+  {% assign image_alt = image.alt | handlize %}
+  {% if image_alt == 'preview' %}
+    {% assign featured_image = image %}
+  {% endif %}
+{% endfor %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 767px)',
+    source_image_1x: featured_image,
+    source_size_1x: '152x56',
+    source_image_2x: featured_image,
+    source_size_2x: '304x112',
+    source_crop: 'top'
+  %}
+  {% include 'component-source',
+    source_image_1x: featured_image,
+    source_size_1x: '192x72',
+    source_image_2x: featured_image,
+    source_size_2x: '384x144',
+    source_crop: 'top'
+  %}
+{% endcapture %}
+
+<div class="addon-item grid__item all--6 large-up--4" data-addon-item-trigger data-product-handle="{{ product.handle }}">
+  <div class="addon-item__image">
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: featured_image,
+      default_size: '192x72',
+      alt: product.title,
+      picture_crop: 'top'
+    %}
+  </div>
+
+  <div class="addon-item__title cc">
+    <h4>{{ product.title }}</h4>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "page-about-1",
+      "settings": {
+      }
+    },
+    "main-2": {
+      "type": "about-feature-collection",
+      "blocks": {
+        "39931540-1c89-4a17-a807-4870219fc4cd": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "beyond-video-games",
+            "feature_collection_title": "Our current favorites",
+            "feature_collection_link_text": "Shop staff picks",
+            "feature_collection_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "39931540-1c89-4a17-a807-4870219fc4cd"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2"
+  ]
+}

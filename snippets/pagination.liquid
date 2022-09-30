@@ -1,0 +1,19 @@
+<div class="pagination">
+  <div class="paginate__prev">
+    {% if paginate.previous != blank %}
+      <a href="{{ paginate.previous.url }}" class="paginate__page"><span class="icon icon-back-24"></span> Back</a>
+    {% endif %}
+  </div>  
+
+  <div class="paginate__pages">
+    <span class="small--hide">Page</span>
+    <input type="number" min="1" max="{{ paginate.pages }}" value="{{ paginate.current_page }}" data-pagination-input>
+    of {{ paginate.pages }}
+  </div>
+
+  <div class="paginate__next">
+    {% if paginate.next != blank %}
+      <a href="{{ paginate.next.url }}" class="paginate__page"><span class="small--hide">Forward</span><span class="medium-up--hide">Fwd</span><span class="icon icon-fwd-24"></span></a>
+    {% endif %}
+  </div>
+</div>

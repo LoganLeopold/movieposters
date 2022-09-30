@@ -1,0 +1,797 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+{% include 'product-tags' %} 
+ 
+{% assign square_inch = width | times: height %}
+{% assign square_inch_min = settings.frame_size_min | plus: 0 %}
+{% assign square_inch_max = settings.frame_size_max | plus: 0 %}
+
+{% assign product_info = nil %}
+{% assign product_meta = nil %} 
+{%- if print_type != blank -%} 
+{% assign print_type_encoded = print_type | url_encode %}
+{% assign print_type_url = '<a href="/collections/shop?q=' | append: print_type_encoded | append: '">' | append: print_type | append: '</a>'%}
+{% assign product_meta = product_meta | append: ', ' | append: print_type_url %}
+{% assign product_info = product_info | append: ', ' | append: print_type %}
+{%- endif -%} 
+{%- if sided != blank -%}
+{% assign sided_encoded = sided | url_encode | replace: '++', '+' %}
+{% assign sided_url = '<a href="/collections/shop?q=' | append: sided_encoded | append: '">' | append: sided | append: '</a>'%}
+{% assign product_meta = product_meta | append: ', ' | append: sided_url %}
+{% assign product_info = product_info | append: ', ' | append: sided %}
+{%- endif -%}
+{%- if packing_type != blank -%}
+{% assign packing_type_encoded = packing_type | url_encode %}
+{% assign packing_type_url = '<a href="/collections/shop?q=' | append: packing_type_encoded |append: '">' | append: packing_type | append: '</a>'%}
+{% assign product_meta = product_meta | append: ', ' | append: packing_type_url %}
+{% assign product_info = product_info | append: ', ' | append: packing_type %}
+{% endif %}
+
+{% assign product_info = product_info | remove_first: ', ' %}
+{% assign product_meta = product_meta | remove_first: ', ' %}
+
+{% assign poster_condition = nil %}
+{% assign condition_keywords = settings.condition_keywords | split: ',' %}
+{% assign product_description = product.description | split: ';'  %}
+
+{% comment %} added additional logic  #45 to avoid striping off of p by earlier logic @BZDM 04/30{% endcomment%}
+
+
+{% for condition_keyword in condition_keywords %}
+{% assign condition_keyword_handle = condition_keyword | handleize | remove: '-' %}
+
+{% for p in product_description %}
+               
+{% assign p1 = p | handleize | remove: '<p>' | remove: '</p>' | remove: '-' %}
+
+{% if p1 == condition_keyword_handle %}
+
+{% assign condition_keyword_string = condition_keyword | strip | capitalize %}
+{% assign condition_keyword_url = ', <a href="/collections/shop?q=' | append: condition_keyword_string |append: '">' | append: condition_keyword_string | append: '</a>' %}
+{% assign poster_condition = poster_condition  | append: condition_keyword_url %}
+{% assign product_info = product_info | append: ', ' | append: condition_keyword %}
+
+{% endif %}
+{% endfor %}
+
+
+{% endfor %}
+
+{% assign glossary_condition = nil %}
+{% assign glossary_keywords = settings.glossary_keywords | split: ',' %}
+
+{% for glossary_keyword in glossary_keywords %}
+
+{% for tag in product.tags %}
+{% if glossary_keyword == tag %} 
+
+{% assign keyword = tag | split: '--' | last | strip | capitalize %}
+{% assign glossary_condition = glossary_condition | append: keyword %}
+{% assign glossary_condition = glossary_condition | append: ', ' %}
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+<div class="pdp">
+  <div class="wrapper"> 
+
+    <div class="grid" data-product>
+      <div class="grid__item medium-up--12 pdp__content">
+        <div class="grid pdp__grid-wrapper">
+          <div class="grid__item medium-up--7">
+            <div class="pdp__images" style="background-color: {{ settings.pdp_background }};">
+              {% if print_type == 'Original' %}
+              {% include 'original-badge', active: true %}
+              {% endif %}
+              {% include 'product-image', _product: product, _image: product.featured_image %}
+
+              {% if product.images.size > 1 %}
+              <div class="pdp__image-controls">
+                <span class="pdp__image-prev icon icon-back-24" data-product-image-prev></span>
+                <span class="pdp__image-next icon icon-fwd-24" data-product-image-next></span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          
+        
+    
+       
+          <div class="grid__item medium-up--5 pdp__info-wrapper">
+            <div class="pdp__info">
+              {% assign original_active = false %}
+              {% if print_type == 'Original' %}
+              {% assign original_active = true %}
+              {% endif %}
+              {% include 'original-badge', active: original_active %}
+
+              <span class="pdp__sku">{{ current_variant.sku | upcase }}</span>
+              <h1>{{ product.title | replace: "'", "&rsquo;" }}</h1>
+              <form class="form-vertical"
+                    action="/cart/add" method="post"
+                    enctype="multipart/form-data"
+                    data-product-form
+                    data-print-type="{{ print_type | handleize }}"
+                    data-product-handle="{{ product.handle }}"
+                    data-variant-id="{{ current_variant.id }}"
+                    data-price="{{ current_variant.price }}"
+                    data-product-id="{{ product.id }}"
+                    data-compare-price="{{ current_variant.compare_at_price }}"
+                    data-tags="{{ product.tags | join: '|' }}",
+                    data-product-title="{{ product.title }}"
+                    >
+                <div class="pdp__meta">
+                  <div class="price_stock">
+                  <span class="pdp__price" data-product-price>
+                    {{ current_variant.price | money_with_currency }}
+                  </span>
+                     {% if current_variant.inventory_quantity < 3 and current_variant.inventory_quantity > 0 %}
+                <span class="left-only">Only&nbsp; {{ current_variant.inventory_quantity }} &nbsp;Left!</span>
+                {% endif %}
+                  </div>
+
+                  {% if product.compare_at_price_max > product.price %}
+                  <span class="pdp__price pdp__price--compare" data-product-compare-price>
+                    {{ current_variant.compare_at_price | money_with_currency }}
+                  </span>
+                  {% endif %}
+                 {%- if year != blank -%}
+                  <div class="pdp__year">
+                    <span class="pdp__year-content"><a href="/collections/shop?q={{ year }}">{{ year }}</a></span>
+                  </div>
+                  {%- endif -%}
+
+                  <div class="pdp__dimensions">
+                    {% if width != blank and height != blank %}
+
+                    {% capture Dimensions_url %}{{ width }}&quot;x{{ height }}&quot;{% endcapture %}
+
+                    <a href='/collections/shop?q={{ width }}"x{{ height }}"'>
+                      <span class="pdp__dimensions-content" data-product-dimensions>{{ width }}&quot; &times; {{ height }}&quot;</span>
+                    </a>
+                    {% endif %}
+                  </div>
+
+                  {% assign productType = product.type | downcase%}
+                  {%- if productType contains 'stills' or  productType contains 'set' or  productType contains 'lobby' -%}
+                  {%- if product.description != blank -%}
+          
+                  <div class="pdp__stills-set-description">
+                    {% for p in product_description %}
+                    {% assign p2= p | downcase %}
+                    {% if p2 contains 'set' or p2 contains 'stills' or p2 contains 'lobby' %}
+                     <span class="pdp__stills-set-description-content">{{ p }}</span>
+                    {% endif %}
+                    {% endfor %}  {% comment %} added additional logic to avoid double print @BZDM 04/30{% endcomment%}
+       
+                  </div>
+                  {%- endif -%}
+                  {%- endif -%}
+
+                  <div class="pdp__meta-details">
+                    
+                    <span class="pdp__meta-tags pdp__meta-tags--{{ print_type | handleize }}" data-product-meta>{{ product_meta }}</span>
+                    {%- if poster_condition != nil -%}
+                    {{- poster_condition -}},
+                    {%- endif -%} 
+
+                    {%- if glossary_condition != nil -%}
+                    
+          
+                    
+                    {% assign glossary_condition_array = glossary_condition | split: ',' %}
+                                
+                     <input type="hidden" 
+                            id="productGlossary" 
+                            name="properties[_product_glossary]"
+                            value="{{ glossary_condition }} {{product.description}}"
+                            data-property >
+                    {%- for keyword in glossary_condition_array -%}
+                    {{- keyword -}}{%- if forloop > 1 -%}, {%-endif-%}
+                    {%- endfor -%}
+                    {%- endif -%}
+
+                    <span class="icon icon-question-16 js-open-glossary"></span>
+                  </div>
+                </div>
+                 {% assign enable_addon = true %}
+                {% for tag in product.tags %}
+                {% if tag contains "QTY" %}
+                {% assign enable_addon = false %}
+                {% endif %}
+                {% endfor %}
+                {% if enable_addon %}
+                {% unless no_framing %}
+                {% if square_inch >= square_inch_min and square_inch <= square_inch_max %}
+                
+                
+                
+                {% for tag in product.tags %}
+  {% if tag == 'original' or tag == 'print' or tag == 'reprint' or tag ==  'DVD/Video' %}
+    {% assign print_type_handle = tag | split: '--' | last %}
+    {% assign print_type = print_type_handle | capitalize %}
+  {% elsif tag contains 'width--' %}
+    {% assign width =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag contains 'height--' %}
+    {% assign height =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag contains 'sided--' %}
+    {% assign sided = tag | split: '--' | last | remove: 'sided' | capitalize | append: ' Sided' %}
+  {% endif %}
+{% endfor %}
+
+{% if width == blank and product.metafields.dimensions.width != blank %}
+  {% assign width = product.metafields.dimensions.width | plus: 0 %}
+{% endif %}
+
+{% if height == blank and product.metafields.dimensions.height != blank %}
+  {% assign height = product.metafields.dimensions.height | plus: 0 %}
+{% endif %}
+
+{% assign square_inch = width | times: height %}
+{% assign square_inch_min = settings.frame_size_min | plus: 0 %}
+{% assign square_inch_max = settings.frame_size_max | plus: 0 %}
+
+{% assign collection = collections[section.settings.collection] %}
+
+<div class="pdp__finish">
+  <!-- HC - Collpsable finish - 27 Nov '19 -->
+  {% assign hide_default_title = false %}
+        {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+          {% assign hide_default_title = true %}
+        {% endif %}
+  {% unless hide_default_title %}
+  <div class="select product_select_box">
+    <span class="option_name">SELECT A SIZE</span>
+    <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
+
+      {%- for variant in product.variants -%}
+      <option
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+              {% if variant.available == false %}disabled{% endif %}
+              value="{{ variant.id }}"
+              >
+        {{ variant.title }}
+        {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                       
+      </option>
+      {%- endfor -%}
+    </select>
+    <span class="icon icon-arrow-down-16"></span>
+  </div>
+   <script type="text/javascript">
+    //   ===================== Line item update============================
+ 
+  function size_select(){
+    var option = $('.select__select').children('option:selected').text();
+    var variant_selected = $('.select__select').children('option:selected').val();
+    var split_option = option.split('-');
+    var correct_option = split_option[0].trim();
+    $('.pdp__dimensions-content').text(correct_option);
+    var url = `https://www.movieposters.com/collections/shop?q={$correct_option}`;
+    $('.pdp__dimensions a').attr('href',url);
+    $('[name="properties[_dimensions]"]').val(correct_option);
+    $('.pdp__product-id').val(variant_selected);
+  }
+  
+  
+  $(document).ready(function(){
+  size_select();
+  })
+  
+  $('.select__select').change(function(){
+    size_select();
+  })
+    
+  //   ===================== Line item update============================
+  </script>
+  {% endunless %}
+  <h3 class="pdp__finish-headline">{{ section.settings.section_title }}
+ 
+    <span class="icon icon-arrow-down-16"></span></h3>
+  <div class="grid ss">
+       {% if section.settings.free_shipping != blank %}
+    <div class="shipping-outer">            
+    <div class="free-shipping-area"><i class="fa fa-truck" aria-hidden="true"></i><span>{{ section.settings.free_shipping }}</span></div>
+    </div> {% endif %}
+    {% for _product in collection.products %}
+      {% assign dry_mounted = false %}
+      {% assign has_addon = false %}
+      {% assign color_option = false %}
+      {% assign type_option = false %}
+
+      {% for tag in _product.tags %}
+        {% if tag contains 'dry-mounted-available' and section.settings.enable_dry_mounted %}
+          {% assign dry_mounted = true %}
+          {% break %}
+        {% elsif tag contains 'addon-available' and section.settings.enable_addon %}
+          {% assign has_addon = true %}
+        {% endif %}
+      {% endfor %}
+      {% unless _product.handle contains 'backlit' %}
+    
+    	{% assign add_frame = true %}
+    
+        {% for option in _product.options_with_values %}
+          {% assign option_handle = option.name | handleize %}
+        	{% if option_handle contains 'type' %}
+            	{% assign type_option = true %}
+    			{% capture type_option_idx %}option{{ forloop.index }}{% endcapture %} 
+    		{% elsif option_handle contains 'color' or option_handle contains 'colour' %}
+            	{% assign color_option = true %}
+    			{% capture color_option_idx %}option{{ forloop.index }}{% endcapture %} 
+          	{% elsif option_handle contains 'size' %}
+            	{% capture size_option %}option{{ forloop.index }}{% endcapture %}        
+          	{% endif %}
+        {% endfor %}
+        
+        {% if type_option %}
+          	{% include 'finish-block',
+            	classes: 'js-finish-panel-trigger',
+            	finish_handle: _product.handle,
+            	finish_image: _product.featured_image,
+            	finish_title: _product.title,
+            	finish_product: _product,
+            	print_type: print_type,
+            	is_dry_mounted: dry_mounted,
+            	enable_addon: has_addon
+          	%}
+       	{% include 'finish-panel-3' _product: _product %}
+    	{% include 'finish-panel-2' _product: _product %}
+    	
+
+        {% elsif color_option %}
+        
+    		{% include 'finish-block',
+            	classes: 'js-finish-panel-trigger',
+            	finish_handle: _product.handle,
+            	finish_image: _product.featured_image,
+            	finish_title: _product.title,
+            	finish_product: _product,
+            	print_type: print_type,
+            	is_dry_mounted: dry_mounted,
+            	enable_addon: has_addon,  
+    			
+          	%}
+          {% include 'finish-panel' _product: _product %}    
+        {% else %}
+    	  {% assign add_frame = false %}
+    
+          {% for variant in _product.variants %}
+            {% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+            {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+            {% if square_inch >= range_min and square_inch <= range_max %}
+              {% assign price = variant.price %}
+              {% include 'finish-block',
+                attrs: 'data-finish-select',
+                classes: 'js-finish-select',
+                variant_id: variant.id,
+                finish_image: _product.featured_image,
+                finish_title: _product.title,
+                finish_handle: _product.handle,
+                variant_price: price,
+                finish_variant: variant,
+                print_type: print_type,
+                is_dry_mounted: dry_mounted,
+                enable_addon: has_addon
+              %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% else %}
+            {% comment %}
+            {% if width == 27 and height == 40 or sided contains 'Double'  or product.tags contains 'single-or-double-sided--double' and product.tags contains 'dimensions--27x40' %}
+
+            <div class="grid__item all--12">
+              <span class="pdp__finish-more-trigger" data-finish-more-trigger>More Finishes</span>
+            </div>
+            <div class="pdp__finish-more grid__item all--12" data-finish-more>
+              <div class="grid">
+                {% include 'finish-block',
+                        attrs: 'data-finish-select',
+                classes: 'js-finish-select',
+                variant_id: _product.first_available_variant.id,
+                finish_image: _product.featured_image,
+                finish_title: _product.title,
+                finish_handle: _product.handle,
+                variant_price: _product.first_available_variant.price,
+                finish_variant: _product.first_available_variant,
+                print_type: print_type,
+                is_dry_mounted: dry_mounted,
+                enable_addon: has_addon
+                %}
+              </div>
+            </div>
+            {% endif %}
+            {% endcomment %}
+    
+      {% endunless %}
+      {% assign color_option = nil %}
+    {% endfor %}
+  </div>
+
+  <div class="pdp__finish-addons">
+    {% if section.settings.enable_dry_mounted %}
+      <div class="pdp__finish-addon" data-finish-dry-mounted>
+        <input type="hidden" id="customFinishDryMounted" name="properties[_custom_finish_dry_mounted]" data-value="Dry Mounted" data-custom-finish-dry-mounted data-property>
+
+        <div class="pdp__finish-addon-content">
+          {% if print_type == 'Original' %}
+            <span class="pdp__finish-warning-tooltip is-active" data-finish-warning>
+              Not recommended for Originals. <a class="tooltip-link" href="/pages/custom-frames">Learn More</a>
+            </span>
+          {% endif %}
+
+          <h4>
+            {% if print_type == 'Original' %}
+              <span class="pdp__finish-warning is-active" data-finish-warning>{% include 'svg-caution-16px' %}</span>
+            {% endif %}
+            {{ section.settings.dry_mounted_title }} – Free
+          </h4>
+          <p>{{ section.settings.dry_mounted_content }}</p>
+        </div>
+
+        <span class="pdp__finish-addon-action is-active" data-finish-dry-mounted-trigger></span>
+      </div>
+    {% endif %}
+    {% if section.settings.enable_addon %}
+      {% assign _addon_product = all_products[section.settings.finish_addon_product] %}
+      <div class="pdp__finish-addon"
+        data-finish-addon-product
+        data-product-title="{{ _addon_product.title }}"
+        data-variant-id="{{ _addon_product.selected_or_first_available_variant.id }}"
+        data-price="{{ _addon_product.selected_or_first_available_variant.price }}"
+      >
+        <input type="hidden" id="customFinishAddon" name="properties[_custom_finish_addon]" data-custom-finish-addon data-property>
+        <input type="hidden" id="customFinishAddonId" name="properties[_custom_finish_addon_id]" data-custom-finish-addon-id data-property>
+
+        {% if _addon_product.metafields.supplier.code != blank %}
+          <input type="hidden" id="supplierCode" name="properties[_supplier_code]" value="{{ _addon_product.metafields.supplier.code }}" data-property>
+        {% endif %}
+        {% if _addon_product.metafields.supplier.location != blank %}
+          <input type="hidden" id="supplierLocation" name="properties[_supplier_location]" value="{{ _addon_product.metafields.supplier.location }}" data-property>
+        {% endif %}
+        {% if _addon_product.metafields.supplier.name != blank %}
+          <input type="hidden" id="supplierName" name="properties[_supplier_name]" value="{{ _addon_product.metafields.supplier.name }}" data-property>
+        {% endif %}
+
+        {% for tag in _addon_product.tags %}
+          {% if tag contains 'drop-shipping--' %}
+            {% assign dropship = tag | split: '--' | last %}
+            <input type="hidden" id="dropship" name="properties[_dropship]" value="{{ dropship }}" data-property>
+          {% endif %}
+        {% endfor %}
+
+        <div class="pdp__finish-addon-content">
+          <h4>Add {{ _addon_product.title }} – {{ _addon_product.price | money_with_currency }}</h4>
+          <p>{{ _addon_product.description | strip_html }}</p>
+        </div>
+
+        <span class="pdp__finish-addon-action" data-finish-addon-trigger></span>
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+
+<!-- HC - Collapsable finish - 27 Nov '19 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.querySelector('.pdp__finish-headline');
+    const container = document.querySelector('.pdp__finish');
+    const openClass = "hc-open";
+
+    trigger.addEventListener('click', function() {
+      container.classList.toggle(openClass);
+    })
+  });
+</script>
+<script>
+$("body").on("click" , ".thick-thin-frame", function(){
+ 
+  $('.thick-thin-frame').removeClass('ONCE_SELECT');
+  $(this).addClass('ONCE_SELECT');
+ var type_f = $(this).attr("frame-type");
+  setTimeout(function(){ 
+  $(".pdp__finish-panel.color_panel").removeClass("is-active");
+ $(".type_panel").removeClass("is-active");
+    $(".cst_filter .pdp__finish-wrapper").each(function(){
+    var type_n = $(this).attr("frame-type");
+      if(type_f == type_n){
+        $(this).show();
+      }else{
+        $(this).hide();
+      }
+    });
+    
+    
+   setTimeout(function(){
+  $(".color_panel").addClass("is-active");
+     }, 500);
+    }, 500);
+});
+ $("body").on("click" , ".type_panel .pdp__close ", function(){
+   $(".pdp__finish-panel.color_panel").removeClass("is-active");
+ });
+</script>
+<!-- HC - End - 27 Nov '19 -->
+
+<!-- Hc - Style only this section - 29 Nov '19 -->
+<style>
+  /** HC - Finishing collapsable - 27 Nov '19 **/
+  h3.pdp__finish-headline {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top:10px;
+}
+  .select select {
+    line-height: normal;
+    margin-bottom: 0px;
+    font-size: 24px;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+  .pdp__finish .grid {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.pdp__finish.hc-open .grid {
+    max-height: 1000px;
+}
+
+.pdp__finish.hc-open span.icon.icon-arrow-down-16 {
+    transform: rotateX(180deg);
+}
+  .option_name {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+select[form="product-form"] {
+    padding-top: 0px;
+}
+</style>
+<!-- HC - End - 29 Nov '19 -->
+                
+                
+                
+                {% endif %}
+                {% endunless %}
+				{% endif %}
+                <input type="hidden" name="id" class="pdp__product-id" value="{{ current_variant.id }}" data-product-selected-variant>
+                {% include 'product-properties' %}
+                
+                {% if product.available %}
+                <button type="submit" name="add" class="pdp__submit btn btn--primary" data-add-to-cart>
+                  <span data-add-to-cart-price>{{ current_variant.price | money_with_currency }}</span>
+                  <span data-add-to-cart-text> &ndash; {{ 'products.product.add_to_cart' | t }}</span>
+                </button>
+               
+                {% else %}  
+                <div class="pdp__unavailable">
+                  <button type="button" name="add" class="pdp__submit btn btn--primary">
+                    <span data-add-to-cart-text>{{ 'products.product.sold_out' | t }}</span>
+                  </button>
+
+                  <div class="pdp__unavailable-form">
+                    <input type="email" data-notify-email placeholder="Enter Email Address" />
+                    <button class="btn btn--primary" data-notify-button type="submit">Notify Me</button>
+                  </div>
+                  <span class="pdp__unavailable-message hide" data-notify-message></span>
+                </div>
+                {% endif %}
+             <!-- Swym button on product pages -->
+        <div class="swym-wishlist-button-bar"></div>
+<!-- Swym button on product pages -->
+              </form>
+            {% if  product.tags contains "COA" %}
+              <div class="table main_box auth_top">
+                <div class="table-cell auth_img_main">
+                  <img class="auth_img" src="{{ "authenticity_icon.png" | asset_url }}" >
+                </div>
+                <div class="table-cell auth_txt_main">
+                  <h3 class="auth_txt">
+                    {{ 'products.product.authent' | t }}
+                  </h3>
+                  <span>{{ 'products.product.authent_sub' | t }}</span>
+                </div>
+              </div>
+              {% endif %} 
+     </div>
+          </div>
+        </div>
+      </div>
+      <div class="meta-meta" style="display:none">{{ product.metafields.size }}</div>
+      {% if product.metafields.imdb.movie_id != blank %}
+      <div class="grid__item medium-up--12 pdp__details" data-imdb-details data-imdb-id="{{ product.metafields.imdb.movie_id }}">
+        <div class="grid grid--flex">
+          <div class="grid__item medium-up--7 pdp__about">
+            <h2>About the movie</h2>
+            <div class="pdp__description rte">
+              <p data-imdb-description></p>
+            </div>
+          </div>
+          <div class="grid__item medium-up--5 pdp__credits">
+            <table>
+              <tr>
+                <td>Director</td>
+                <td data-imdb-director></td>
+              </tr>
+              <tr>
+                <td>Starring</td>
+                <td data-imdb-actors></td>
+              </tr>
+              <tr>
+                <td>Writers</td>
+                <td data-imdb-writers></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!--  unused  -->
+{% assign related_product_array = nil %}
+{% if product.metafields.related_products.original != blank %}
+{% assign related_product_array = related_product_array | append: product.metafields.related_products.original | append: ',' %}
+{% endif %}
+{% if product.metafields.related_products.print != blank %}
+{% assign related_product_array = related_product_array | append: product.metafields.related_products.print | append: ',' %}
+{% endif %}  
+{% if product.metafields.related_products.reprent != blank %}
+{% assign related_product_array = related_product_array | append: product.metafields.related_products.reprint %}
+{% endif %}
+<!--  unused  --> 
+
+
+{% comment %}
+<div class="feature-collections">
+{% include 'meta-related-title' %}  
+  </div>
+{% endcomment %}
+
+<div class="feature-collections searchspring-pdp-recommendations">
+  <div class="feature-collection meta-related meta-mix" style="padding: 20px 0 50px 0 ;">
+    <div class="wrapper"> 
+      <div class="grid">
+        <div class="grid__item all--12">
+          <div class="feature-collection__title" style="margin-bottom: 15px; margin-top: 0px;">
+            <h2 class="text-light">Collect More</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="searchspring/personalized-recommendations" profile="customers-also-viewed">
+		seed = ['{{ product.variants[0].sku }}']
+    </script>
+  </div>
+  {% comment %}
+  {% include 'meta-related-mix' %}   
+  {% endcomment %}
+</div>
+
+   {% include 'glossary' %} 
+
+
+
+{% include 'schema' with 'product' %}
+
+{% unless settings.ajaxcart == true %}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{% endunless %}
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+                            // Back In Stock -- Notify Email
+                            const notifyEmail = document.querySelector('[data-notify-email]');
+  const notifyButton = document.querySelector('[data-notify-button]');
+  if (notifyButton != null) {
+    notifyButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = notifyEmail.value;
+      const productId = {{ product.id }};  // rendered by Liquid
+      const variantId =  {{ current_variant.id }}; // rendered by Liquid
+      BIS.create(email, variantId, productId).then(notificationCallback); // create the notification
+    });
+
+    // Back In Stock -- Notification Callback
+    const notifyMessageContainer = document.querySelector('[data-notify-message]');
+    const notificationCallback = function(data) {
+      let msg = '';
+      if (data.status == 'OK') {
+        msg = data.message; // just show the success message
+        notifyMessageContainer.innerHTML = msg;
+        notifyMessageContainer.classList.add('success');
+      } else { // it was an error
+        for (var k in data.errors) {  // collect all the error messages into a string
+          msg += (data.errors[k].join());
+        }
+        notifyMessageContainer.classList.add('error');
+      }
+      notifyMessageContainer.classList.remove('hide');
+      notifyMessageContainer.innerHTML = `${msg}.`;
+    }
+    }
+  });
+  
+</script>
+
+
+{% schema %}
+  {
+   
+    "name":"Custom Finish Collection",
+    "settings":[
+     {
+        "type":"header",
+        "content":"text For Free Shipping"
+      },
+      {
+        "type":"text",
+        "id":"free_shipping",
+        "label":"Free Shipping Text",
+        "default":"free Shipping for Finish"
+      },
+     
+      {
+        "type":"text",
+        "id":"section_title",
+        "label":"Section Title",
+        "default":"Add a finish"
+      },
+      {
+        "type":"collection",
+        "id":"collection",
+        "label":"Custom Finish Collection"
+      },
+      {
+        "type":"header",
+        "content":"Dry Mounted"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_dry_mounted",
+        "label":"Enable Dry Mounted",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"dry_mounted_title",
+        "label":"Dry Mounted Title",
+        "default":"Dry Mounted Backing"
+      },
+      {
+        "type":"textarea",
+        "id":"dry_mounted_content",
+        "label":"Dry Mounted Content",
+        "default":"This prevents any stretching and wrinkling."
+      },
+      {
+        "type":"header",
+        "content":"Finish Addon"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_addon",
+        "label":"Enable Finish Addon",
+        "default":true
+      },
+      {
+        "type":"product",
+        "id":"finish_addon_product",
+        "label":"Finish Addon Product"
+      }
+    ]
+  
+  
+  }
+{% endschema %}

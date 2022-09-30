@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="992px" height="242px" viewBox="0 0 992 242" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="stripes" fill="#FFFFFF" fill-rule="nonzero">
+            <polygon id="Path" points="331.247803 0 88.963682 0 0 241.462214 240.391158 241.462214"></polygon>
+            <polygon id="Path" points="659.880492 0 417.595834 0 328.632689 241.462214 569.023595 241.462214"></polygon>
+            <polygon id="Path" points="992 0 749.718063 0 660.752197 241.462214 901.142774 241.462214"></polygon>
+        </g>
+    </g>
+</svg>

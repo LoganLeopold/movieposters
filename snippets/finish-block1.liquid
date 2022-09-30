@@ -1,0 +1,76 @@
+
+{% if product.tags contains 'original' and product.price <= 1000 %}
+  {% assign cannot_dry_mounted = true %}
+{% endif %}
+<div class="pdp__finish-wrapper grid__item small--6 medium-up--6">
+  <div class="pdp__finish-block  thick-thin-frame {{ classes }} {% if finish_variant != blank and finish_variant.available == false  %}unavailable{% endif %}" 
+    {% if variant_id != blank %} data-variant-id="{{ variant_id }}" data-variant-title="{{ finish_title }}" {% endif %}
+    frame-type="{{finish_title | handleize}}"
+    data-frame-title="{{ _product.title }}"
+    data-frame-handle="{{ finish_handle }}"
+    data-frame-supplier-code="{%- if finish_variant.metafields.supplier.code != blank -%}{{ finish_variant.metafields.supplier.code }}{%- else -%}false{%- endif -%}"
+    data-image-src="{{ finish_image | img_url: '208x72', crop: 'center' }}"
+    {% if variant_price != blank %}data-price="{{ variant_price }}"{% endif %} 
+    data-finish-block
+    {{attrs}}
+    data-frame-type="{{variant[type_option_idx]}}"
+    {% if cannot_dry_mounted != true %}
+        {% if is_dry_mounted %}data-finish-dry-mounted-activate{% endif %}
+    {% endif %}
+    {% if enable_addon %}data-finish-addon-activate{% endif %}
+    >
+    
+    {% comment %}@BZDM -LP check for condition to add frame{% endcomment %}
+    {% assign frame = false %}
+    {% if finish_handle != 'mounted-on-plak' and finish_handle != 'mounted-on-canvas' and add_frame == true %}
+    	{% assign frame = true %}
+    {% endif %}        
+    <div data-meta="{{ variant.metafields.image_src.block }}" class="pdp__finish-image" {% if frame %} {% endif %}>
+      {{ finish_image | img_url: '208x72', crop: 'center' | img_tag }}
+      
+    </div>
+    <span class="pdp__finish-title">
+      {% if finish_title contains 'Mounted on Plak' or finish_title contains 'Mounted on Canvas' %}
+        <span class="pdp__finish-warning {% if print_type == 'Original' %}is-active{% endif %}" data-finish-warning>{% include 'svg-caution-16px' %}
+          
+      {% if finish_title contains 'Plak' or finish_title contains 'Canvas' %}
+        <span class="pdp__finish-warning-tooltip {% if print_type == 'Original' %}is-active{% endif %}" data-finish-warning>
+          Not recommended for Originals. <a class="tooltip-link"
+            href="/pages/{{ finish_handle }}" target="_blank">Learn
+            More</a>
+        </span>
+      {% endif %}
+          
+          
+      </span>
+      {% endif%}{{ finish_title }}
+    </span>
+    {% if variant_price != blank %}
+    <span class="pdp__finish-price">
+      {% if finish_variant != blank and finish_variant.available == false %}
+        Unavailable
+      {% else %}
+        {{ variant_price | money_with_currency }}
+      {% endif %}
+    </span>
+    {% endif %}
+    {% if finish_product != blank %}
+      <span class="pdp__finish-price">
+        {% assign price_min = finish_product.price_max %}
+        {% for variant in finish_product.variants %}
+          {% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+          {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+          {% if square_inch >= range_min and square_inch <= range_max and variant.price < price_min %}
+            {% assign price_min = variant.price %}
+          {% endif %}
+        {% endfor %}
+        from {{ price_min | money_with_currency }}
+      </span>
+    {% endif %}
+  </div>
+  <span class="pdp__finish-remove icon icon-close-24" data-finish-remove></span>
+</div>
+
+
+
+

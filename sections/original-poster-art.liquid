@@ -1,0 +1,83 @@
+{% if section.settings.enable_section %}
+  <div class="original-poster-art">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="original-poster-art__content">
+            <h2>{{ section.settings.headline }}</h2>
+            <p>{{ section.settings.content }}</p>
+          </div>
+        </div>
+
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="original-poster__items" data-original-poster-slider>
+            {% for block in section.blocks %}
+              {% include 'original-poster-item',
+                item_image: block.settings.poster_image,
+                item_text: block.settings.poster_content,
+                item_link: block.settings.poster_link,
+                item_link_text: block.settings.poster_link_text,
+                item_content: block.settings.poster_content
+              %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Artist Section",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"enable_section",
+        "label":"Enable Artist Section",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"headline",
+        "label":"Headline",
+        "default":"State of the art"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"Many movie posters have been designed by famous graphic artists and illustrators."
+      }
+    ],
+    "blocks":[
+      {
+        "type":"artist",
+        "name":"Artist",
+        "limit": 5,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"poster_image",
+            "label":"Artist Poster Image"
+          },
+          {
+            "type":"text",
+            "id":"poster_content",
+            "label":"Artist"
+          },
+          {
+            "type":"url",
+            "id":"poster_link",
+            "label":"Artist Link"
+          },
+          {
+            "type":"text",
+            "id":"poster_link_text",
+            "label":"Artist Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

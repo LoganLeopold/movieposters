@@ -1,0 +1,3317 @@
+[
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Dimensions 64 x 64 .png"
+      }
+    ]
+  },
+  {
+    "name": "Meta Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "meta_image",
+        "label": "Dimensions: 1200 x 630 .png"
+      }
+    ]
+  },
+  {
+    "name": "Product Photo Background Color",
+    "settings": [
+      {
+        "type": "color",
+        "id": "pdp_background",
+        "default": "#000000",
+        "label": "Background color on PDP image area"
+      }
+    ]
+  },
+  {
+    "name": "Framing Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Framing Size Constraints (Square Inches)"
+      },
+      {
+        "type": "text",
+        "id": "frame_size_min",
+        "label": "Frame Size Minimum (Square Inches)",
+        "default": "154",
+        "info": "Only use numeric values in this field"
+      },
+      {
+        "type": "text",
+        "id": "frame_size_max",
+        "label": "Frame Size Max (Square Inches)",
+        "default": "1200",
+        "info": "Only use numeric values in this field"
+      }
+    ]
+  },
+  {
+    "name": "Glossary Terms",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Glossary 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_1",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_1",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_1",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_1",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_2",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_2",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_2",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_2",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 3"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_3",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_3",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_3",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_3",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 4"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_4",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_4",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_4",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_4",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 5"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_5",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_5",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_5",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_5",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 6"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_6",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_6",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_6",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_6",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 7"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_7",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_7",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_7",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_7",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 8"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_8",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_8",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_8",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_8",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 9"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_9",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_9",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_9",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_9",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 10"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_10",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_10",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_10",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_10",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 11"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_11",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_11",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_11",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_11",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 12"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_12",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_12",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_12",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_12",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 13"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_13",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_13",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_13",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_13",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 14"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_14",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_14",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_14",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_14",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 15"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_15",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_15",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_15",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_15",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 16"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_16",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_16",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_16",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_16",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 17"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_17",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_17",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_17",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_17",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 18"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_18",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_18",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_18",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_18",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 19"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_19",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_19",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_19",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_19",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 20"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_20",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_20",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_20",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_20",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 21"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_21",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_21",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_21",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_21",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 22"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_22",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_22",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_22",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_22",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 23"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_23",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_23",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_23",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_23",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 24"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_24",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_24",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_24",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_24",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 25"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_25",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_25",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_25",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_25",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 26"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_26",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_26",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_26",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_26",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 27"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_27",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_27",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_27",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_27",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 28"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_28",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_28",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_28",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_28",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 29"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_29",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_29",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_29",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_29",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 30"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_30",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_30",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_30",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_30",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 31"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_31",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_31",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_31",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_31",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 32"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_32",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_32",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_32",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_32",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 33"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_33",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_33",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_33",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_33",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 34"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_34",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_34",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_34",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_34",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 35"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_35",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_35",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_35",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_35",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 36"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_36",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_36",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_36",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_36",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 37"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_37",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_37",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_37",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_37",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 38"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_38",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_38",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_38",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_38",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 39"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_39",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_39",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_39",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_39",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 40"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_40",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_40",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_40",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_40",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 41"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_41",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_41",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_41",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_41",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 42"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_42",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_42",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_42",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_42",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 43"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_43",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_43",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_43",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_43",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 44"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_44",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_44",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_44",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_44",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 45"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_45",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_45",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_45",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_45",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 46"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_46",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_46",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_46",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_46",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 47"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_47",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_47",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_47",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_47",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 48"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_48",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_48",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_48",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_48",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 49"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_49",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_49",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_49",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_49",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 50"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_50",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_50",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_50",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_50",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 51"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_51",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_51",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_51",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_51",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 52"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_52",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_52",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_52",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_52",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 53"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_53",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_53",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_53",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_53",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 54"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_54",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_54",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_54",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_54",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 55"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_55",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_55",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_55",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_55",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 56"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_56",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_56",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_56",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_56",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 57"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_57",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_57",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_57",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_57",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 58"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_58",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_58",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_58",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_58",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 59"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_59",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_59",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_59",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_59",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 60"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_60",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_60",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_60",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_60",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 61"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_61",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_61",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_61",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_61",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 62"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_62",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_62",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_62",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_62",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 63"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_63",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_63",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_63",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_63",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 64"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_64",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_64",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_64",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_64",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 65"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_65",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_65",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_65",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_65",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 66"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_66",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_66",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_66",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_66",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 67"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_67",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_67",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_67",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_67",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 68"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_68",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_68",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_68",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_68",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 69"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_69",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_69",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_69",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_69",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 70"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_70",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_70",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_70",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_70",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 71"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_71",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_71",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_71",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_71",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 72"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_72",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_72",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_72",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_72",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 73"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_73",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_73",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_73",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_73",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 74"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_74",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_74",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_74",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_74",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 75"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_75",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_75",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_75",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_75",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 76"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_76",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_76",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_76",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_76",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 77"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_77",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_77",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_77",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_77",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 78"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_78",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_78",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_78",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_78",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 79"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_79",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_79",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_79",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_79",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 80"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_80",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_80",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_80",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_80",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 81"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_81",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_81",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_81",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_81",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 82"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_82",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_82",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_82",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_82",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 83"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_83",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_83",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_83",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_83",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 84"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_84",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_84",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_84",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_84",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 85"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_85",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_85",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_85",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_85",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 86"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_86",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_86",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_86",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_86",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 87"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_87",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_87",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_87",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_87",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 88"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_88",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_88",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_88",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_88",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 89"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_89",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_89",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_89",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_89",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 90"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_90",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_90",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_90",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_90",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 91"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_91",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_91",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_91",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_91",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 92"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_92",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_92",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_92",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_92",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 93"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_93",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_93",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_93",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_93",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 94"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_94",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_94",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_94",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_94",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 95"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_95",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_95",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_95",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_95",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 96"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_96",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_96",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_96",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_96",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 97"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_97",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_97",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_97",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_97",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 98"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_98",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_98",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_98",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_98",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 99"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_99",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_99",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_99",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_99",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 100"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_100",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_100",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_100",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_100",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 101"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_101",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_101",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_101",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_101",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 102"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_102",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_102",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_102",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_102",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 103"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_103",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_103",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_103",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_103",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 104"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_104",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_104",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_104",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_104",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 105"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_105",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_105",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_105",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_105",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 106"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_106",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_106",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_106",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_106",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 107"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_107",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_107",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_107",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_107",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 108"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_108",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_108",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_108",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_108",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 109"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_109",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_109",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_109",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_109",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 110"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_110",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_110",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_110",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_110",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 111"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_111",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_111",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_111",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_111",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 112"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_112",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_112",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_112",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_112",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 113"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_113",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_113",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_113",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_113",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 114"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_114",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_114",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_114",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_114",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 115"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_115",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_115",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_115",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_115",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 116"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_116",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_116",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_116",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_116",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 117"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_117",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_117",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_117",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_117",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 118"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_118",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_118",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_118",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_118",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 119"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_119",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_119",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_119",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_119",
+        "label": "Glossary Term Content"
+      },
+      {
+        "type": "header",
+        "content": "Glossary 120"
+      },
+      {
+        "type": "checkbox",
+        "id": "glossary_term_op_visible_120",
+        "label": "Glossary Term Visible on Original Posters Page"
+      },
+      {
+        "type": "text",
+        "id": "glossary_term_tag_120",
+        "label": "Associated Product Tag",
+        "info": "If a product has this tag, this glossary term will output under the glossary section of that product page"
+      },
+      {
+        "type": "text",
+        "id": "title_120",
+        "label": "Glossary Term Title"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_term_content_120",
+        "label": "Glossary Term Content"
+      }
+    ]
+  },
+  {
+    "name": "Frame Size",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "custom_size_enable",
+        "label": "Enable Custom Size",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Option 1"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_1",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_1",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 2"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_2",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_2",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 3"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_3",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_3",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 4"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_4",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_4",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 5"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_5",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_5",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 6"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_6",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_6",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 7"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_7",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_7",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 8"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_8",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_8",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 9"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_9",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_9",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 10"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_10",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_10",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 11"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_11",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_11",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 12"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_12",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_12",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "header",
+        "content": "Option 13"
+      },
+      {
+        "type": "text",
+        "id": "frame_width_13",
+        "label": "Frame Width",
+        "info": "Only use numeric values"
+      },
+      {
+        "type": "text",
+        "id": "frame_height_13",
+        "label": "Frame Height",
+        "info": "Only use numeric values"
+      }
+    ]
+  },
+  {
+    "name": "Poster Condition Keywords",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "condition_keywords",
+        "label": "List of Poster Condition Keywords",
+        "default": "advance, regular, international, limited edition, special edition, re-issued, re-release, linen backed, satin backed, glossy, Giclee, Crease, tear, fair condition, poor condition, damage, tape repair, pin holes, glued to lobby card, censor sticker, edge wear, used, sticker over rating, mint condition, excellent condition, good condition, near mint condition, near excellent condition, paper loss, fold line, print flaw, print burn, stain, residue, french overprint",
+        "info": "Separate each item with a comma"
+      },
+      {
+        "type": "textarea",
+        "id": "glossary_keywords",
+        "label": "List of Poster Glossary Tags",
+        "default": "format--One Sheet,format--Six Sheet,format--Three Sheet,format--British Quad,format--Half Sheet,format--Insert,format--presskit,format--pressbook",
+        "info": "Separate each item with a comma"
+      }
+    ]
+  },
+  {
+    "name": "Searchspring",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "ss_enable",
+        "label": "Enable Searchspring",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "ss_site_id",
+        "label": "Site ID",
+        "default": "smyf95"
+      }
+    ]
+  }
+]

@@ -1,0 +1,182 @@
+{% if section.settings.section_enable %}
+  <div class="original-poster-collector">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="original-poster-collector__content">
+            {% if section.settings.original_badge_enable %}
+              {% include 'original-badge' %}
+            {% endif %}
+
+            <h2>{{ section.settings.headline }}</h2>
+
+            <div class="original-poster-collector__details">
+              <p>{{ section.settings.content }}</p>
+
+              {% if section.settings.cta_link %}
+                {% include 'component-link',
+                  link_url: section.settings.cta_link,
+                  link_text: section.settings.cta_link_text,
+                  has_icon: true
+                %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="original-poster-collector__items">
+      {% for block in section.blocks %}
+        {% if block.settings.item_is_product %}
+          {% assign product = all_products[block.settings.item_product] %}
+        {% else %}
+          {% assign product = nil %}
+        {% endif %}
+
+        {% include 'poster-collector-item',
+          product: product,
+          image: block.settings.item_image,
+          position_x: block.settings.item_position_left,
+          position_y: block.settings.item_position_top,
+          mobile_position_x: block.settings.item_position_left_mobile,
+          mobile_position_y: block.settings.item_position_top_mobile,
+          image_width: block.settings.item_image_width,
+          mobile_image_width: block.settings.item_image_width_mobile,
+          enable_mobile: block.settings.item_show_mobile,
+          enable_desktop: block.settings.item_show_desktop
+        %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Collector Section",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"section_enable",
+        "label":"Enable Collector Section",
+        "default":true
+      },
+      {
+        "type":"checkbox",
+        "id":"original_badge_enable",
+        "label":"Enable Original Badge",
+        "default": true
+      },
+      {
+        "type":"text",
+        "id":"headline",
+        "label":"Headline",
+        "default":"Become a collector"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"If you have a passion for a film, an actor, actress, director, or graphic arist. you can savor the passion by having the original movie poster on your wall. In some cases, a movie poster will strike such a chord among movie-goers that the original movie poster becomes highly valued by collectors."
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_link_text",
+        "label": "CTA Link Text",
+        "default":"Shop Originals"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"collector-item",
+        "name":"Collector Item",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"item_image",
+            "label":"Collector Item Image"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_is_product",
+            "label":"Collector Item is a Product",
+            "default": false
+          },
+          {
+            "type":"product",
+            "id":"item_product",
+            "label":"Collector Product",
+            "info":"This only needs to be assigned if previous checkbox is checked"
+          },
+          {
+            "type":"header",
+            "content":"Desktop Settings"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_show_desktop",
+            "label":"Show Item on Desktop",
+            "default":true
+          },
+          {
+            "type":"text",
+            "id":"item_image_width",
+            "label":"Desktop Image Width",
+            "info":"Image size, in pixels. Only use numbers in this field.",
+            "default":"208"
+          },
+          {
+            "type":"text",
+            "id":"item_position_top",
+            "label":"Image Percentage From Top",
+            "info":"Percentage position from top of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"text",
+            "id":"item_position_left",
+            "label":"Image Percentage From Left",
+            "info":"Percentage position from left of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"header",
+            "content":"Mobile Settings"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_show_mobile",
+            "label":"Show Item on Mobile",
+            "default":true
+          },
+          {
+            "type":"text",
+            "id":"item_image_width_mobile",
+            "label":"Mobile Image Width",
+            "info":"Image size, in pixels. Only use numbers in this field.",
+            "default":"208"
+          },
+          {
+            "type":"text",
+            "id":"item_position_top_mobile",
+            "label":"Item Percentage From Top",
+            "info":"Percentage position from top of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"text",
+            "id":"item_position_left_mobile",
+            "label":"Item Percentage From Left",
+            "info":"Percentage position from left of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

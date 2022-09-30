@@ -1,0 +1,350 @@
+<!doctype html>  
+<html data-site>
+  <head>
+  {% render 'elevar-head-listener' %}
+  {% render 'elevar-head' %}
+	<meta name="facebook-domain-verification" content="zlb8taaq1osay28jn7f42yfsfma61h" />
+    <!-- Leveraging Browser Caching -->
+    <meta http-equiv="Expires" content="30" /> 
+    <meta name="p:domain_verify" content="8e607c3ce2118b5530c7cfb5e0a79c88"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Expires" content="366" /> 
+    {% if template.suffix contains 'hidden' %}
+    <meta name="robots" content="noindex" />
+    {% endif %}
+    
+    
+    <script type="text/javascript" async="" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=LBrLBi&amp;shop=movie-posters-shop.myshopify.com"></script>
+<script src="https://use.fontawesome.com/b7d241c753.js"></script>
+    <!-- Global site tag (gtag.js) - Google Ads: 1049108755 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1049108755"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-1049108755');
+    </script>
+    <!-- Polyfill.io ========================================= -->
+<!--     <script src="https://cdn.polyfill.io/v2/polyfill.js?flags=gated&features=default,es5,es6,es7,fetch,Array.prototype.find,Promise"></script>
+ -->
+    {% if template contains "index" %}
+    <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/sidneypoitier.slider._1440x.jpg?v=1602781208">
+    <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/elections.slider_1440x.jpg?v=1602780324">
+    <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/gonetoosoon.slider_1440x.jpg?v=1600980420">
+    {% endif %}
+    
+    <!------ EcomExperts Code: Start  Fonts Preload  ---->
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/t/54/assets/5fb21fbe7a6fae6f7e2ad7bde257986d.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/t/54/assets/245ad7d1120db7d1db27af166630373b.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/t/54/assets/281b03c3e4f1208d82a16848aae98c87.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0057/3728/3618/t/54/assets/5395dcbd3ac75b02abc29b0359d73a6e.woff" as="font" type="font/woff" crossorigin>
+    <!------ EcomExperts Code: End Fonts Preload  ---->
+    
+    <link rel="canonical" href="{{ canonical_url }}">
+    
+    <!------ EcomExperts Code: Start  klavio css Preload  ---->
+<link rel="stylesheet" href="{{ 'klavio-form.css' | asset_url  }}" >
+    <!------ EcomExperts Code: End  klavio css Preload  ---->
+    
+    {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '64x64' }}" type="image/png"/>
+    {% endif %}
+{% include 'SEOManager' %}
+  {% include 'og-tags' %}
+    {% include 'style-tags', layout: 'theme' %} 
+    {% include 'css-variables' %}
+    {% include 'script-tags', layout: 'theme' %}
+
+
+    <script type="text/javascript">
+      window.theme = {
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }}
+      };
+
+        {% if template.directory == 'customers' %}
+        theme.allCountryOptionTags = {{ all_country_option_tags | json }};
+        {% endif %}
+
+    </script>
+    <script>
+      $( document ).ready(function() {
+     $('.shopify-currency-form select').on('change', function() {
+          var dochref = document.location.href;
+          if (dochref.indexOf("shop") >= 0){
+            //alert(dochref);
+            $(this)
+            .parents('form')
+            .submit(function(event){
+              event.preventDefault(); //prevent default action 
+              var post_url = $(this).attr("action"); //get form action url
+              var request_method = $(this).attr("method"); //get form GET/POST method
+              var form_data = $(this).serialize(); //Encode form elements for submission
+
+              $.ajax({
+                url : post_url,
+                type: request_method,
+                data : form_data
+              }).done(function(response){ //
+                document.location.href = dochref;
+              });
+            });
+            $(this)
+            .parents('form')
+            .submit();
+          }else{
+            $(this)
+            .parents('form')
+            .submit();
+          }
+
+        });
+        $( ".feature-collection__title:first-child" ).first().css({"margin-bottom": "15px", "margin-top": "0px"});
+        if($(window).width() > 767){ 
+          $('source').attr("media","(max-width: 767px)").detach(); 
+        }else{
+          $('picture').each(function( index ) {
+            $(this).find('source').eq(-1).detach();
+          }); 
+        }
+
+        $('.meta-related .feature-collection__slider').contents().filter(function(){
+          return this.nodeType === 3;
+        }).remove();
+        $('.feature-collection.meta-related .feature-collection__slider').contents().filter(function(){
+          return this.nodeType === 3;
+        }).remove();
+
+        var seen = {};
+        var selen = $('.meta-related.feature-collection.meta-mix .collection-item').length;
+        console.log(selen);
+        if (selen > 6){
+          $('.meta-mix .flickity-slider').css('left','-30%');
+        }
+        $('.meta-related.feature-collection .collection-item').each(function(index){
+
+          var href = $(this).find('a').attr('href');
+
+          if (seen[href]){
+
+            $(this).detach()
+          }else{
+            seen[href] = true;
+          }
+          if (href.indexOf("product") >= 0){
+            // console.log($(this).find($('img')).attr('src'));
+            var divs = $(this).find($('img')).attr('src');
+            //console.log(divs); 
+          }else{
+            $(this).css("display","none");  
+
+          }
+
+        }); 
+
+        var seen_title = {};
+        $('.meta-related.feature-collection.meta-mix .collection-item').each(function(index){
+          var txt_mix = $(this).find('h3').text();
+          //console.log(txt_mix);
+          if (seen_title[txt_mix]){
+            //$(this).css("display","none");
+          }else{
+            seen_title[txt_mix] = true;
+          }
+
+        }); 
+      });
+    </script>
+ 
+    <script src="{{'devst-scripts.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'option_selection.js' | shopify_asset_url  }}" ></script>
+    <script src="{{ 'rivets-cart.min.js' | asset_url  }}" ></script>
+
+    <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
+    {% include 'reamaze-config' %}
+    {% include 'reamaze-sso' %}
+    <!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
+
+    <!------ EcomExperts Code: Start Content For header ---->
+    {% capture MyJsFunc %}load', function(){}{% endcapture %} 
+    {% capture MyJsFunc2%}document.addEventListener('StartAsyncLoading',function(event){asyncLoad();});if(window.attachEvent){%endcapture %} 
+    {% capture endScript %} appendChild(eventsListenerScript)}) {% endcapture %} 
+    {% if template contains "index" or template contains "product" or template contains "collection" or page.url contains "pages" or blog.url contains "blogs" %} 
+    {{ content_for_header | replace: "load', asyncLoad",MyJsFunc | replace: "var customDocumentWrite", "document.addEventListener('StartKernelLoading', function() { document.dispatchEvent(new CustomEvent('StartShopifyLoading')); var customDocumentWrite"| replace:"appendChild(eventsListenerScript)", endScript | replace: 'if(window.attachEvent)', MyJsFunc2 | replace: 'src="//cdn.shopify.com/s/assets/', 'data-src="https://cdn.shopify.com/s/assets/' | replace: 'DOMContentLoaded', 'StartAsyncLoading' }}
+    {% else %} 
+    {{ content_for_header }} 
+    {% endif %}
+    <!------ EcomExperts Code: End Content For header ---->  
+    
+    <script>
+      jQuery.getJSON('/cart.js', function(cart) {
+        var st;
+        var ct_cnt = 0;
+        console.log(cart);
+        var bck_sts = localStorage.getItem("backlit");
+        
+//         if(bck_sts == 'on')
+//         {
+//           $(".backlit_main").remove();
+//         }
+        if(cart.items.length == 0)
+        {
+          localStorage.removeItem("backlit");
+
+        }
+         if(cart.items.length > 0)
+        {
+        for (st = 0; st < cart.items.length; st++) {
+          if(cart.items[st].product_type == "poster" || cart.items[st].handle == 'backlit' || cart.items[st].product_type != "Frame" )
+          {
+            ct_cnt = ct_cnt + (cart.items[st].quantity);
+          }
+        }
+        }
+          $('.site-header__nav-action[data-cart-count]').text(ct_cnt);
+          $('.cart-popup__count[data-cart-popup-count]').text(ct_cnt);
+     
+
+      });
+       jQuery.getJSON('/cart.js', function(cart) {
+      var st;
+      var ct_cnt = 0;
+     
+      if(cart.items.length > 0)
+      {
+       
+        for (st = 0; st < cart.items.length; st++) {
+          if(cart.items[st].product_type == "poster" && cart.items[st].properties['_dimensions'] == '27 x 40' )
+          {
+            if(!cart.items[st].properties['_custom_finish'])
+            
+            {
+            ct_cnt = ct_cnt + (cart.items[st].quantity);
+            }
+          }
+        }
+      }
+      
+      $('#cnt_27x40').val(ct_cnt);
+
+
+
+    });
+      
+
+    </script>
+    
+    {% if settings.ss_enable == false %}
+	    <!-- Nextopia ========================================= -->
+    	<script type="text/javascript" src="//cdn.nextopia.net/nxt-app/9e8a5e3517a445a0be76c36c2b4897c0.js" async></script>
+   	{% endif %}
+    
+    {% if settings.ss_enable %}
+    	{% include 'ss-script' %}
+	{% endif %}
+  </head> 
+
+  <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}{% if collection.handle and collection.handle == 'shop' %} ss-shop{% endif %}" data-site data-shop-currency="{{ cart.currency.iso_code }}" data-site-body>
+  {% render 'elevar-body-end' %}
+    <a class="visually-hidden skip-link" href="#siteContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    <div class="hover-overlay" data-hover-overlay></div>
+    <div class="site-overlay" data-site-overlay></div>
+
+    {% include 'cart-popup' %}
+
+    <div class="site-container">
+      {% section 'promo-bar' %}
+      {% section 'header' %}
+
+      <main id="siteContent" class="site-content{% if template contains 'product' or template contains 'collection' or template contains 'cart' %}{% unless template.suffix contains 'hidden' %} has-padding{% endunless %}{% endif %}" role="main">
+        {% if template.suffix == 'backlit' or template.suffix == 'plak' or template.suffix == 'custom' or template.suffix == 'canvas' or template.suffix == 'framing' %}
+        <div class="page--framing">                                                                    
+        {% endif %}
+          
+        {{ content_for_layout }}
+          
+       {% if template.suffix == 'backlit' or template.suffix == 'plak' or template.suffix == 'custom' or template.suffix == 'canvas' or template.suffix == 'framing' %}
+        </div>
+        {% endif %}
+      </main>
+
+      {% section 'footer' %}
+    </div>
+    
+
+
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        CartJS.init({{ cart | json }});
+      }); 
+    </script>
+
+    {% include 'smile-initializer' %}
+<script src="https://cdn.attn.tv/movieposters/dtag.js"></script>
+    <!-- Country exclusion for remove "Add A Finish" on product page -->
+    <script>
+      
+var call = $(".form-vertical").attr("data-product-handle");
+var links = '/products/' + call + '.json';
+ 
+        jQuery.getJSON(links, function(prd) {
+          
+          if(prd.product.variants[0].price > 99)
+          {
+            console.log(prd.product.variants[0].price);
+          }
+          else
+          {
+            $(".auth_top").remove();
+          }
+
+    });
+      
+      $.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function(location) {
+          
+          if (location.country_name == 'United States' || location.country_name == 'Canada' || location.country_name == 'India' )
+          {
+            
+          }
+          else{
+            $("#shopify-section-product-custom-finish-addon").remove();
+          }
+
+        }
+      });
+      
+      $('.feature-filter__menu li').on('click', function(){
+      $('.feature-filter__slider.searchspring-recs').removeClass('is-active');
+      
+      
+      });
+      $('.feature-filter__menu li:first-child').on('click', function(){
+      $('.feature-filter__slider.searchspring-recs').addClass('is-active');
+      
+      
+      });
+      
+    </script>
+    <!-- End Country exclusion code -->
+    
+    {% if settings.ss_enable %}
+    	{% include 'ss-intellisuggest' %}
+	{% endif %} 
+    {% include 'swymSnippet' %}
+    {% if product %}
+    	{% include 'KlaviyoAddedToCart' %}
+    {% endif %}
+  </body>
+</html>

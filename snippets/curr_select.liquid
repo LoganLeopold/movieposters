@@ -1,0 +1,18 @@
+<div id="curr_select" class="curr_select{% if template contains 'product' %} curr_select--pdp medium-up--5{% elsif template.suffix contains 'original' %} curr_select--original-poster{% endif %}" data-curr_select-all-terms>
+  {% if template contains 'product' %}
+    <div class="pdp__close curr_select__close"> 
+      {% include 'component-icon',
+        icon_name: 'icon-close-48',
+        icon_classes: 'small--hide'
+      %}
+      {% include 'component-icon',
+        icon_name: 'icon-close-24',
+        icon_classes: 'medium-up--hide'
+      %}
+    </div>
+    <h3>Select Currency</h3>
+
+	{% section 'currencies' %}
+   
+  {% endif %}
+</div>

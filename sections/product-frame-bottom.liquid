@@ -1,0 +1,51 @@
+  </div>
+  </div>
+</div>
+
+{% include 'schema' with 'product' %}
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var selectCallback = function(variant, selector) {
+      if($('[data-frame-finish-select].selected').length > 0){
+        var a = $('#frame-a').val();
+        var b = $('#frame-b').val(); 
+        if(variant ==  null){
+          if(!$('[data-add-to-cart]').disabled){
+            $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').removeClass('unavailable');
+          }
+          $('[data-custom-frame-error]').text('Frame is not available in this customization');
+          $('[data-add-to-cart-text]').text(' – Add to Cart');
+        }else if(a * b  > 1200) {
+          if(!$('[data-add-to-cart]').disabled){
+            $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').removeClass('unavailable');
+          }
+          $('[data-custom-frame-error]').text('Not available in this size');  
+          $('[data-add-to-cart-text]').text(' – Add to Cart');
+        }else{
+          if(variant.available == false){
+            $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').addClass('unavailable');
+            $('[data-add-to-cart-text]').text(' – Sold Out');
+          }else{ 
+            $('[data-add-to-cart]').prop('disabled', false).removeClass('disabled').removeClass('unavailable');
+            $('[data-add-to-cart-text]').text(' – Add to Cart');
+          }
+
+          $('[data-custom-frame-error]').text('');
+          const price = $(selector.variantIdField).find('option[value="'+$(selector.variantIdField).val()+'"]').attr('data-variant-price');
+          $('[data-add-to-cart-price]').text(price);
+          $('[data-product-price]').text(price);
+          $('#supplierCode').val($('[data-frame-finish-select].selected').attr('data-frame-supplier-code'));
+        }
+      }
+    };
+//debugger;
+    
+      new Shopify.OptionSelectors('productSelect', {
+        product: {{ product | json }},
+        onVariantSelected: selectCallback,
+        enableHistoryState: false
+      });
+    
+  });
+</script>

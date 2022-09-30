@@ -1,0 +1,105 @@
+<div class="hero hero--slider" data-hero-slider>
+  {% for block in section.blocks %}
+    <div class="hero__slide lazyload" data-desktop-image="{{ block.settings.image | img_url: '1440x' }}"{% if block.settings.mobile_image != blank %} data-mobile-image="{{ block.settings.mobile_image | img_url: '767x' }}"{% endif %} style="background-color: {{ block.settings.background_colour }}" data-responsive-image-swap>
+      {% if block.settings.headline != blank or block.settings.button != blank %}
+        <div class="hero__content small--text-center">
+          <div class="wrapper">
+            {% if block.settings.headline != blank %}
+              {% if forloop.first %}
+                {% assign heading_element = 'h1' %}
+              {% else %}
+                {% assign heading_element = 'h2' %}
+              {% endif %}
+
+              <{{ heading_element }} class="hero__headline {{ block.settings.text_colour }}">{{ block.settings.headline }}</{{ heading_element}}>
+            {% endif %}
+
+            {% if block.settings.cta_link != blank %}
+              {% if block.settings.cta_link contains '#' %}
+                <span class="{{ block.settings.text_colour }} text-link" data-scroll data-scroll-target="{{ block.settings.cta_link }}">
+                  {{ block.settings.cta_link_text }}
+                  {% include 'component-icon',
+                    icon_name: 'icon-fwd-16'
+                  %}
+                </span>
+              {% else %}
+                {% include 'component-link',
+                  link_url: block.settings.cta_link,
+                  link_text: block.settings.cta_link_text,
+                  classes: block.settings.text_colour,
+                  has_icon: true
+                %}
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name":"Hero",
+    "blocks": [
+      {
+        "type": "hero_slide",
+        "name": "Hero Slide",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type":"image_picker",
+            "id":"mobile_image",
+            "label":"Mobile Image"
+          },
+          {
+            "type":"color",
+            "id":"background_colour",
+            "label":"Background Colour"
+          },
+          {
+            "type":"select",
+            "id":"text_colour",
+            "label":"Text Colour",
+            "options": [
+              {
+                "value":"",
+                "label":"Dark"
+              },
+              {
+                "value":"text-light",
+                "label":"Light"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "headline",
+            "label": "Headline"
+          },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA Link"
+          },
+          {
+            "type": "text",
+            "id": "cta_link_text",
+            "label": "CTA Link Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+    {
+    "name": "Hero",
+    "category": "Hero"
+    }
+]
+  }
+{% endschema %}

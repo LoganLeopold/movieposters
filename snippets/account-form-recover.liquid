@@ -1,0 +1,40 @@
+{%- capture button -%}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    button_classes: 'btn--primary',
+    button_text: 'Reset'
+  -%}
+{%- endcapture -%}
+
+<div class="login__form" data-recover-password>
+  {% form 'recover_customer_password' %}
+    <div class="account__header">
+      <h2>{{ 'customer.recover_password.title' | t }}</h2>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+
+      {% if form.errors %}
+        <span class="input__message is-error">{{ form.errors | default_errors }}</span>
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        <span data-reset-success-trigger></span>
+      {% endif %}
+    </div>
+
+    <label for="RecoverEmail" class="label-hidden">{{ 'customer.recover_password.email' | t }}</label>
+    <input type="email"
+      name="email"
+      id="RecoverEmail"
+      placeholder="{{ 'customer.recover_password.email' | t }}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off">
+
+    <div class="input__actions text-center">
+      {{ button }}
+    </div>
+
+    <p class="text-center"><span class="account__link" data-recover-password-trigger>{{ 'customer.recover_password.cancel' | t }}</span></p>
+  {% endform %}
+</div>

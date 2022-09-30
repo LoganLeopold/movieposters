@@ -1,0 +1,267 @@
+{% capture continue_shopping_link_url %}{{ 'cart.general.continue_browsing_html' | t | split: 'href="' | last | split: '"' | first }}{% endcapture %}
+{% capture continue_shopping_link_text %}{{ 'cart.general.continue_browsing_html' | t | split: '>' | last | split: '</a>' | first }}{% endcapture %}
+{% capture continue_shopping_link %}
+  {% include 'component-link',
+    link_url: continue_shopping_link_url,
+    link_text: continue_shopping_link_text,
+    has_reverse_icon: true
+  %}
+{% endcapture %}
+
+<div class="cart{% if cart.item_count <= 0 %} cart--empty{% endif %}">
+  {% if cart.item_count > 0 %}
+    <form action="/cart" method="post" novalidate>
+      <div class="wrapper">
+        <div class="grid">
+          <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+            <div class="cart__header">
+              <h1>{{ 'cart.general.title' | t }}</h1>
+              {{ continue_shopping_link }}
+            </div>
+          </div>
+          
+          {% assign cnt_27x40 = 0 %}
+          {% for line_item in cart.items %}
+          {% if line_item.product.type == 'poster' or line_item.product.type == 'Poster' %}
+          {% if line_item.product.tags contains "dimensions--27x40" %}
+          {% if line_item.properties["_custom_finish"] == blank %}
+           {% assign cnt_27x40 =  cnt_27x40 | plus:  1  %}
+          {% endif %}
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
+          {% assign back_lit = 0 %}
+          {% for line_item in cart.items %}
+          {% if line_item.product.handle == 'backlit'  %}
+           {% assign back_lit =  back_lit | plus:  1  %}
+          {% endif %}
+          {% endfor %}
+          
+ 		<input type="hidden" id="cnt_27x40" name="cnt_27x40" value="{{ cnt_27x40 }}">
+        <input type="hidden" id="back_lit" name="back_lit" value="{{ back_lit }}">
+          
+          <div class="grid__item all--12 medium-up--8 xlarge-up--7 push--xlarge-up--1">
+            <div class="cart__line-items">
+              {% for line_item in cart.items %}
+         
+              {% unless line_item.properties["_custom_finish_frame"] != blank or line_item.properties["_addon_product"] != blank or line_item.properties["_custom_finish_addon_product"] != blank %}
+           
+               {% include 'line-item' %} 
+              
+              {% elsif line_item.properties["_custom_finish_frame"] or line_item.properties["_custom_finish_addon_product"] != blank %}
+            
+           
+              {% if line_item.product.title  contains  'Back Lit' %}
+              {% include 'line-item-Back_Lit' %}
+              {% else %}
+              {% include 'line-item-custom-finish' %}  
+              
+              {% endif %}
+              
+                {% endunless %}
+              
+              
+              
+              {% endfor %}
+              
+              {% comment %}
+              {% assign feature_image = all_products["backlit"].featured_image   %}
+              {%- capture picture_sources %}
+  			  {% include 'component-source',
+              source_media: '(max-width: 767px)',
+              source_image_1x: feature_image,
+              source_size_1x: '96x',
+              source_image_2x: feature_image,
+              source_size_2x: '192x'
+              %}
+              {% include 'component-source',
+              source_image_1x: feature_image,
+              source_size_1x: '112x',
+              source_image_2x: feature_image,
+              source_size_2x: '224x'
+              %}
+              {% endcapture %}
+              
+            {% if back_lit < 1 and cnt_27x40 > 0 %}
+              <div class="line-item backlit_main">
+
+                <div  class="line-item__image backlit">
+                  {% include 'component-picture',
+                  sources: picture_sources,
+                  resource: feature_image,
+                  default_size: '112x',
+                  alt: {{ all_products["backlit"].title }}
+                  %}
+                </div>
+
+
+
+                <div class="line-item__content-container">
+
+                  <div class="line-item__content">
+                    <h3 class="marg_zero"> {{ "Add a Back Lit LED Frame?" }}</h3>
+                    <p class="marg_zero">Slim profile and perfect for your Home Theatre</p>
+                    <p>{{ all_products["backlit"].price | money_with_currency }}</p>
+                  </div>
+
+                  <div class="line-item__content mob_hide">
+                    <input type="hidden" name="id" class="crt__backlit" value="{{ all_products["backlit"].first_available_variant.id }}" data-product-selected-variant>
+
+
+                
+
+
+                    {% if all_products["backlit"].available %}
+                    <button type="submit" name="add" class="pdp__submit btn_backlit btn btn--primary" data-add-to-cart>
+                      <span data-add-to-cart-text> {{ 'products.product.add_to_cart' | t }}</span>
+                    </button>
+
+                    {% else %}  
+                    <div class="pdp__unavailable">
+                      <button type="button" name="add" class="pdp__submit btn btn--primary">
+                        <span data-add-to-cart-text>{{ 'products.product.sold_out' | t }}</span>
+                      </button>
+
+                      <div class="pdp__unavailable-form">
+                        <input type="email" data-notify-email placeholder="Enter Email Address" />
+                        <button class="btn btn--primary" data-notify-button type="submit">Notify Me</button>
+                      </div>
+                      <span class="pdp__unavailable-message hide" data-notify-message></span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="line-item__qty cart_back_qty">
+                      {% include 'quantity-selector',
+                  	  id: all_products["backlit"].first_available_variant.id,
+                      quantity: 1
+                      %}
+                    </div>
+                    
+                  </div>
+
+                </div>
+
+                <div class="line-item__content mob_show">
+                  <input type="hidden" name="id" class="crt__backlit" value="{{ all_products["backlit"].first_available_variant.id }}" data-product-selected-variant>
+                 {% if all_products["backlit"].available %}
+                  <button type="submit" name="add" class="pdp__submit btn_backlit btn btn--primary" data-add-to-cart>
+                    <span data-add-to-cart-text> {{ 'products.product.add_to_cart' | t }}</span>
+                  </button>
+                   {% else %}  
+                  <div class="pdp__unavailable">
+                    <button type="button" name="add" class="pdp__submit btn btn--primary">
+                      <span data-add-to-cart-text>{{ 'products.product.sold_out' | t }}</span>
+                    </button>
+
+                    <div class="pdp__unavailable-form">
+                      <input type="email" data-notify-email placeholder="Enter Email Address" />
+                      <button class="btn btn--primary" data-notify-button type="submit">Notify Me</button>
+                    </div>
+                    <span class="pdp__unavailable-message hide" data-notify-message></span>
+                  </div>
+                  {% endif %}
+
+                  <div class="line-item__qty cart_back_qty">
+                    {% include 'quantity-selector',
+                  	  id: all_products["backlit"].first_available_variant.id,
+                    quantity: 1
+                    %}
+                  </div>
+
+                </div>
+               </div>
+             
+              {% endif %}
+              {% endcomment %}
+              
+              
+            </div>
+            <div class="grid__item medium-up--12">
+				<script type="searchspring/personalized-recommendations" profile="view-cart">
+					seed = [];
+					{% for item in cart.items %}
+						seed.push('{{ item.product.variants[0].sku }}');
+					{% endfor %}
+				</script>
+			</div>
+            
+          </div>
+
+          <div class="grid__item all--12 medium-up--4 xlarge-up--3 push--xlarge-up--1">
+            {% include 'cart-summary' %}
+            {% for block in section.blocks %}
+                <div class="cart__content-block">
+                  <h3>{{ block.settings.content_title }}</h3>
+                  <p>{{ block.settings.content }}</p>
+
+                  {% if block.settings.content_link != blank %}
+                    {% include 'component-link',
+                      link_url: block.settings.content_link,
+                      link_text: block.settings.content_link_text
+                    %}
+                  {% endif %}
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+  {% else %}
+    {% assign product = all_products[section.settings.poster] %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 767px)',
+    source_image_1x: product.featured_image,
+    source_size_1x: '272x392',
+    source_image_2x: product.featured_image,
+    source_size_2x: '544x784'
+  %}
+  {% include 'component-source',
+    source_image_1x: product.featured_image,
+    source_size_1x: '344x496',
+    source_image_2x: product.featured_image,
+    source_size_2x: '688x992'
+  %}
+{% endcapture %}
+
+<div class="cart-empty" data-desktop-image="{{ section.settings.image | img_url: '2880x' }}"{% if section.settings.mobile_image != blank %} data-mobile-image="{{ section.settings.mobile_image | img_url: '1534x' }}"{% endif %} style="background-color: {{ section.settings.background_colour }}" data-responsive-image-swap> 
+  <div class="wrapper">
+    <div class="grid grid--flex">
+      <div class="grid__item all--12 medium-up--6">
+        <div class="cart-empty__content">
+          {% if section.settings.headline != blank %}
+            <h1 class="cart-empty__headline {{ section.settings.text_colour }}">{{ section.settings.headline | replace: "'", "&rsquo;" }}</h1>
+          {% endif %}
+
+          {% if section.settings.cta_link != blank %}
+            {% assign component_classes = section.settings.text_colour %}
+            {% include 'component-link',
+              link_url: section.settings.cta_link,
+              link_text: section.settings.cta_link_text,
+              classes: component_classes,
+              has_icon: true
+            %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="grid__item all--12 medium-up--6 small--text-center medium-up--text-right">
+        <a href="{{ product.url }}" class="cart-empty__image">
+          {% include 'component-picture',
+            sources: picture_sources,
+            resource: product.featured_image,
+            default_size: '344x496',
+            alt: product.title
+          %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+</div>

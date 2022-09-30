@@ -1,0 +1,125 @@
+{% comment %} Choose a block at random {% endcomment %}
+{% assign min = 1 %}
+{% assign max = section.blocks.size | plus: 1 %}
+{% assign diff = max | minus: min %}
+{% if diff == 0 %}
+  {% assign random = 1 %}
+{% else %}
+  {% assign random = "now" | date: "%N" | modulo: diff | plus: min %}
+{% endif %}
+
+{% for block in section.blocks %}
+  {% if forloop.index == random %}
+    {% assign product = all_products[block.settings.poster] %}
+    {%- capture picture_sources %}
+      {% include 'component-source',
+        source_media: '(max-width: 767px)',
+        source_image_1x: product.featured_image,
+        source_size_1x: '232x336',
+        source_image_2x: product.featured_image,
+        source_size_2x: '464x672'
+      %}
+      {% include 'component-source',
+        source_image_1x: product.featured_image,
+        source_size_1x: '344x496',
+        source_image_2x: product.featured_image,
+        source_size_2x: '688x992'
+      %}
+    {% endcapture %}
+
+    <div class="block--{{ random }}-of-{{ max }} notfound__outer" style="background-image: url('{{ block.settings.image | img_url: 'master' }}');">
+      {% if block.settings.mobile_image != blank %}
+        <div class="notfound__outer-mobile medium-up--hide" style="background-image: url('{{ block.settings.mobile_image | img_url: 'master' }}');"></div>
+      {% endif %}
+      <div class="wrapper">
+        <div class="grid notfound__inner medium--10 push--medium--1 large--10 push--large--1 xlarge-up--8 push--xlarge-up--2">
+          <a href="{{ product.url }}" class="grid__item notfound__poster medium-up--6">
+            {% include 'component-picture',
+              sources: picture_sources,
+              resource: product.featured_image,
+              default_size: '344x496',
+              alt: product.title
+            %}
+          </a>
+          <div class="grid__item notfound__content medium-up--6">
+            {% if block.settings.headline != blank %}
+              <h2 class="notfound__headline {{ block.settings.text_colour }}">{{ block.settings.headline }}</h2>
+            {% endif %}
+            {% if block.settings.cta_link != blank %}
+              {% include 'component-link',
+                link_url: block.settings.cta_link,
+                link_text: block.settings.cta_link_text,
+                classes: block.settings.text_colour,
+                has_icon: true
+              %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<div class="grid__item medium-up--12">
+	<script type="searchspring/personalized-recommendations" profile="404"></script>
+</div>
+
+{% schema %}
+  {
+    "name":"404",
+    "blocks": [
+      {
+        "type": "notfound_block",
+        "name": "404 Page",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type":"image_picker",
+            "id":"mobile_image",
+            "label":"Mobile Image"
+          },
+          {
+            "type": "product",
+            "id": "poster",
+            "label": "Featured Poster"
+          },
+          {
+            "type":"select",
+            "id":"text_colour",
+            "label":"Text Colour",
+            "options": [
+              {
+                "value":"",
+                "label":"Dark"
+              },
+              {
+                "value":"text-light",
+                "label":"Light"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "headline",
+            "label": "Headline"
+          },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA Link"
+          },
+          {
+            "type": "text",
+            "id": "cta_link_text",
+            "label": "CTA Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

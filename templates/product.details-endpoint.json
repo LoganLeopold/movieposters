@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "product-details-endpoint-1",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1"
+  ],
+  "layout": false
+}

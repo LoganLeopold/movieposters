@@ -1,0 +1,171 @@
+{% if section.settings.section_enable %}
+  {%- capture button -%}
+    {%- include 'component-button',
+      button_classes: 'btn--primary btn--full',
+      button_text: 'Join Now'
+      button_url: '/account/register'
+    -%}
+  {%- endcapture -%}
+
+  {% capture button_secondary %}
+    {%- include 'component-button',
+      button_classes: 'btn--secondary btn--full',
+      button_text: 'Sign In',
+      button_url: '/account/login'
+    -%}
+  {% endcapture %}
+
+  <div class="rewards-hero">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+          <div class="rewards-hero__content text-center">
+            <h1>{{ section.settings.headline }}</h1>
+            <p>{{ section.settings.content }}</p>
+
+            <div class="rewards-hero__actions">
+              {{ button }}
+              {{ button_secondary }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rewards-hero__items">
+      {% for block in section.blocks %}
+        {% if block.settings.item_is_product %}
+          {% assign product = all_products[block.settings.item_product] %}
+        {% else %}
+          {% assign product = nil %}
+        {% endif %}
+
+        {% include 'poster-collector-item',
+          product: product,
+          image: block.settings.item_image,
+          position_x: block.settings.item_position_left,
+          position_y: block.settings.item_position_top,
+          mobile_position_x: block.settings.item_position_left_mobile,
+          mobile_position_y: block.settings.item_position_top_mobile,
+          image_width: block.settings.item_image_width,
+          mobile_image_width: block.settings.item_image_width_mobile,
+          enable_mobile: block.settings.item_show_mobile,
+          enable_desktop: block.settings.item_show_desktop
+        %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Rewards Hero",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"section_enable",
+        "label":"Enable Section",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"headline",
+        "label":"Headline",
+        "default":"This is the beginning of a rewarding friendship."
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"Shop and share to earn points for loyalty discounts, free gifts, and more. Signing up is easy and free, join today and receive 250 points on us!"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"reward-poster-item",
+        "name":"Reward Poster Item",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"item_image",
+            "label":"Reward Item Image"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_is_product",
+            "label":"Reward Item is a Product",
+            "default": false
+          },
+          {
+            "type":"product",
+            "id":"item_product",
+            "label":"Reward Product",
+            "info":"This only needs to be assigned if previous checkbox is checked"
+          },
+          {
+            "type":"header",
+            "content":"Desktop Settings"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_show_desktop",
+            "label":"Show Item on Desktop",
+            "default":true
+          },
+          {
+            "type":"text",
+            "id":"item_image_width",
+            "label":"Desktop Image Width",
+            "info":"Image size, in pixels. Only use numbers in this field.",
+            "default":"208"
+          },
+          {
+            "type":"text",
+            "id":"item_position_top",
+            "label":"Image Percentage From Top",
+            "info":"Percentage position from top of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"text",
+            "id":"item_position_left",
+            "label":"Image Percentage From Left",
+            "info":"Percentage position from left of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"header",
+            "content":"Mobile Settings"
+          },
+          {
+            "type":"checkbox",
+            "id":"item_show_mobile",
+            "label":"Show Item on Mobile",
+            "default":true
+          },
+          {
+            "type":"text",
+            "id":"item_image_width_mobile",
+            "label":"Mobile Image Width",
+            "info":"Image size, in pixels. Only use numbers in this field.",
+            "default":"208"
+          },
+          {
+            "type":"text",
+            "id":"item_position_top_mobile",
+            "label":"Item Percentage From Top",
+            "info":"Percentage position from top of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          },
+          {
+            "type":"text",
+            "id":"item_position_left_mobile",
+            "label":"Item Percentage From Left",
+            "info":"Percentage position from left of container. Only use numbers in this field. Negative values are accepted.",
+            "default":"50"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

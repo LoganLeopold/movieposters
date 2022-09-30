@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+<input type="hidden" id="supplierCode" name="properties[_supplier_code]" value="{%- if product.metafields.supplier.code != blank -%}{{ product.metafields.supplier.code }}{%- else -%}false{%- endif -%}" data-property>
+
+<input type="hidden" id="supplierLocation" name="properties[_supplier_location]" value="{%- if product.metafields.supplier.location != blank -%}{{ product.metafields.supplier.location }}{%- else -%}false{%- endif -%}" data-property>
+
+<input type="hidden" id="supplierLocation" name="properties[_supplier_name]" value="{%- if product.metafields.supplier.name != blank -%}{{ product.metafields.supplier.name }}{%- else -%}false{%- endif -%}" data-property>
+
+

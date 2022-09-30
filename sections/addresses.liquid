@@ -1,0 +1,53 @@
+<div class="account account--dashboard">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+        <div class="account__header">
+          <h1>{{ 'customer.account.title' | t }}</h1>
+          {% include 'component-link',
+            link_url: '/account/logout',
+            link_text: 'Log Out',
+            has_reverse_icon: true
+          %}
+        </div>
+      </div>
+
+      <div class="grid__item all--12 medium-up--8 xlarge-up--7 push--xlarge-up--1">
+        <div class="account__order-history">
+          <h3>{{ 'customer.orders.title' | t }}</h3>
+
+          {% paginate customer.orders by 20 %}
+            {% if customer.orders.size != 0 %}
+              {% include 'account-order' %}
+            {% else %}
+              <p>{{ 'customer.orders.none' | t }}</p>
+            {% endif %}
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+          {% endpaginate %}
+        </div>
+      </div>
+
+      <div class="grid__item all--12 medium-up--4 xlarge-up--3 push--xlarge-up--1">
+        <div class="account__address-container">
+          <h3 class="text-center">{{ 'customer.account.details' | t }}</h3>
+
+          <div class="account__addresses">
+            {% for address in customer.addresses %}
+              {% include 'account-address' %}
+            {% endfor %}
+
+            <div class="account__address--new">
+              <div class="account__address-actions">
+                <p data-address-trigger data-address="address-new"><span class="icon icon-add-16"></span> Add a new address</p>
+              </div>
+              {% include 'account-form-address-new' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

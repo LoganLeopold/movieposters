@@ -1,0 +1,75 @@
+{% assign no_framing = false %}
+{% assign width = nil %}
+{% assign height = nil %}
+{% assign print_type = nil %}
+{% assign print_type_handle = nil %}
+{% assign original_or_reprint = nil %}
+{% assign dimensions = nil %}
+{% assign packing_type = nil %}
+{% assign year = nil %}
+{% assign tag_numeric = nil %}
+{% assign dropship = nil %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'dimensions--' %}
+    {% assign width =  tag | split: '--' | last  | split: 'x' | first %}
+  {% endif %}
+
+  {% if tag contains 'dimensions--' %}
+    {% assign height =   tag | split: '--' | last  | split: 'x' | last %}
+  {% endif %}
+  {% if tag == 'original' or tag == 'print' or tag == 'reprint' or tag ==  'DVD/Video' %}
+    {% assign print_type_handle = tag | handleize %}
+    {% assign print_type = print_type_handle | capitalize %}
+  {% endif %}
+
+  {% if tag == 'original' or tag == 'reprint' %}
+    {% assign original_or_reprint = tag  | capitalize%}
+  {% endif %}
+
+  {% if tag contains '19' or tag contains '20' %}
+      {% assign tag_numeric = tag | plus: 0 %}
+      {% if tag_numeric > 0 or tag contains 'year--' %}
+        {% assign year = tag | split: '--' | last %}
+      {% endif %}
+  {% endif %}
+  
+  {% if tag contains 'sided--' %}
+    {% assign sided = tag | split: '--' | last | remove: 'sided' | capitalize | append: ' Sided' %}
+  {% endif %}
+  
+  {% if tag contains 'folded-or-rolled--' %}
+    {% assign packing_type = tag | split: '--' | last | capitalize %}
+  {% endif %}
+
+  {% if tag == 'no-framing' or tag contains 'pressbook' or tag contains 'presskit' or tag contains 'set of lobby cards' %}
+    {% assign no_framing = true %}
+  {% endif %}
+  
+  {% if tag contains 'drop-shipping--' %} 
+    {% assign dropship = tag | split: '--' | last %}
+  {% endif %}
+{% endfor %}
+
+{% if year == blank and product.metafields.imdb.movie_id != blank %}
+  {% assign year = '<span data-imdb-year></span>' %}
+{% endif %}
+
+{% if width == blank and product.metafields.dimensions.width != blank %}
+  {% assign width = product.metafields.dimensions.width %}
+{% endif %}
+
+{% if height == blank and product.metafields.dimensions.height != blank %}
+  {% assign height = product.metafields.dimensions.height %}
+{% endif %}
+
+{% if width == blank or height == blank %}
+  {% for tag in product.tags %}
+    {% if tag contains 'dimensions--' %}
+      {% assign dimensions = tag | split: '--' | last %}
+      {% assign width = dimensions | split: 'x' | first %}
+      {% assign height = dimensions | split: 'x' | last %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

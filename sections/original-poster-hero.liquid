@@ -1,0 +1,122 @@
+{% if section.settings.hero_enable %}
+  <div class="hero" data-desktop-image="{{ section.settings.image | img_url: '1440x' }}"{% if section.settings.mobile_image != blank %} data-mobile-image="{{ section.settings.mobile_image | img_url: '767x' }}"{% endif %} style="background-color: {{ section.settings.background_colour }}" data-responsive-image-swap>
+    <div class="hero__content">
+      <div class="wrapper">
+        <div class="grid">
+          <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+            {% if section.settings.headline != blank %}
+              <h1 class="hero__headline {{ section.settings.text_colour }}">{{ section.settings.headline }}</h1>
+            {% endif %}
+
+            {% if section.settings.content != blank %}
+              <p class="small--hide {{ section.settings.text_colour }}">{{ section.settings.content }}</p>
+            {% endif %}
+
+            {% if section.settings.cta_link != blank %}
+              {% assign component_classes = section.settings.text_colour | append: ' small--hide' %}
+              {% if section.settings.cta_link contains '#' %}
+                <span class="{{ component_classes }} text-link" data-scroll data-scroll-target="{{ section.settings.cta_link }}">
+                  {{ section.settings.cta_link_text }}
+                  {% include 'component-icon',
+                    icon_name: 'icon-fwd-16'
+                  %}
+                </span>
+              {% else %}
+                {% include 'component-link',
+                  link_url: section.settings.cta_link,
+                  link_text: section.settings.cta_link_text,
+                  classes: component_classes,
+                  has_icon: true
+                %}
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__content hero__content--mobile medium-up--hide">
+    <div class="wrapper">
+      {% if section.settings.content != blank %}
+        <p class="{{ section.settings.text_colour }}">{{ section.settings.content }}</p>
+      {% endif %}
+
+      {% if section.settings.cta_link != blank %}
+        {% include 'component-link',
+          link_url: section.settings.cta_link,
+          link_text: section.settings.cta_link_text,
+          classes: section.settings.text_colour,
+          has_icon: true
+        %}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Hero",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"hero_enable",
+        "label":"Enable Hero",
+        "default":true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Mobile Image"
+      },
+      {
+        "type":"color",
+        "id":"background_colour",
+        "label":"Background Colour"
+      },
+      {
+        "type":"select",
+        "id":"text_colour",
+        "label":"Text Colour",
+        "options": [
+          {
+            "value":"",
+            "label":"Dark"
+          },
+          {
+            "value":"text-light",
+            "label":"Light"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "headline",
+        "label": "Headline",
+        "default":"Original Movie Posters"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"Printed by a film studio in limited quantity, for display in movie theaters to promote the film. These posters can become highly valued, prized art and collector items."
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_link_text",
+        "label": "CTA Link Text",
+        "default":"View Glossary"
+      }
+    ]
+  }
+{% endschema %}

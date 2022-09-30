@@ -1,0 +1,58 @@
+{%- capture button -%}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    button_classes: 'btn--primary',
+    button_text: 'Sign In'
+  -%}
+{%- endcapture -%}
+
+{% capture button_secondary %}
+  {%- include 'component-button',
+    button_classes: 'btn--secondary',
+    button_text: 'Join Now',
+    button_url: '/account/register'
+  -%}
+{% endcapture %}
+
+<div class="login__form is-active" data-login>
+  {% form 'customer_login' %}
+    <div class="account__header">
+      <h1>{{ 'customer.login.title' | t }}</h1>
+      <span class="input__message is-success hide" data-reset-success>
+        {{ 'customer.recover_password.success' | t }}
+      </span>
+
+      {% if form.errors %}
+        <span class="input__message is-error">{{ form.errors | default_errors }}</span>
+      {% endif %}
+    </div>
+
+    <label for="CustomerEmail" class="label-hidden">{{ 'customer.login.email' | t }}</label>
+    <input type="email"
+      name="customer[email]"
+      id="CustomerEmail"
+      class="{% if form.errors %}input-error{% endif %}"
+      placeholder="{{ 'customer.login.email' | t }}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off">
+
+    {% if form.password_needed %}
+      <label for="CustomerPassword" class="label-hidden">{{ 'customer.login.password' | t }}</label>
+      <input type="password"
+        name="customer[password]"
+        id="CustomerPassword"
+        class="{% if form.errors %}input-error{% endif %}"
+        placeholder="{{ 'customer.login.password' | t }}">
+    {% endif %}
+
+    <div class="input__actions text-center">
+      {{ button }}
+      {{ button_secondary }}
+    </div>
+
+    <p class="text-center"><a href="#recover" class="account__link" data-recover-password-trigger>{{ 'customer.login.forgot_password' | t }}</a></p>
+
+  {% endform %}
+</div>

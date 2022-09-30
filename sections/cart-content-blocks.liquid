@@ -1,0 +1,54 @@
+{% if cart.item_count > 0 %}
+<div class="grid__item all--12 medium-up--4 xlarge-up--3 push--xlarge-up--1">
+            {% include 'cart-summary' %}
+{% for block in section.blocks %}
+  <div class="cart__content-block">
+    <h3>{{ block.settings.content_title }}</h3>
+    <p>{{ block.settings.content }}</p>
+
+    {% if block.settings.content_link != blank %}
+      {% include 'component-link',
+        link_url: block.settings.content_link,
+        link_text: block.settings.content_link_text
+      %}
+    {% endif %}
+  </div>
+{% endfor %}
+ </div>
+{% endif %}
+        </div>
+      </div>
+    </form>
+{% schema %}
+  {
+    "name":"Content Blocks",
+    "blocks": [
+      {
+        "type":"content-block",
+        "name":"Content Block",
+        "settings":[
+          {
+            "type":"text",
+            "id":"content_title",
+            "label":"Content Title"
+          },
+          {
+            "type":"textarea",
+            "id":"content",
+            "label":"Content"
+          },
+          {
+            "type":"url",
+            "id":"content_link",
+            "label":"Content Link"
+          },
+          {
+            "type":"text",
+            "id":"content_link_text",
+            "label":"Content Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

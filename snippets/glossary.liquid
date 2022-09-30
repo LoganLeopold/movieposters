@@ -1,0 +1,86 @@
+<div id="glossary" class="glossary{% if template contains 'product' %} glossary--pdp medium-up--5{% elsif template.suffix contains 'original' %} glossary--original-poster{% endif %}" data-glossary-all-terms>
+  {% if template contains 'product' %}
+    <div class="pdp__close glossary__close">
+      {% include 'component-icon',
+        icon_name: 'icon-close-48',
+        icon_classes: 'small--hide'
+      %}
+      {% include 'component-icon',
+        icon_name: 'icon-close-24',
+        icon_classes: 'medium-up--hide'
+      %}
+    </div>
+    <h3>Glossary</h3>
+  {% elsif template.suffix contains 'original' %}
+    <h2>Original Poster Glossary</h2>
+  {% endif %}
+
+  {% assign tags_string = nil %}
+{% assign is_print = false %}
+{% for tag in product.tags %}
+  {% assign tag_string = tag | split: '--' | last | handleize | remove: '-' %}
+  {% assign tags_string = tags_string | append: ',' | append: tag_string %}
+
+  {% if tag == 'print' %}
+    {% assign is_print = true %}
+  {% endif %}
+{% endfor %}
+{% assign description_string = product.description | handleize | remove: '-' %}
+
+<ul class="glossary__terms">
+  {% for i in (1..120) %}
+      {% capture title %}title_{{ i }}{% endcapture %}
+      {% capture glossary_visible %}glossary_term_op_visible_{{ i }}{% endcapture %}
+      {% capture glossary_tag %}glossary_term_tag_{{ i }}{% endcapture %}
+      {% capture glossary_content %}glossary_term_content_{{ i }}{% endcapture %}
+     {% if template.suffix contains 'original' %}
+      {% if settings[glossary_visible] %}
+        <li data-glossary-term>
+          <h4>
+            {{ settings[title] }}
+
+            {% include 'component-icon',
+              icon_name: 'icon-arrow-down-16',
+              icon_classes: 'large-up--hide',
+              icon_attrs: 'data-glossary-term-trigger'
+            %}
+          </h4>
+          <p>{{ settings[glossary_content] }}</p>
+        </li>
+      {% endif %}
+    {% elsif template.name contains 'product' %}
+      {% assign tag_keyword = settings[glossary_tag] | split: '--' | last | handleize | remove: '-' %}
+  
+      {% unless tag_keyword == 'print' %}
+      {% if tags_string contains tag_keyword or description_string contains tag_keyword %}
+ 
+          <li data-glossary-term>
+            <h4>{{ settings[title] }}</h4>
+            <p>{{ settings[glossary_content] }}</p>
+          </li>
+        {% endif %}
+      {% else %}
+        {% if is_print %}
+          <li data-glossary-term>
+            <h4>{{ settings[title] }}</h4>
+            <p>{{ settings[glossary_content] }}</p>
+          </li>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+</ul>
+
+  {% if template.suffix contains 'original' %}
+    {%- capture button -%}
+      {%- include 'component-button',
+        is_action: true,
+        button_classes: 'btn btn--primary btn--full large-up--hide',
+        button_text: 'View Full Glossary',
+        button_attr: 'data-glossary-all-terms-trigger'
+      -%}
+    {%- endcapture -%}
+
+    {{ button }}
+  {% endif %}
+</div>

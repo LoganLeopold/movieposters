@@ -1,0 +1,330 @@
+{% for tag in product.tags %}
+  {% if tag == 'original' or tag == 'print' or tag == 'reprint' or tag ==  'DVD/Video' %}
+    {% assign print_type_handle = tag | split: '--' | last %}
+    {% assign print_type = print_type_handle | capitalize %}
+  {% elsif tag contains 'width--' %}
+    {% assign width =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag contains 'height--' %}
+    {% assign height =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag contains 'sided--' %}
+    {% assign sided = tag | split: '--' | last | remove: 'sided' | capitalize | append: ' Sided' %}
+  {% endif %}
+{% endfor %}
+
+{% if width == blank and product.metafields.dimensions.width != blank %}
+  {% assign width = product.metafields.dimensions.width | plus: 0 %}
+{% endif %}
+
+{% if height == blank and product.metafields.dimensions.height != blank %}
+  {% assign height = product.metafields.dimensions.height | plus: 0 %}
+{% endif %}
+
+{% assign square_inch = width | times: height %}
+{% assign square_inch_min = settings.frame_size_min | plus: 0 %}
+{% assign square_inch_max = settings.frame_size_max | plus: 0 %}
+
+{% assign collection = collections[section.settings.collection] %}
+
+<div class="pdp__finish">
+  <!-- HC - Collpsable finish - 27 Nov '19 -->
+  <h3 class="pdp__finish-headline">{{ section.settings.section_title }}<span class="icon icon-arrow-down-16"></span></h3>
+  <div class="grid">
+    {% for _product in collection.products %}
+      {% assign dry_mounted = false %}
+      {% assign has_addon = false %}
+      {% assign color_option = false %}
+      {% assign type_option = false %}
+
+      {% for tag in _product.tags %}
+        {% if tag contains 'dry-mounted-available' and section.settings.enable_dry_mounted %}
+          {% assign dry_mounted = true %}
+          {% break %}
+        {% elsif tag contains 'addon-available' and section.settings.enable_addon %}
+          {% assign has_addon = true %}
+        {% endif %}
+      {% endfor %}
+      {% unless _product.handle contains 'backlit' %}
+    
+    	{% assign add_frame = true %}
+    
+        {% for option in _product.options_with_values %}
+          {% assign option_handle = option.name | handleize %}
+        	{% if option_handle contains 'type' %}
+            	{% assign type_option = true %}
+    			{% capture type_option_idx %}option{{ forloop.index }}{% endcapture %} 
+    		{% elsif option_handle contains 'color' or option_handle contains 'colour' %}
+            	{% assign color_option = true %}
+    			{% capture color_option_idx %}option{{ forloop.index }}{% endcapture %} 
+          	{% elsif option_handle contains 'size' %}
+            	{% capture size_option %}option{{ forloop.index }}{% endcapture %}        
+          	{% endif %}
+        {% endfor %}
+        
+        {% if type_option %}
+          	{% include 'finish-block',
+            	classes: 'js-finish-panel-trigger',
+            	finish_handle: _product.handle,
+            	finish_image: _product.featured_image,
+            	finish_title: _product.title,
+            	finish_product: _product,
+            	print_type: print_type,
+            	is_dry_mounted: dry_mounted,
+            	enable_addon: has_addon
+          	%}
+       	{% include 'finish-panel-3' _product: _product %}
+    	{% include 'finish-panel-2' _product: _product %}
+    	
+
+        {% elsif color_option %}
+        
+    		{% include 'finish-block',
+            	classes: 'js-finish-panel-trigger',
+            	finish_handle: _product.handle,
+            	finish_image: _product.featured_image,
+            	finish_title: _product.title,
+            	finish_product: _product,
+            	print_type: print_type,
+            	is_dry_mounted: dry_mounted,
+            	enable_addon: has_addon,  
+    			
+          	%}
+          {% include 'finish-panel' _product: _product %}    
+        {% else %}
+    	  {% assign add_frame = false %}
+    
+          {% for variant in _product.variants %}
+            {% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+            {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+            {% if square_inch >= range_min and square_inch <= range_max %}
+              {% assign price = variant.price %}
+              {% include 'finish-block',
+                attrs: 'data-finish-select',
+                classes: 'js-finish-select',
+                variant_id: variant.id,
+                finish_image: _product.featured_image,
+                finish_title: _product.title,
+                finish_handle: _product.handle,
+                variant_price: price,
+                finish_variant: variant,
+                print_type: print_type,
+                is_dry_mounted: dry_mounted,
+                enable_addon: has_addon
+              %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% else %}
+            {% comment %}
+            {% if width == 27 and height == 40 or sided contains 'Double'  or product.tags contains 'single-or-double-sided--double' and product.tags contains 'dimensions--27x40' %}
+
+            <div class="grid__item all--12">
+              <span class="pdp__finish-more-trigger" data-finish-more-trigger>More Finishes</span>
+            </div>
+            <div class="pdp__finish-more grid__item all--12" data-finish-more>
+              <div class="grid">
+                {% include 'finish-block',
+                        attrs: 'data-finish-select',
+                classes: 'js-finish-select',
+                variant_id: _product.first_available_variant.id,
+                finish_image: _product.featured_image,
+                finish_title: _product.title,
+                finish_handle: _product.handle,
+                variant_price: _product.first_available_variant.price,
+                finish_variant: _product.first_available_variant,
+                print_type: print_type,
+                is_dry_mounted: dry_mounted,
+                enable_addon: has_addon
+                %}
+              </div>
+            </div>
+            {% endif %}
+            {% endcomment %}
+    
+      {% endunless %}
+      {% assign color_option = nil %}
+    {% endfor %}
+  </div>
+
+  <div class="pdp__finish-addons">
+    {% if section.settings.enable_dry_mounted %}
+      <div class="pdp__finish-addon" data-finish-dry-mounted>
+        <input type="hidden" id="customFinishDryMounted" name="properties[_custom_finish_dry_mounted]" data-value="Dry Mounted" data-custom-finish-dry-mounted data-property>
+
+        <div class="pdp__finish-addon-content">
+          {% if print_type == 'Original' %}
+            <span class="pdp__finish-warning-tooltip is-active" data-finish-warning>
+              Not recommended for Originals. <a class="tooltip-link" href="/pages/custom-frames">Learn More</a>
+            </span>
+          {% endif %}
+
+          <h4>
+            {% if print_type == 'Original' %}
+              <span class="pdp__finish-warning is-active" data-finish-warning>{% include 'svg-caution-16px' %}</span>
+            {% endif %}
+            {{ section.settings.dry_mounted_title }} – Free
+          </h4>
+          <p>{{ section.settings.dry_mounted_content }}</p>
+        </div>
+
+        <span class="pdp__finish-addon-action is-active" data-finish-dry-mounted-trigger></span>
+      </div>
+    {% endif %}
+    {% if section.settings.enable_addon %}
+      {% assign _addon_product = all_products[section.settings.finish_addon_product] %}
+      <div class="pdp__finish-addon"
+        data-finish-addon-product
+        data-product-title="{{ _addon_product.title }}"
+        data-variant-id="{{ _addon_product.selected_or_first_available_variant.id }}"
+        data-price="{{ _addon_product.selected_or_first_available_variant.price }}"
+      >
+        <input type="hidden" id="customFinishAddon" name="properties[_custom_finish_addon]" data-custom-finish-addon data-property>
+        <input type="hidden" id="customFinishAddonId" name="properties[_custom_finish_addon_id]" data-custom-finish-addon-id data-property>
+
+        {% if _addon_product.metafields.supplier.code != blank %}
+          <input type="hidden" id="supplierCode" name="properties[_supplier_code]" value="{{ _addon_product.metafields.supplier.code }}" data-property>
+        {% endif %}
+        {% if _addon_product.metafields.supplier.location != blank %}
+          <input type="hidden" id="supplierLocation" name="properties[_supplier_location]" value="{{ _addon_product.metafields.supplier.location }}" data-property>
+        {% endif %}
+        {% if _addon_product.metafields.supplier.name != blank %}
+          <input type="hidden" id="supplierName" name="properties[_supplier_name]" value="{{ _addon_product.metafields.supplier.name }}" data-property>
+        {% endif %}
+
+        {% for tag in _addon_product.tags %}
+          {% if tag contains 'drop-shipping--' %}
+            {% assign dropship = tag | split: '--' | last %}
+            <input type="hidden" id="dropship" name="properties[_dropship]" value="{{ dropship }}" data-property>
+          {% endif %}
+        {% endfor %}
+
+        <div class="pdp__finish-addon-content">
+          <h4>Add {{ _addon_product.title }} – {{ _addon_product.price | money_with_currency }}</h4>
+          <p>{{ _addon_product.description | strip_html }}</p>
+        </div>
+
+        <span class="pdp__finish-addon-action" data-finish-addon-trigger></span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- HC - Collapsable finish - 27 Nov '19 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.querySelector('.pdp__finish-headline');
+    const container = document.querySelector('.pdp__finish');
+    const openClass = "hc-open";
+
+    trigger.addEventListener('click', function() {
+      container.classList.toggle(openClass);
+    })
+  });
+</script>
+<script>
+$("body").on("click" , ".thick-thin-frame", function(){
+  $('.thick-thin-frame').removeClass('ONCE_SELECT');
+  $(this).addClass('ONCE_SELECT');
+ var type_f = $(this).attr("frame-type");
+  setTimeout(function(){ 
+  $(".pdp__finish-panel.color_panel").removeClass("is-active");
+ $(".type_panel").removeClass("is-active");
+    $(".cst_filter .pdp__finish-wrapper").each(function(){
+    var type_n = $(this).attr("frame-type");
+      if(type_f == type_n){
+        $(this).show();
+      }else{
+        $(this).hide();
+      }
+    });
+    
+    
+   setTimeout(function(){
+  $(".color_panel").addClass("is-active");
+     }, 500);
+    }, 500);
+});
+ $("body").on("click" , ".type_panel .pdp__close ", function(){
+   $(".pdp__finish-panel.color_panel").removeClass("is-active");
+ });
+</script>
+<!-- HC - End - 27 Nov '19 -->
+
+<!-- Hc - Style only this section - 29 Nov '19 -->
+<style>
+  /** HC - Finishing collapsable - 27 Nov '19 **/
+  h3.pdp__finish-headline {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+  .pdp__finish .grid {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.pdp__finish.hc-open .grid {
+    max-height: 1000px;
+}
+
+.pdp__finish.hc-open span.icon.icon-arrow-down-16 {
+    transform: rotateX(180deg);
+}
+</style>
+<!-- HC - End - 29 Nov '19 -->
+
+{% schema %}
+  {
+    "name":"Custom Finish Collection",
+    "settings":[
+      {
+        "type":"text",
+        "id":"section_title",
+        "label":"Section Title",
+        "default":"Add a finish"
+      },
+      {
+        "type":"collection",
+        "id":"collection",
+        "label":"Custom Finish Collection"
+      },
+      {
+        "type":"header",
+        "content":"Dry Mounted"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_dry_mounted",
+        "label":"Enable Dry Mounted",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"dry_mounted_title",
+        "label":"Dry Mounted Title",
+        "default":"Dry Mounted Backing"
+      },
+      {
+        "type":"textarea",
+        "id":"dry_mounted_content",
+        "label":"Dry Mounted Content",
+        "default":"This prevents any stretching and wrinkling."
+      },
+      {
+        "type":"header",
+        "content":"Finish Addon"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_addon",
+        "label":"Enable Finish Addon",
+        "default":true
+      },
+      {
+        "type":"product",
+        "id":"finish_addon_product",
+        "label":"Finish Addon Product"
+      }
+    ]
+  }
+{% endschema %}

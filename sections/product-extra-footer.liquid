@@ -1,0 +1,50 @@
+  </div>
+  </div>
+</div>
+
+{% include 'schema' with 'product' %}
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var cartButtonUpdate = function(variant, selector){
+      if(variant ==  null){
+          if(!$('[data-add-to-cart]').disabled){
+            $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').removeClass('unavailable');
+          }
+          $('[data-add-to-cart-text]').text(' – Unavailable');
+        }else{
+          if(variant.available == false){
+            $('[data-add-to-cart]').prop('disabled', true).addClass('disabled').addClass('unavailable');
+            $('[data-add-to-cart-text]').text(' – Sold Out');
+          }else{
+            $('[data-add-to-cart]').prop('disabled', false).removeClass('disabled').removeClass('unavailable');
+            $('[data-add-to-cart-text]').text(' – Add to Cart');
+          }
+
+          const price = $(selector.variantIdField).find('option[value="'+$(selector.variantIdField).val()+'"]').attr('data-variant-price');
+          $('[data-add-to-cart-price]').text(price);
+          $('[data-product-price]').text(price);
+        }
+    }
+
+    var selectCallback = function(variant, selector) {
+      {% if size_option != blank and color_option != blank %}
+        if($('[data-option-trigger].selected').length > 0){
+          cartButtonUpdate(variant, selector);
+        }
+      {% else %}
+        cartButtonUpdate(variant, selector);
+      {% endif %}
+    };
+	
+    new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: false
+    });
+
+    {% if size_option == blank and color_option == blank and product.variants.size > 1 %}
+      $('.selector-wrapper').addClass('is-visible');
+    {% endif %}
+  });
+</script>

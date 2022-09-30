@@ -1,0 +1,136 @@
+{% if settings.ss_enable %}
+  <form action="/collections/shop" method="get" class="search-bar text-center" role="search">
+    <input type="search"
+          name="q"
+          id="searchField"
+          value="{{ search.terms | escape }}"
+          placeholder="Search" data-search>
+    <span class="close_sign" data-promo-bar-close="">X</span>
+  	<span class="placeholder" >{{ "press enter to view all results" }}</span>
+    <label for="searchField"><span class="search-bar__marker" style="position: absolute;left: 40px;top: 22px;"></span></label> 
+    <span class="search__icon" style="position: absolute;">{% include 'svg-search-icon' %}</span>
+  </form>
+{% else %}
+  <form action="/collections/search-results" method="get" class="search-bar text-center" role="search">
+    <input type="hidden"
+          name="type"
+          value="product">
+
+    <input type="search"
+          name="q"
+          id="searchField"
+          value="{{ search.terms | escape }}"
+          placeholder="Search" data-search>
+    <span class="close_sign" data-promo-bar-close="">X</span>
+  	<span class="placeholder" >{{ "press enter to view all results" }}</span>
+    <label for="searchField"><span class="search-bar__marker" style="position: absolute;left: 40px;top: 22px;"></span></label> 
+    <span class="search__icon" style="position: absolute;">{% include 'svg-search-icon' %}</span>
+  </form>
+{% endif %}
+
+<style>
+  .close_sign {
+     display: none;
+  }
+  @media screen and (min-width: 1024px) {
+   
+  .close_sign {
+      display: none !important;
+  }
+  }
+   @media screen and (min-width: 320px) and (max-width: 767px){
+ .pdp__images
+     {
+       padding: 40px 40px 64px;
+     }
+  }
+  .sticky{
+    position: fixed;
+  }
+  .placeholder
+  {
+    display: none;
+  }
+/*   .site-header__search {
+    display: none;
+} */
+   
+</style>
+<script type="text/javascript">
+  $("#searchField").keyup(function() {
+    
+    if($(this).val().length > 0)
+    {
+       $(".placeholder").show();
+        $(".close_sign").show();
+    }
+    else
+    {
+       $(".placeholder").hide();
+        $(".close_sign").hide();
+    }
+  
+});
+</script>
+<script>
+
+  $(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+   
+    if (scroll  ==  0)
+    {
+$(".site-header").removeClass("sticky");
+    }
+    else
+    {
+$(".site-header").addClass("sticky");
+    }
+
+    
+    if (scroll  >=  20) {
+
+      if($("#searchField").val().length == 0)
+      {
+        $(".site-header__search").hide();
+      }
+    }
+}); 
+  
+  $( ".search__icon_desk" ).click(function() {
+
+    if ($('.site-header__search').is(':visible')) {
+      $(".site-header__search").hide();
+    } else {
+     $(".site-header__search").show();
+    }
+});
+ 
+   $( ".search__icon_mob" ).click(function() {
+
+    if ($('.site-header__search').is(':visible')) {
+      $(".site-header__search").hide();
+    } else {
+     $(".site-header__search").show();
+    }
+});
+  
+  
+    $( ".close_sign" ).click(function() {
+
+    if ($('.site-header__search').is(':visible')) {
+      $(".site-header__search").hide();
+      $(".nxt-ac-main").hide();
+      
+    } 
+});
+  
+  /* js for filter close for collection page */
+  $( document ).ready(function() {
+    $( ".close_x" ).click(function() {
+      $(".hover-overlay").click(); 
+    }); 
+  });
+ /* end js */ 
+
+  
+</script>

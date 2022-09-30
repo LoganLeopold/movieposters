@@ -1,0 +1,67 @@
+<div class="framing__content framing__content--framing-finishes">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+        <div class="framing__content-blocks">
+          {% for block in section.blocks %}
+            {%- capture picture_sources %}
+              {% include 'component-source',
+                source_image_1x: block.settings.image,
+                source_size_1x: '336x336',
+                source_image_2x: block.settings.image,
+                source_size_2x: '672x672',
+                source_crop: 'center'
+              %}
+            {% endcapture %}
+
+            <a href="{{ block.settings.link }}" class="framing__content-block">
+              {% include 'component-picture',
+                sources: picture_sources,
+                resource: block.settings.image,
+                default_size: '336x336',
+                alt: block.settings.headline,
+                picture_crop: 'center'
+              %}
+              <h3>{{ block.settings.headline }}</h3>
+              <p>{{ block.settings.content }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name":"Page Content",
+    "blocks":[
+      {
+        "type":"content-block",
+        "name":"Content Block",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"url",
+            "id":"link",
+            "label":"Link"
+          },
+          {
+            "type":"text",
+            "id":"headline",
+            "label":"Headline"
+          },
+          {
+            "type":"textarea",
+            "id":"content",
+            "label":"Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

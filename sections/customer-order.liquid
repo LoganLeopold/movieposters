@@ -1,0 +1,54 @@
+<div class="account account--order">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+        <div class="account__header">
+          <h1>{{ 'customer.order.title' | t: name: order.name }}</h1>
+          {% if order.cancelled %}
+            {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
+            <p>{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>
+            <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
+          {% endif %}
+          {% include 'component-link',
+            link_url: '/account',
+            link_text: 'Return to account details',
+            has_reverse_icon: true
+          %}
+        </div>
+      </div>
+
+      <div class="grid__item all--12 medium-up--8 xlarge-up--7 push--xlarge-up--1">
+        <div class="account__order">
+          <h3>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</h3>
+          {% for line_item in order.line_items %}
+            {% unless line_item.properties["_custom_finish_frame"] != blank or line_item.properties["_custom_finish_addon_product"] != blank %}
+              {% include 'line-item',
+                is_order: true
+              %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="grid__item all--12 medium-up--4 xlarge-up--3 push--xlarge-up--1">
+        {% include 'account-order-summary' %}
+
+        <div class="account__address-container">
+          <div class="account__addresses">
+            <h3>{{ 'customer.order.billing_address' | t }}</h3>
+            {% include 'account-address',
+              address: order.billing_address,
+              hide_actions: true
+            %}
+
+            <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+            {% include 'account-address',
+              address: order.shipping_address,
+              hide_actions: true
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="pdp__finish readymade__finish">
+  <h3 class="pdp__finish-headline">Pick a Style</h3>
+  <div class="grid">
+
+    {% if product.metafields.product.parent_variant != blank %}
+      {% assign parent_variants = product.metafields.product.parent_variant | split: '|' %}
+      {% for parent in parent_variants %}
+        {% assign parent_title = parent | split: ':' | first %}
+        {% assign parent_title_handle = parent_title | handleize %}
+        {% for image in product.images %}
+          {% assign alt_handle = image.alt | handleize %}
+          {% if alt_handle == parent_title_handle %}
+            {% assign parent_image = image %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% include 'readymade-finish-block',
+          classes: 'js-finish-panel-trigger',
+          finish_handle: product.handle,
+          finish_image: parent_image,
+          finish_title: parent_title,
+          finish_product: product
+        %}
+
+        {% assign variant_children = parent | split: ':' | last %}
+        {% include 'readymade-finish-panel',
+          title: parent_title,
+          variant_children: variant_children
+        %}
+      {% endfor %}
+    {% endif %}
+
+    {% for variant in product.variants %}
+      {% unless color_values contains variant[color_option] or variant_children contains variant[color_option] %}
+        {% assign variant_handle = variant[color_option] | handleize %}
+        {% for image in product.images %}
+          {% assign alt_handle = image.alt | handleize %}
+          {% if alt_handle contains variant_handle %}
+            {% assign feature_image = image %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% include 'readymade-finish-block',
+          attrs: 'data-frame-finish-select',
+          classes: 'js-frame-finish-select',
+          finish_handle: product.handle,
+          variant_id: variant.id,
+          finish_image: variant.featured_image,
+          finish_title: variant[color_option],
+          finish_product: product,
+          finish_feature_image: feature_image,
+          finish_variant: variant
+        %}
+        {% assign color_values = variant[color_option] | append: ',' | append: color_values %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+</div>

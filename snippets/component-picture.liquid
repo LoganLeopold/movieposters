@@ -1,0 +1,7 @@
+<picture class="picture {{ picture_classes }}" {{ picture_attr }}>
+  {{ sources }}
+  <img id="custom-img" class="lazyload custom-img" alt="{{ alt }}" {% if set_width %}width="{{ set_width }}px"{% endif %} data-src="{{ resource | img_url: default_size, crop: picture_crop, format: 'pjpg' }}">
+</picture>
+
+{% assign set_width = nil %}
+{% assign picture_crop = nil %}

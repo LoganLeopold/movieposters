@@ -1,0 +1,60 @@
+{% assign bg_color = section.settings.bg_color %}
+{% assign text_color = section.settings.text_color %}
+{% if section.settings.copy != blank %}
+<div class="promo-bar" data-promo-bar>
+  <div class="promo-bar__text">
+    {%if section.settings.link_url != blank %}<a href="{{ section.settings.link_url }}">{% endif %}
+      <span class="promo-bar__copy promo-bar__copy--desktop medium-down--hide medium-up--show">{{ section.settings.copy }}</span>
+      <span class="promo-bar__copy promo-bar__copy--mobile medium-up--hide">{{ section.settings.copy_mobile | default: section.settings.copy }}</span>
+    {% if section.settings.link_url != blank %}</a>{% endif %}
+  </div>
+  <span class="icon icon-close-48" data-promo-bar-close></span>
+</div>
+
+<style>
+  {% if bg_color != blank %}
+    .promo-bar {
+      background-color: {{ bg_color }};
+    }
+  {% endif %}
+  {% if text_color != blank %}
+    .promo-bar__text {
+      color: {{ text_color }};
+    }
+  {% endif %}
+</style>
+{% endif %}
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "type": "text",
+        "id": "copy",
+        "label": "Copy",
+        "info": "Limit to 80 characters"
+      },
+      {
+        "type": "text",
+        "id": "copy_mobile",
+        "label": "Mobile Copy",
+        "info": "Limit to about 40 characters"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Promo Link"
+      }
+    ]
+  }
+{% endschema %}

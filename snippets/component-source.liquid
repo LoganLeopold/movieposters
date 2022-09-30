@@ -1,0 +1,5 @@
+<source
+  {% if source_media != blank %}media="{{ source_media }}"{% endif %}
+  data-srcset="{{ source_image_1x | img_url: source_size_1x, crop: source_crop, format: 'pjpg' }} 1x, {{ source_image_2x | img_url: source_size_2x, crop: source_crop, format: 'pjpg' }} 2x">
+
+{% assign source_media = nil %}

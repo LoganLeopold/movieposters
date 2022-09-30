@@ -1,0 +1,12 @@
+<span class="custom_remove custom_{{ line_item.variant.id }}_{{ line_item.properties['_custom_finish_poster_id'] }}" data-line-item-custom-finish-product data-chk
+  data-variant-id="{{ line_item.variant.id }}"
+  data-line="{{  forloop.index  }}"
+  data-key="{{ line_item.key }}"
+  data-inventory-count="{% if line_item.variant.inventory_management == 'shopify' %}{{ line_item.variant.inventory_quantity }}{% else %}9999{% endif %}",
+  data-poster-product-handle="{{ line_item.properties['_custom_finish_poster_handle'] }}"
+  data-poster-variant-id="{{ line_item.properties['_custom_finish_poster_id'] }}"
+  data-poster-product-title="{{ line_item.properties['custom_finish_poster_title'] }}"
+  data-frame-id="{{ line_item.properties['_custom_finish_frame_id'] }}"
+>
+
+</span>

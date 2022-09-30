@@ -1,0 +1,102 @@
+$(document).ready(function () {
+    $(document).on("focus, change, keyup", "[data-custom-frame-input]", function (e) {
+        if ($(".readymade__custom-size-error").html() == "Frame is not available in this customization") {
+            $("[data-add-to-cart]").attr("disabled", true);
+        } else {
+            $("[data-add-to-cart]").removeAttr("disabled");
+        }
+    });
+
+    //   $("[data-frame-size-trigger]").on('click', function(e){
+
+    //     let options = $("[data-product-selected-variant] option");
+    //     debugger;
+    //     Array.from(options).forEach(
+    //       (option, index)=>{
+    //       	let optionDimension = option[0].text.split("/")[1].split("-");
+
+    //       }
+    //     );
+    //   });
+
+    setTimeout(function () {
+        let customImage = $(".custom-img");
+        Array.from(customImage).forEach(function (element, index) {
+            if (index > 20) {
+                let imgSrc = $(element).attr("data-src");
+                $(element).attr("src", imgSrc);
+            }
+        });
+    }, 1000);
+    setTimeout(function () {
+        let customImage = $(".custom-img");
+        Array.from(customImage).forEach(function (element, index) {
+            let imgSrc = $(element).attr("data-src");
+            $(element).attr("src", imgSrc);
+        });
+    }, 3000);
+    let isOpen = false;
+    $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        if (scroll > 20 && !isOpen) {
+            if (location.pathname == "/") {
+                yett.unblock();
+            }
+            isOpen = true;
+            var sectionImage = $(".custom-img");
+            Array.from(sectionImage).forEach(function (element) {
+                let elementSrc = element.dataset.src;
+                $(element).attr("src", elementSrc);
+            });
+        }
+    });
+    $(document).on("click", ".readymade__size", function (e) {
+        setTimeout(function () {
+            if ($(".readymade__custom-size-error").html() == "Frame is not available in this customization") {
+                $("[data-add-to-cart]").attr("disabled", true);
+            } else {
+                $("[data-add-to-cart]").removeAttr("disabled");
+            }
+        }, 200);
+    });
+//     $(document).on("click", ".remove-item", function (e) {
+//         debugger;
+//     });
+});
+var script_loaded = false;
+function loadJSscripts() {
+    if (script_loaded) return;
+    else {
+        script_loaded = true;
+        var static_script = document.getElementsByTagName("script");
+        for (i = 0; i < static_script.length; i++) {
+            if (static_script[i].getAttribute("data-src") !== null) {
+                var element = document.createElement("script");
+                element.src = static_script[i].getAttribute("data-src");
+                document.body.appendChild(element);
+            }
+        }
+        document.dispatchEvent(new CustomEvent("StartKernelLoading"));
+        document.dispatchEvent(new CustomEvent("StartAsyncLoading"));
+        if (typeof load_hotjar !== "undefined") load_hotjar();
+    }
+}
+window.addEventListener("mousemove", function () {
+    loadJSscripts();
+});
+window.addEventListener("touchstart", function () {
+    loadJSscripts();
+});
+if (window.addEventListener)
+    window.addEventListener(
+        "load",
+        function () {
+            setTimeout(loadJSscripts, 4e3);
+        },
+        false
+    );
+else if (window.attachEvent)
+    window.attachEvent("onload", function () {
+        setTimeout(loadJSscripts, 4e3);
+    });
+else window.onload = loadJSscripts;

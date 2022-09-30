@@ -1,0 +1,26 @@
+<table class="responsive-table">
+<thead>
+<tr>
+<th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+<th scope="col">{{ 'customer.orders.date' | t }}</th>
+<th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+<th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+<th scope="col">{{ 'customer.orders.total' | t }}</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+{% for order in customer.orders %}
+<tr>
+<th data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+<a href="{{ order.customer_url }}" class="btn btn--secondary btn--small" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+</th>
+<td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</td>
+<td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+<td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+<td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+<td> <a href="/a/return?orderId={{ order.name | url_encode}}&email={{ order.email |url_encode}}">Return</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>

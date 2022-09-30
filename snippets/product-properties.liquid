@@ -1,0 +1,103 @@
+
+
+<input type="hidden" 
+        id="productName" 
+        name="properties[_product_name]" 
+        value="{{ product.title }}" 
+        data-property>
+
+<input type="hidden" 
+        id="productType" 
+        name="properties[_product_type]" 
+        value="{{ product.type }}" 
+        data-property>
+
+<input type="hidden" 
+        id="productVendor" 
+        name="properties[_product_vendor]"
+        value="{{ product.vendor }}" 
+        data-property>
+
+<input type="hidden" 
+        id="productInventory"
+        name="properties[_product_inventory]" 
+        value="{{ current_variant.inventory_quantity }}" 
+        data-property>
+
+<input type="hidden" 
+        id="customFinishId" 
+        name="properties[_custom_finish_id]" 
+        data-custom-finish-id 
+        data-property>
+
+<input type="hidden" 
+        id="customFinish" 
+        name="properties[_custom_finish]" 
+        data-custom-finish 
+        data-property>
+
+<input type="hidden" 
+        id="customFinishPrice" 
+        name="properties[_custom_finish_price]" 
+        data-custom-finish-price 
+        data-property>
+                
+<input type="hidden" 
+        id="productOriginalOrReprint" 
+        name="properties[_original_or_reprint]" 
+        value="{%- if original_or_reprint != blank -%}{{ original_or_reprint }}{%- else -%}false{%- endif -%}" 
+        data-property>
+
+<input type="hidden" 
+        id="sided" 
+        name="properties[_single_or_double_sided]" 
+        value="{%- if sided != blank -%}{{ sided }}{%- else -%}false{%- endif -%}"
+        data-property>
+
+<input type="hidden" 
+        id="dimensions" 
+        name="properties[_dimensions]" 
+        value="{%- if width != blank and height != blank -%}{{ width }} x {{ height }}{%- else -%}false{%- endif -%}" 
+        data-property>
+
+<input type="hidden" 
+        id="posterType" 
+        name="properties[_poster_type]" 
+        value="{%- if sided != blank -%}{{ sided }}{%- else -%}false{%- endif -%}"  
+        data-property>               
+
+<input type="hidden" 
+        id="posterPrintType" 
+        name="properties[_poster_print_type]" 
+        value=" {%- if print_type != blank -%}{{ print_type }}{%- else -%}false{%- endif -%}"  
+        data-property>
+
+<input type="hidden" 
+        id="packingType" 
+        name="properties[_rolled_or_folded]" 
+        value="{%- if packing_type != blank -%}{{ packing_type }}{%- else -%}false{%- endif -%}" 
+        data-property>
+
+<input type="hidden" 
+        id="dropship" 
+        name="properties[_dropship]" 
+        value="{%- if dropship != blank -%}{{ dropship }}{%- else -%}false{%- endif -%}" 
+        data-property>
+
+<input type="hidden"
+        id="supplierCode"
+        name="properties[_supplier_code]"
+        value="{%- if product.metafields.supplier.code != blank -%}{{ product.metafields.supplier.code }}{%- else -%}false{%- endif -%}"
+        data-property>
+
+<input type="hidden"
+        id="supplierLocation"
+        name="properties[_supplier_location]"
+        value="{%- if product.metafields.supplier.location != blank -%}{{ product.metafields.supplier.location }}{%- else -%}false{%- endif -%}"
+        data-property>
+
+<input type="hidden"
+        id="supplierLocation"
+        name="properties[_supplier_name]"
+        value="{%- if product.metafields.supplier.name != blank -%}{{ product.metafields.supplier.name }}{%- else -%}false{%- endif -%}"
+        data-property>

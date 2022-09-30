@@ -1,0 +1,42 @@
+{% assign framing_template = template.suffix %}
+
+{% capture framing_content %}
+  {% case framing_template %}
+    {% when 'framing' %}
+      {% section 'framing-finishes-content' %}
+      {% section 'framing-finishes-feature-collection' %}
+
+    {% when 'custom' %}
+      {% section 'custom-frames-content' %}
+      {% section 'custom-frames-feature-collection' %}
+
+    {% when 'plak' %}
+      {% section 'plak-mounting-content' %}
+      {% section 'plak-mounting-feature-collection' %}
+
+    {% when 'canvas' %}
+      {% section 'canvas-mounting-content' %}
+      {% section 'canvas-mounting-feature-collection' %}
+
+    {% when 'backlit' %}
+      {% section 'backlit-frames-content' %}
+      {% section 'backlit-frames-feature-collection' %}
+
+    {% else %}
+  {% endcase %}
+{% endcapture %}
+
+<div class="page--framing">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1 text-center">
+        <div class="framing__header">
+          <h1>{{ page.title }}</h1>
+          <p>{{ page.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ framing_content }}
+</div>

@@ -1,0 +1,32 @@
+<div class="account__address">
+  <p class="account__address-name">
+    {{ address.name }}
+    {% if address == customer.default_address %}
+      <span class="account__address-default">Default Address</span>
+    {% endif %}
+  </p>
+
+  <p class="account__address-formatted">
+    {{ address.address1 }}
+    {% if address.address2 != blank %}
+    , {{ address.address2 }}
+    {% endif %}
+    <br>
+    {{ address.city}}, {{ address.province }} {{ address.zip }}
+    <br>
+    {{ address.country }}
+  </p>
+
+  {% unless hide_actions %}
+    <div class="account__address-actions">
+      <span class="account__address-action" data-address-trigger data-address="address-edit-{{ forloop.index }}">{{ 'customer.addresses.edit' | t }}</span>
+
+      <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+        <input type="hidden" name="_method" value="delete"/>
+        <button class="account__address-action" type="submit">{{ 'customer.addresses.delete' | t }}</button>
+      </form>
+    </div>
+
+    {% include 'account-form-address-edit' %}
+  {% endunless %}
+</div>

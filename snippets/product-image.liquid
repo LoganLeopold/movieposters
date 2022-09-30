@@ -1,0 +1,175 @@
+<style>
+  img.frame {
+  border-color: #ffffff;
+  border-style: inset;
+  border-width: 30px;
+  display: block;
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  margin: 20px 20px;
+        box-shadow: none !IMPORTANT;
+}
+  .main-carousel img#custom-img {
+    box-shadow: none !important;
+}
+@media all and (max-width: 500px) {
+  img.frame { 
+    width: 80%;
+  	border-width: 18px;
+  }
+}
+</style>
+
+
+<div class="pdp__images--inner {% if _print_type == print_type %}active{% endif %} {{ classes }} {% if _product.images.size > 1 %} main-carousel {% endif %}
+            "
+  {% if _print_type != blank %}data-print-type="{{ _print_type | handleize }}"{% endif %}
+>
+  {% for image in _product.images %}
+
+    {%- capture picture_sources %}
+      {% include 'component-source',
+        source_image_1x: image,
+        source_size_1x: '480x',
+        source_image_2x: image,
+        source_size_2x: '960x',
+      %}
+    {% endcapture %}
+
+    {% capture product_image_state %}
+      {% unless _image == image %}
+        
+      {% endunless %}
+    {% endcapture %}
+
+    {% if _max_width != blank %}
+      {% assign max_width = _max_width %}
+    {% else %}
+      {% assign max_width = 800 %}
+    {% endif %}
+
+    {% if _max_height != blank %}
+      {% assign max_height = _max_height %}
+    {% else %}
+      {% assign max_height = 800 %}
+    {% endif %}
+
+    <div data-product-image {% if _image == image %}class="active"{% endif %}>
+      <div id="ImageWrapper-{{ image.id }}" data-image-id="{{ image.id }}" class="pdp__image {{ product_image_state }}" data-product-image-wrapper>
+       
+
+        {% include 'component-picture',
+          sources: picture_sources,
+        resource: image,
+        default_size: '480x',
+        set_width: '480',
+        alt: image.alt,
+        %}
+        
+        
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% assign classes = nil %}
+
+<!-- {% comment%} @BZDM - LP: Added add frame function
+<button class="btn" onclick="addFrame("")"> Add/Remove Frame</button>
+{% endcomment %} -->
+
+<style>
+button.buttons_show {
+    opacity: 1;
+    visibility: visible;
+       height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    top: 50%;
+}
+  button.buttons_show.flickity-button.previous {
+    left: -40px;
+}
+  button.buttons_show.flickity-button.next {
+    right: -40px;
+}
+.flickity-button:before{
+      font-size: 15px;
+  }
+
+
+  button.buttons_show:focus {
+    box-shadow: none;
+}
+  .pdp__image-controls {
+    display: none;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+      $('.main-carousel').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+   adaptiveHeight: false,
+          infinite: true,
+        prevArrow:'<button class="buttons_show flickity-button flickity-prev-next-button previous" type="button" aria-label="Previous"><svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path></svg></button>',
+        nextArrow:'<button class="buttons_show flickity-button flickity-prev-next-button next" type="button" aria-label="Next"><svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg></button>'
+
+});
+  
+  $(document).ready(function(){
+//   $('.').flickity({
+//   // options
+//     groupCells: 1,
+//   cellAlign: 'left',
+//   contain: true
+// });
+    
+
+  });
+
+  $(document).on('click', '.imgchange', function(){
+ console.log('hi');
+    $('.selected~.pdp__finish-remove').trigger('click');
+      $('.custom-img').removeAttr('style');
+     $('.custom-img').removeClass('frame');
+    var src = $(this).attr('data-src');
+    if(src.indexOf(' ') < 0){
+     
+      media = $('#custom-img');
+  
+      var chekfram = $(this).attr('frame-type');
+      
+    
+      console.log(chekfram);
+      
+      if(chekfram == 'thick-frame'){
+           if(media){
+        media.addClass("frame");
+        media.css("border-image", "url("+src+") 80 80 80 80 / 1 / 0 stretch");                   
+    }
+      }
+      else{
+               if(media){
+        media.addClass("frame");
+        media.css("border-image", "url("+src+") 82 / 2 / 0 stretch");                   
+    }
+      }
+ 
+                                
+    } 
+    $('.thick-thin-frame').removeClass('selected');
+    $('.ONCE_SELECT').addClass('selected');
+  });
+  
+  
+  $(document).on('click','.pdp__finish-remove', function(){
+  $('.custom-img').removeAttr('style');
+     $('.custom-img').removeClass('frame');
+  });
+  
+</script>

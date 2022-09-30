@@ -1,0 +1,205 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% for option in product.options_with_values %}
+{% assign option_handle = option.name | handleize %}
+{% if option_handle contains 'color' or option_handle contains 'colour' %}
+{% capture color_option %}option{{ forloop.index }}{% endcapture %}
+{% elsif option_handle contains 'size' %}
+{% capture size_option %}option{{ forloop.index }}{% endcapture %}
+{% endif %}
+{% endfor %}
+
+{%- capture picture_sources %}
+{% include 'component-source',
+    source_image_1x: product.featured_image,
+source_size_1x: '768x944',
+source_image_2x: product.featured_image,
+source_size_2x: '1536x1888',
+%}
+{% endcapture %}
+
+<div class="pdp">
+  <div class="wrapper">
+
+    <div class="grid" data-product>
+      <div class="grid__item medium-up--12 pdp__content">
+        <div class="grid pdp__grid-wrapper">
+          <div class="grid__item medium-up--7"> 
+            <div class="pdp__images full-width" style="background-color: {{ settings.pdp_background }};" data-frame-image>
+              <div class="pdp__images--inner {% if _print_type == print_type %}active{% endif %} full-width"
+                   {% if _print_type != blank %}data-print-type="{{ _print_type | handleize }}"{% endif %}
+                   >
+                <div data-product-image class="active">
+                  <div id="ImageWrapper-{{ product.featured_image.id }}" data-image-id="{{ product.featured_image.id }}" class="pdp__image" data-product-image-wrapper>
+                    {% include 'component-picture',
+                      sources: picture_sources,
+                    resource: product.featured_image,
+                    default_size: '768x944',
+                    alt: product.featured_image.alt,
+                    %}
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+
+          <div class="grid__item medium-up--5 pdp__info-wrapper">
+            <div class="pdp__info"
+                 data-readymade
+                 data-variant-id="{{ current_variant.id }}"
+                 data-price="{{ current_variant.price }}"
+                 data-compare-price="{{ current_variant.compare_at_price }}"
+                 >
+
+              <span class="pdp__sku">{{ current_variant.sku }}</span>
+              <h1>Build your own {{ product.title }}</h1>
+
+              <form class="form-vertical"
+                    action="/cart/add" method="post"
+                    enctype="multipart/form-data"
+                    data-product-form>
+
+                <div class="pdp__meta">
+                  <div class="pdp__meta-details">
+                    {{ product.description }}
+                    <span class="pdp__meta-tags hide" data-product-meta>
+                      {{ current_variant[color_option] }}
+                    </span>
+                  </div>
+
+                  <span class="pdp__price" data-product-price>
+                    {{ current_variant.price | money_with_currency }}
+                  </span>
+
+                  {% if current_variant.compare_at_price > product.price %}
+                  <span class="pdp__price pdp__price--compare" data-product-compare-price>
+                    {{ current_variant.compare_at_price_max | money_with_currency }}
+                  </span>
+                  {% endif %}
+                </div>
+
+                <select name="id" id="productSelect" data-product-selected-variant>
+                  {% for variant in product.variants %}
+                  <option
+                          {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}
+                          data-sku="{{ variant.sku }}"
+                          value="{{ variant.id }}"
+                          data-variant-price="{{ variant.price | money_with_currency }}">
+                    {{ variant.title }}
+                  </option>
+                  {% endfor %}
+                </select>
+                
+                <div class="readymade__sizes">
+  <div class="readymade__ranges">
+    {% for variant in product.variants %}
+    {% unless range contains variant[size_option] %}
+    {% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+    {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+    <span data-frame-range="{{ variant[size_option] }}" data-frame-range-width="{{ range_min }}" data-frame-range-height="{{ range_max }}"></span>
+    {% assign range = range | append: ',' | append: variant[size_option] %}
+    {% endunless %}
+    {% endfor %}
+  </div>
+
+
+  <div class="readymade__dropdown-trigger" data-frame-trigger>
+    <span data-frame-trigger-text>Select Size (Inches)</span>
+    {% include 'component-icon',
+      icon_name: 'icon-arrow-down-16',
+    %}
+  </div>
+                
+                
+<div class="readymade__size-dropdown" data-frame-dropdown>
+  {% for block in section.blocks %}
+    <span class="readymade__size"
+      data-frame-width="{{ block.settings.frame_width }}"
+      data-frame-height="{{ block.settings.frame_height }}"
+      data-frame-square-inch="{{ block.settings.frame_width | times: block.settings.frame_height }}"
+      data-frame-size-trigger>
+      {{ block.settings.frame_width }}&quot; &times; {{ block.settings.frame_height }}&quot;
+    </span>
+  {% endfor %}
+
+  {% if section.settings.custom_size_enable %}
+    <span class="readymade__size readymade__size--custom" data-custom-frame-size-trigger>Custom Size</span>
+  {% endif %}
+</div>
+               
+<div class="readymade__custom-size" data-custom-frame data-custom-frame-min="{{ settings.frame_size_min }}" data-custom-frame-max="{{ settings.frame_size_max }}">
+    <span class="readymade__custom-size-label">Custom</span>
+    <span class="readymade__custom-size-input">
+      <input type="number" id="frame-a" min="1" max="45" value="11" step="any" name="properties[Frame width]" data-custom-frame-width data-custom-frame-input data-property> IN
+    </span> 
+    <span class="readymade__custom-size-input">
+      <input type="number" id="frame-b" min="1" max="45" value="17" step="any" name="properties[Frame height]" data-custom-frame-height data-custom-frame-input data-property> IN
+    </span>
+    {% include 'component-icon',
+      icon_name: 'icon-close-16',
+    icon_attrs: 'data-custom-frame-close-trigger'
+    %}
+  </div>
+</div>
+                {% include 'readymade-finishes' %}
+
+                <span data-custom-frame-error class="readymade__custom-size-error"></span>
+
+                <input type="hidden" 
+                       id="supplierCode" 
+                       name="properties[_supplier_code]" 
+                       value="{%- if product.metafields.supplier.code != blank -%}{{ product.metafields.supplier.code }}{%- else -%}false{%- endif -%}" 
+                       data-property>
+
+                {% for tag in product.tags %}
+                {% if tag contains 'drop-shipping--' %}
+                {% assign dropship = tag | split: '--' | last %}
+                <input type="hidden" id="dropship" name="properties[_dropship]" value="{{ dropship }}" data-property>
+                {% endif %}
+                {% endfor %}
+
+                <button type="submit" name="add" class="pdp__submit btn btn--primary disabled" data-add-to-cart disabled>
+                  <span data-add-to-cart-price>{{ current_variant.price | money_with_currency }}</span>
+                  <span data-add-to-cart-text> &ndash; {{ 'products.product.add_to_cart' | t }}</span>
+                </button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+ {% schema %}
+  {
+    "name":"ReadyMade Frame Sizes",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"custom_size_enable",
+        "label":"Enable Custom Size",
+        "default": true
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Frame Size",
+        "type":"frame-size",
+        "settings":[
+          {
+            "type":"text",
+            "id":"frame_width",
+            "label":"Frame Width",
+            "info":"Only use numeric values"
+          },
+          {
+            "type":"text",
+            "id":"frame_height",
+            "label":"Frame Height",
+            "info":"Only use numeric values"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

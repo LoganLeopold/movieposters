@@ -1,0 +1,6 @@
+ 
+loadproducts(
+  {% paginate search.results by 50 %}
+  {{ search.results | json | default: "[]" }}
+  {% endpaginate %}
+)

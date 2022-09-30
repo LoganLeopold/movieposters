@@ -1,0 +1,14 @@
+<div class="pdp__finish-addon"
+  data-finish-addon-product
+  data-product-title="{{ _addon_product.title }}"
+  data-variant-id="{{ _addon_product.selected_or_first_available_variant.id }}"
+  data-price="{{ _addon_product.selected_or_first_available_variant.price }}"
+>
+  <div class="pdp__finish-addon-content">
+    <h4>Add {{ _addon_product.title }}</h4>
+    <p>{{ _addon_product.price | money_with_currency }}</p>
+    <p>{{ _addon_product.description | strip_html }}</p>
+  </div>
+
+  <span class="pdp__finish-addon-action" data-finish-addon-trigger></span>
+</div>

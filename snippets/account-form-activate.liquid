@@ -1,0 +1,40 @@
+{% assign button_class = 'btn--primary btn--full' %}
+{%- capture button -%}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    button_classes: button_class,
+    button_text: 'Activate'
+  -%}
+{%- endcapture -%}
+
+<div class="login__form is-active">
+  {% form 'activate_customer_password' %}
+    <div class="account__header">
+      <h1>{{ 'customer.activate_account.title' | t }}</h1>
+      <p>{{ 'customer.activate_account.subtext' | t }}</p>
+
+      {% if form.errors %}
+        <span class="input__message is-error">{{ form.errors | default_errors }}</span>
+      {% endif %}
+    </div>
+
+    <label for="CustomerPassword" class="label-hidden">{{ 'customer.activate_account.password' | t }}</label>
+    <input type="password"
+      name="customer[password]"
+      id="CustomerPassword"
+      placeholder="{{ 'customer.activate_account.password' | t }}">
+
+    <label for="CustomerPasswordConfirmation" class="label-hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
+    <input type="password"
+      name="customer[password_confirmation]"
+      id="CustomerPasswordConfirmation"
+      placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+
+    <div class="input__actions text-center">
+      {{ button }}
+
+      <p><button type="submit" name="decline">{{ 'customer.activate_account.cancel' | t }}</button></p>
+    </div>
+  {% endform %}
+</div>

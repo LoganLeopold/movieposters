@@ -1,0 +1,55 @@
+{% assign collection = collections[collection_handle] %}
+
+{% if collection_link_text != blank %}
+  {% assign collection_link_title = collection_link_text %}
+{% else %}
+  {% assign collection_link_title = collection.title | prepend: 'Shop ' %}
+{% endif %}
+
+{% if collection_link != blank %}
+  {% assign collection_link_url = collection_link %}
+{% else %}
+  {% assign collection_link_url = collection.url %}
+{% endif %}
+
+<div class="feature-collection">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12">
+        <div class="feature-collection__title">
+          <h2 class="text-light">
+            {% if collection_title != blank %}
+              {{ collection_title }}
+            {% else %}
+              {{ collection.title }}
+            {% endif %}
+          </h2>
+
+          <div class="feature-collection__link">
+            {% include 'component-link',
+              link_url: collection_link_url,
+              link_text: collection_link_title,
+              classes: 'text-light'
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-collection__slider" data-collection-slider>
+    {% for product in collection.products limit: 10 %}
+      {% include 'collection-item',
+        product: product,
+        is_slide: true,
+        attrs: 'data-collection-slide'
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+{% assign collection = nil %}
+{% assign collection_handle = nil %}
+{% assign collection_title = nil %}
+{% assign collection_link_text = nil %}
+{% assign collection_link = nil %}

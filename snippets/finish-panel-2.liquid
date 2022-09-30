@@ -1,0 +1,46 @@
+{% comment %}
+Added for additional panel for type selection 
+TOD0: Replcae the size with type option size
+{% endcomment %}
+<div class="pdp__finish-panel type_panel" data-frame-handle="{{ _product.handle }}" data-finish-panel>
+  <div class="pdp__close pdp__close--finish">
+    <span class="icon icon-close-48 small--hide"></span>
+    <span class="icon icon-close-24 medium-up--hide"></span>
+  </div>
+  <h3>{{ _product.title }}</h3>
+  <div class="pdp__finish-description">
+    {{ _product.description }}
+  </div>
+  <div class="pdp__finish-select-color">Select Type:</div>
+  <div class="grid">
+
+    {% assign size_type_option = 2 %}
+    {% for variant in _product.variants %}
+    	{% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+        {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+            {% if square_inch >= range_min and square_inch <= range_max and size_type_option > 0 %}
+              	{% assign price = variant.price %}
+				
+    			{% assign variant_title = variant.title | remove: variant[size_option] | remove: variant[color_option_idx] | remove: ' / ' %}
+
+    			{% include 'finish-block1',
+    			classes: 'js-finish-panel-trigger~',
+            	finish_handle: _product.handle,
+            	finish_image: _product.featured_image,
+            	finish_title: variant_title,
+            	finish_product: _product,
+            	print_type: print_type,
+            	is_dry_mounted: dry_mounted,
+            	enable_addon: has_addon
+          		%}
+   				    
+    			{% assign size_type_option = size_type_option | minus : 1 %}
+    
+    		{% endif %}
+    {% endfor %}
+           
+  </div>
+</div>
+
+{% assign addon_product = nil %}
+

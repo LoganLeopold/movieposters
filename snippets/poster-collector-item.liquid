@@ -1,0 +1,115 @@
+{% assign image_source_width = image_width | append: 'x' %}
+{% assign image_source_retina_width = image_width | times: 2 | append: 'x' %}
+
+{% assign mobile_image_source_width = mobile_image_width | append: 'x' %}
+{% assign mobile_image_source_retina_width = mobile_image_width | times: 2 | append: 'x' %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 1024px)',
+    source_image_1x: image,
+    source_size_1x: mobile_image_source_width,
+    source_image_2x: image,
+    source_size_2x: mobile_image_source_retina_width
+  %}
+  {% include 'component-source',
+    source_image_1x: image,
+    source_size_1x: image_source_width,
+    source_image_2x: image,
+    source_size_2x: image_source_retina_width
+  %}
+{% endcapture %}
+
+{% if product %}
+  {% assign image_element = 'a' %}
+{% else %}
+  {% assign image_element = 'div' %}
+{% endif %}
+
+{% if product %}
+  {% if product.available %}
+    {% assign button_text = 'products.product.add_to_cart' | t %}
+    {% assign button_class = 'btn btn--full btn--text' %}
+    {% assign button_attr = 'data-add-cart' %}
+    {% assign button_icon = true %}
+  {% else %}
+    {% assign button_text = 'Sold Out' %}
+    {% assign button_class = 'btn btn--full btn--text btn--full disabled' %}
+    {% assign button_attr = 'disabled' %}
+    {% assign button_icon = false %}
+  {% endif %}
+
+  {%- capture button -%}
+    {%- include 'component-button',
+      is_action: true,
+      is_input: true,
+      has_icon: button_icon,
+      button_classes: button_class,
+      button_text: button_text,
+      button_attr: button_attr
+    -%}
+  {%- endcapture -%}
+{% endif %}
+
+<style>
+  .poster-collector__item--{{ forloop.index }}{
+    top: {{ mobile_position_y }}%;
+    left: {{ mobile_position_x }}%;
+    min-width: calc({{ image_width }}px + 40px);
+  }
+
+  @media only screen and (min-width: 1024px){
+    .poster-collector__item--{{ forloop.index }}{
+      top: {{ position_y }}%;
+      left: {{ position_x }}%;
+    }
+  }
+</style>
+
+<div class="poster-collector__item poster-collector__item--{{ forloop.index }}{% unless enable_mobile %} medium-down--hide{% endunless %}{% unless enable_desktop %} large-up--hide{% endunless %}{% if product %} poster-collector__item--product{% endif %}">
+  <{{ image_element }} {% if product %}href="{{ product.url | within: collection }}"{% endif %} class="image-link">
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: image,
+      default_size: image_source_width,
+      set_width: image_width,
+      alt: 'Collectors Item'
+    %}
+  </{{ image_element }}>
+
+  {% if product %}
+    <a href="{{ product.url | within: collection }}" class="poster-collector__item-details">
+      {% unless is_slide %}
+        <p class="collection-item__sku">{{ product.sku }}</p>
+      {% endunless %}
+
+      <h3>{{ product.title }}</h3>
+
+      {% if product.metafields.collection_item.poster_details != blank %}
+        <p>{{ product.metafields.collection_item.poster_details }}</p>
+      {% endif %}
+
+      <p class="poster-collector__item-price">
+        {{ product.price | money_with_currency }}
+        {% if product.price < product.compare_at_price %}
+          <span class="sale">{{ product.compare_at_price | money_with_currency }}</span>
+        {% endif %}
+      </p>
+    </a>
+
+    <div class="poster-collector__item-form">
+      {% form "product", product %}
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        {{ button }}
+      {% endform %}
+    </div>
+  {% endif %}
+</div>
+
+{% assign product = nil %}
+{% assign position_x = nil %}
+{% assign position_y = nil %}
+{% assign image_width = nil %}
+{% assign mobile_image_width = nil %}
+{% assign enable_mobile = nil %}
+{% assign enable_desktop = nil %}

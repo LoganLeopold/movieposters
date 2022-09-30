@@ -1,0 +1,480 @@
+<div class="cart-container" data-cart-container>
+  {% include 'cart-contents' %}
+</div>
+{% schema %}
+  {
+    "name":"Cart",
+    "settings":[
+      {
+        "type":"header",
+        "content":"Cart Add Normal"
+        
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_section",
+        "label":"Enable Companion Products Section",
+        "default": true
+      },
+      {
+        "type":"text",
+        "id":"section_title",
+        "label":"Section Title",
+        "default":"Add a companion product"
+      },
+      {
+        "type":"textarea",
+        "id":"section_content",
+        "label":"Section Content",
+        "default":"Cost-effective ways to display and protect your poster (shipped separately)"
+      },
+      {
+        "type":"collection",
+        "id":"collection",
+        "label":"Companion Products Collection"
+      },
+      {
+        "type":"header",
+        "content":"Cart Add Normal"
+        
+      },
+
+       {
+        "type":"checkbox",
+        "id":"enable_section_normal",
+        "label":"Enable Companion Products Section",
+        "default": true
+      },
+      {
+        "type":"text",
+        "id":"section_title_normal",
+        "label":"Section Title",
+        "default":"Add a companion product"
+      },
+      {
+        "type":"textarea",
+        "id":"section_content_normal",
+        "label":"Section Content",
+        "default":"Cost-effective ways to display and protect your poster (shipped separately)"
+      },
+      {
+        "type":"collection",
+        "id":"collection_normal",
+        "label":"Companion Products Collection"
+      },
+      {
+        "type":"header",
+        "content":"Empty Cart State"
+        
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Mobile Image"
+      },
+      {
+        "type":"color",
+        "id":"background_colour",
+        "label":"Background Colour",
+        "default":"#000000"
+      },
+      {
+        "type": "product",
+        "id": "poster",
+        "label": "Featured Poster"
+      },
+      {
+        "type":"select",
+        "id":"text_colour",
+        "label":"Text Colour",
+        "options": [
+          {
+            "value":"",
+            "label":"Dark"
+          },
+          {
+            "value":"text-light",
+            "label":"Light"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "headline",
+        "label": "Headline"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_link_text",
+        "label": "CTA Link Text"
+      }
+    
+    ],
+
+     "blocks": [
+      {
+        "type":"content-block",
+        "name":"Content Block",
+        "settings":[
+          {
+            "type":"text",
+            "id":"content_title",
+            "label":"Content Title"
+          },
+          {
+            "type":"textarea",
+            "id":"content",
+            "label":"Content"
+          },
+          {
+            "type":"url",
+            "id":"content_link",
+            "label":"Content Link"
+          },
+          {
+            "type":"text",
+            "id":"content_link_text",
+            "label":"Content Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+<script>
+  
+    $(".re_mo_ve").on('click', function(){
+      var key_e = $(this).parents('.line-item').data('key');
+       var variant_id = $(this).parents('.line-item').data('variant-id');
+      console.log(key_e);
+      var key_get = key_e.substr(0, key_e.indexOf(':'));
+      var updateData = {};
+      updateData[key_e] = 0;
+      //alert($(this).parents(".line-item").html());
+	  //DEV-EE task 4 code.      
+      if($(this).parents(".line-item").find("[data-line-item-custom-finish-id]").length > 0)
+      {
+        
+      	let finished_id = $(this).parents(".line-item").find("[data-line-item-custom-finish-id]").attr("data-property-value");
+        console.log(finished_id);
+        
+       var itemkey = $('.custom_'+finished_id+'_'+variant_id).attr('data-key');
+         updateData[itemkey] = 0;
+      }
+       if($(this).parents(".line-item").find("[data-line-item-custom-finish-addon-id]").length > 0)
+       {
+        let finished_addon_id = $(this).parents(".line-item").find("[data-line-item-custom-finish-addon-id]").attr("data-property-value");
+       console.log(finished_addon_id);
+         
+         var itemkey_addon = $('.custom_'+finished_addon_id+'_'+variant_id).attr('data-key');
+         
+         console.log("item_key_is finished_addon_id " + itemkey);
+         
+         updateData[itemkey_addon] = 0;
+       }
+      console.log(updateData);
+    
+      
+    
+      
+      $.ajax({
+        type: 'POST',
+        url: '/cart/update.js',
+        data: {
+          updates: updateData
+        },
+        dataType: 'json',
+        async:false,  // Be warned, async:false has been deprecated in jQuery for a long time and is not recommended for use. It's generally recommended to use callbacks or promises instead
+		success: function(result) { 
+           window.location.href = window.location.href;
+          console.log('Success'+ result);
+        },
+        error: function(jqxhr, status, exception) {
+          console.log('Error'+ exception);
+        }
+      });
+      
+});
+  
+
+  
+  $(".btn_backlit").click(function(e){
+
+    var back_id = $(".crt__backlit").val();
+    var back_qty =  $(".cart_back_qty").find(".quantity-input").val();
+
+    e.preventDefault();
+
+    
+    
+     $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: 'quantity='+back_qty+'&id='+back_id,
+        dataType: 'json',
+		success: function (result) { 
+           window.location.href = window.location.href;
+          console.log('Success'+ result);
+          if (typeof(Storage) !== "undefined") {
+  // Store
+  localStorage.setItem("backlit", "on");
+  // Retrieve
+ // document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+} else {
+ console.log("Sorry, your browser does not support Web Storage...");
+}
+        },
+        error: function(jqxhr, status, exception) {
+          console.log('Error'+ exception);
+        }
+      });
+
+    
+});
+  
+  	
+  
+
+
+  
+$(document).ready(function() {
+
+  $(".cart_back_qty .js-qty-up").click(function(e){
+  
+    
+    jQuery.getJSON('/cart.js', function(cart) {
+      var st;
+      var ct_cnt = 0;
+     
+      if(cart.items.length > 0)
+      {
+       
+        for (st = 0; st < cart.items.length; st++) {
+          if(cart.items[st].product_type == "poster" && cart.items[st].properties['_dimensions'] == '27 x 40' )
+          {
+            if(!cart.items[st].properties['_custom_finish'])
+            
+            {
+            ct_cnt = ct_cnt + (cart.items[st].quantity);
+            }
+          }
+        }
+      }
+      $('#cnt_27x40').val(ct_cnt);
+
+
+
+    });
+    e.preventDefault();
+   
+
+    var temp = parseInt($("#cnt_27x40").val());
+    var crnt_val = parseInt($(this).parent().find(".quantity-input").val());
+  
+
+    
+    if(crnt_val >= temp)
+    {
+     
+      return false;
+    }
+    
+
+
+  });
+  
+   $(".cart_back_qty  .js-qty-down").click(function(e){
+
+
+    jQuery.getJSON('/cart.js', function(cart) {
+      var st;
+      var ct_cnt = 0;
+     
+      if(cart.items.length > 0)
+      {
+       
+        for (st = 0; st < cart.items.length; st++) {
+          if(cart.items[st].product_type == "poster" && cart.items[st].properties['_dimensions'] == '27 x 40' )
+          {
+            if(!cart.items[st].properties['_custom_finish'])
+            
+            {
+            ct_cnt = ct_cnt + (cart.items[st].quantity);
+            }
+          }
+        }
+      }
+      $('#cnt_27x40').val(ct_cnt);
+
+
+
+    });
+    // alert();
+     
+//     e.preventDefault();
+     
+     if( $(this).parent().find(".quantity-input").val() == 1 )
+     {
+       setTimeout(function(){  window.location.href = window.location.href; }, 1000);
+ 
+     }
+    // 
+
+//     var temp = $("#cnt_27x40").val();
+//     var crnt_val = $(".cart_back_qty .quantity-input").val();
+    
+//     if(crnt_val >= temp)
+//     {
+//       return false;
+//     }
+
+     
+
+  });
+
+
+  $('.cart_back_qty .quantity-input').on('input change', function(e) {
+    
+    jQuery.getJSON('/cart.js', function(cart) {
+      var st;
+      var ct_cnt = 0;
+      
+      if(cart.items.length > 0)
+      {
+       
+        for (st = 0; st < cart.items.length; st++) {
+          if(cart.items[st].product_type == "poster" && cart.items[st].properties['_dimensions'] == '27 x 40' )
+          {
+            if(!cart.items[st].properties['_custom_finish'])
+            
+            {
+            ct_cnt = ct_cnt + (cart.items[st].quantity);
+            }
+          }
+        }
+      }
+      $('#cnt_27x40').val(ct_cnt);
+
+
+
+    });
+   e.preventDefault();
+    
+  
+    
+    var temp = parseInt($("#cnt_27x40").val());
+    var crnt_val = parseInt($(this).val());
+
+  
+    if(crnt_val >=  temp)
+    {
+     
+      $(this).val(temp);
+     
+      return false;
+    }
+      
+    
+    
+  
+    
+  });
+  
+
+});
+  
+  
+  
+</script>	
+	
+<style>
+  @media only screen and (min-width: 320px) and (max-width: 380px) {
+ .line-item__image.backlit{
+    margin: 0;
+  }
+}
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    
+   .line-item__content.mob_show 
+    {
+        width: 100%;
+      margin-top: 10px;
+
+    }
+    .mob_show  .cart_back_qty
+    {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 5px;
+
+          float: right;
+    }
+    .mob_show
+  {
+    display: block;
+  }
+  .mob_hide
+  {
+     display: none;
+  }
+    
+  }
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .mob_hide .line-item__qty.cart_back_qty {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0px;
+    float: right;
+}
+    }
+  
+   @media only screen and (min-width: 768px) {
+     
+  .mob_show
+  {
+    display: none;
+  }
+      .mob_hide
+  {
+     display: block;
+  }
+     
+   }
+    
+  .marg_zero
+  {
+    margin: 0;
+  }
+    
+  .cart_back_qty
+  {
+    margin-top: 10px;
+  }
+  .Backlit_product {
+    font-weight: bold;
+  }
+  #shopify-section-cart-addon-normal
+  {
+    width: 100%;
+  }
+  .addon.is-active .addon__items
+  {
+    margin-left: 0;
+  }
+  @media only screen and (min-width: 1024px) {
+    .Backlit_product
+    {
+      margin-top: -20px;
+    }
+  }
+</style>

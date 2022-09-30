@@ -1,0 +1,39 @@
+<div class="pdp__finish-panel color_panel" data-frame-handle="{{ _product.handle }}" data-finish-panel>
+  <div class="pdp__close pdp__close--finish">
+    <span class="icon icon-close-48 small--hide"></span>
+    <span class="icon icon-close-24 medium-up--hide"></span>
+  </div>
+  <h3>{{ _product.title }}</h3>
+  <div class="pdp__finish-description">
+    {{ _product.description }}
+  </div>
+  <div class="pdp__finish-select-color">Select color:</div>
+  <div class="grid cst_filter">
+
+  
+    {% for variant in _product.variants %}
+    	{% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+        {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+            {% if square_inch >= range_min and square_inch <= range_max %} 
+              	{% assign price = variant.price %}
+    			{% assign variant_title = variant.title | remove: variant[size_option] | remove: variant[type_option_idx] | remove: ' / ' %}
+                {% assign tt_type = variant[type_option_idx] %}
+        {% include 'finish-block',
+          attrs: 'data-finish-select',
+          classes: 'js-finish-select',
+          variant_id: variant.id,
+          finish_image: variant.featured_image,
+          finish_title: variant_title,
+          finish_handle: _product.handle,
+          variant_price: price,
+          variant_type:tt_type,
+          is_dry_mounted: dry_mounted,
+          enable_addon: has_addon,
+          finish_variant: variant
+        %}
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% assign addon_product = nil %}

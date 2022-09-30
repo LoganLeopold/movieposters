@@ -1,0 +1,176 @@
+<div class="readymade__sizes">
+  <div class="readymade__ranges">
+    {% for variant in product.variants %}
+    {% unless range contains variant[size_option] %}
+    {% assign range_min = variant[size_option] | split: '-' | first | plus: 0 %}
+    {% assign range_max = variant[size_option] | split: '-' | last | plus: 0 %}
+    <span data-frame-range="{{ variant[size_option] }}" data-frame-range-width="{{ range_min }}" data-frame-range-height="{{ range_max }}"></span>
+    {% assign range = range | append: ',' | append: variant[size_option] %}
+    {% endunless %}
+    {% endfor %}
+  </div>
+
+
+  <div class="readymade__dropdown-trigger" data-frame-trigger>
+    <span data-frame-trigger-text>Select Size (Inches)</span>
+    {% include 'component-icon',
+      icon_name: 'icon-arrow-down-16',
+    %}
+  </div>
+
+ <div class="readymade__size-dropdown nhhhh" data-frame-dropdown>
+   
+  
+   {% if settings.frame_width_1 != blank and settings.frame_height_1 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_1 }}"
+      data-frame-height="{{ settings.frame_height_1 }}"
+      data-frame-square-inch="{{ settings.frame_width_1 | times: settings.frame_height_1 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_1 }}&quot; &times; {{ settings.frame_height_1 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_2 != blank and settings.frame_height_2 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_2 }}"
+      data-frame-height="{{ settings.frame_height_2 }}"
+      data-frame-square-inch="{{ settings.frame_width_2 | times: settings.frame_height_2 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_2 }}&quot; &times; {{ settings.frame_height_2 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_3 != blank and settings.frame_height_3 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_3 }}"
+      data-frame-height="{{ settings.frame_height_3 }}"
+      data-frame-square-inch="{{ settings.frame_width_3 | times: settings.frame_height_3 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_3 }}&quot; &times; {{ settings.frame_height_3 }}&quot;
+    </span>
+ {% endif %}
+   
+   
+   {% if settings.frame_width_4 != blank and settings.frame_height_4 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_4 }}"
+      data-frame-height="{{ settings.frame_height_4 }}"
+      data-frame-square-inch="{{ settings.frame_width_4 | times: settings.frame_height_4 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_4 }}&quot; &times; {{ settings.frame_height_4 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_5 != blank and settings.frame_height_5 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_5 }}"
+      data-frame-height="{{ settings.frame_height_5 }}"
+      data-frame-square-inch="{{ settings.frame_width_5 | times: settings.frame_height_5 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_5 }}&quot; &times; {{ settings.frame_height_5 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_6 != blank and settings.frame_height_6 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_6 }}"
+      data-frame-height="{{ settings.frame_height_6 }}"
+      data-frame-square-inch="{{ settings.frame_width_6 | times: settings.frame_height_6 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_6 }}&quot; &times; {{ settings.frame_height_6 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_7 != blank and settings.frame_height_7 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_7 }}"
+      data-frame-height="{{ settings.frame_height_7 }}"
+      data-frame-square-inch="{{ settings.frame_width_7 | times: settings.frame_height_7 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_7 }}&quot; &times; {{ settings.frame_height_7 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_8 != blank and settings.frame_height_8 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_8 }}"
+      data-frame-height="{{ settings.frame_height_8 }}"
+      data-frame-square-inch="{{ settings.frame_width_8 | times: settings.frame_height_8 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_8 }}&quot; &times; {{ settings.frame_height_8 }}&quot;
+    </span>
+ {% endif %}
+   
+  {% if settings.frame_width_9 != blank and settings.frame_height_9 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_9 }}"
+      data-frame-height="{{ settings.frame_height_9 }}"
+      data-frame-square-inch="{{ settings.frame_width_9 | times: settings.frame_height_9 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_9 }}&quot; &times; {{ settings.frame_height_9 }}&quot;
+    </span>
+ {% endif %}
+   
+    {% if settings.frame_width_10 != blank and settings.frame_height_10 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_10 }}"
+      data-frame-height="{{ settings.frame_height_10 }}"
+      data-frame-square-inch="{{ settings.frame_width_10 | times: settings.frame_height_10 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_10 }}&quot; &times; {{ settings.frame_height_10 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_11 != blank and settings.frame_height_11 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_11 }}"
+      data-frame-height="{{ settings.frame_height_11 }}"
+      data-frame-square-inch="{{ settings.frame_width_11 | times: settings.frame_height_11 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_11 }}&quot; &times; {{ settings.frame_height_11 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_12 != blank and settings.frame_height_12 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_12 }}"
+      data-frame-height="{{ settings.frame_height_12 }}"
+      data-frame-square-inch="{{ settings.frame_width_12 | times: settings.frame_height_12 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_12 }}&quot; &times; {{ settings.frame_height_12 }}&quot;
+    </span>
+ {% endif %}
+   
+   {% if settings.frame_width_13 != blank and settings.frame_height_13 != blank %}
+    <span class="readymade__size"
+      data-frame-width="{{ settings.frame_width_13 }}"
+      data-frame-height="{{ settings.frame_height_13 }}"
+      data-frame-square-inch="{{ settings.frame_width_13 | times: settings.frame_height_13 }}"
+      data-frame-size-trigger>
+      {{ settings.frame_width_13 }}&quot; &times; {{ settings.frame_height_13 }}&quot;
+    </span>
+ {% endif %}
+   
+
+  {% if settings.custom_size_enable %}
+    <span class="readymade__size readymade__size--custom" data-custom-frame-size-trigger>Custom Size</span>
+  {% endif %}
+</div>
+
+
+
+  <div class="readymade__custom-size" data-custom-frame data-custom-frame-min="{{ settings.frame_size_min }}" data-custom-frame-max="{{ settings.frame_size_max }}">
+    <span class="readymade__custom-size-label">Custom</span>
+    <span class="readymade__custom-size-input">
+      <input type="number" id="frame-a" min="1" max="45" value="11" step="any" name="properties[Frame width]" data-custom-frame-width data-custom-frame-input data-property> IN
+    </span> 
+    <span class="readymade__custom-size-input">
+      <input type="number" id="frame-b" min="1" max="45" value="17" step="any" name="properties[Frame height]" data-custom-frame-height data-custom-frame-input data-property> IN
+    </span>
+    {% include 'component-icon',
+      icon_name: 'icon-close-16',
+    icon_attrs: 'data-custom-frame-close-trigger'
+    %}
+  </div>
+</div>

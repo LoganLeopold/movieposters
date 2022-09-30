@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "settings": {
+        "free_shipping": "free Shipping",
+        "section_title": "Add a finish",
+        "collection": "custom-finish",
+        "enable_dry_mounted": true,
+        "dry_mounted_title": "Dry Mounted Backing",
+        "dry_mounted_content": "This prevents any stretching and wrinkling.",
+        "enable_addon": true,
+        "finish_addon_product": "non-glare-plexiglass"
+      }
+    },
+    "main-2": {
+      "type": "hero",
+      "settings": {
+      }
+    },
+    "1649082848ef7ea49c": {
+      "type": "apps",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-2",
+    "1649082848ef7ea49c"
+  ]
+}

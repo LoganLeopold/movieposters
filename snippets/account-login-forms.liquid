@@ -1,0 +1,24 @@
+{% assign template_type = template | split: '/' | last %}
+
+<div class="account account--{{ template_type }}">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item all--12 medium-up--10 push--medium-up--1 large-up--8 push--large-up--2">
+        {% case template_type %}
+          {% when 'login' %}
+              {% include 'account-form-login' %}
+              {% include 'account-form-recover' %}
+          {% when 'register' %}
+              {% include 'account-form-register' %}
+          {% when 'reset_password' %}
+            {% include 'account-form-reset' %}
+          {% when 'activate_account' %}
+            {% include 'account-form-activate' %}
+          {% else %}
+            {% include 'account-form-login' %}
+            {% include 'account-form-recover' %}
+        {% endcase %}
+      </div>
+    </div>
+  </div>
+</div>

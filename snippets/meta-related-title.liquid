@@ -1,0 +1,68 @@
+
+<!-- 	   start related            -->
+{% assign related_product_new_array_title = nil %}
+{% assign product_down = product.title | downcase %}
+{% assign current_page = 1 %}
+
+{% paginate collections.all.products by 1000 %}
+{% for i in (1..59) %}
+
+{% assign current_page = i %}
+{% assign offset_page = i | minus: 1 |  times: paginate.page_size %}
+{% assign offset_page_num = offset_page |  times: 1 %}
+{% for product_ink in collections.all.products offset:offset_page_num %}
+
+{% assign product_ink_down = product_ink.title | downcase %}
+{% if product_down == product_ink_down %}
+{% assign related_product_new_array_title = related_product_new_array_title | append: product_ink.title | append: '-' | append: product_ink.first_available_variant.sku | append: '//'  %} 
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+{% endpaginate %}
+
+
+  
+{% if related_product_new_array_title != nil %}
+{% assign related_product_new_array_title_uniq = related_product_new_array_title | split: '//' | uniq | join: '//'   %}
+{% assign related_product_new_array_title_uniq_uniq = related_product_new_array_title_uniq | split: '//' | uniq | join: '//'   %}
+
+{% assign related_product_new_array_title_split = related_product_new_array_title_uniq_uniq | split: '//' %}
+{% assign related_product_new_array_size = related_product_new_array_title_split | size %}
+{% if related_product_new_array_size > 1 %}
+<div class="feature-collections">
+  <div class="feature-collection meta-related" style="padding: 0px;">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item all--12">
+          <div class="feature-collection__title">
+            <h2 class="text-light">Collect Them All</h2>
+          </div>
+        </div>`
+      </div>
+    </div>
+
+    <div class="feature-collection__slider" data-collection-slider>
+      {% for related_product in related_product_new_array_title_split limit: 15 %}
+      {% assign related_product_hand =  related_product | handleize %}
+      {% assign _product = all_products[related_product_hand] %}
+      {% include 'collection-item'
+          product: _product,
+      is_slide: true,
+      attrs: 'data-collection-slide'
+      %}
+
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div> 
+{% endif %}
+
+{% assign current_page = 1 %}
+
+<style>
+  .meta-div .meta-div {
+    display: none;
+  }
+</style>

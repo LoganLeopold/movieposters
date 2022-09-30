@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "canvas-mounting-main",
+      "settings": {
+      }
+    },
+    "main-1": {
+      "type": "canvas-mounting-content",
+      "settings": {
+        "main_image": "shopify:\/\/shop_images\/Canvas.1054x672_52ea0bab-8258-4bab-bece-472603e936c6.jpg",
+        "content": "<p><strong>How it works<\/strong><\/p><p>The canvas has a 7\/8\" thick wooden art-quality frame, and the image wraps around the edges of the canvas. once the paper poster is transferred to a canvas, it is hand-mounted around a sturdy wooden frame with a protective varnish applied. the final product is scratch and fade resistant. The image takes on the texture of the canvas<\/p><p><\/p><p><strong>A permanent change<\/strong><\/p><p>[warning icon] During this mounting process, the poster is permanently changed. Any permanent change to the poster significantly decreases the collector value of the poster.<br\/><\/p>"
+      }
+    },
+    "main-2": {
+      "type": "canvas-mounting-feature-collection",
+      "blocks": {
+        "c070894c-d66c-42e1-a80d-348180eb0021": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "action-curated",
+            "feature_collection_title": "Frame your favorites",
+            "feature_collection_link_text": "Shop Action",
+            "feature_collection_link": "shopify:\/\/collections\/genre-action"
+          }
+        },
+        "4d1beb71-d407-4ee3-a465-e90256bfc1dc": {
+          "type": "feature-collection",
+          "settings": {
+            "feature_collection": "johnny-depp-curated",
+            "feature_collection_title": "He-e-e-e-re's Johnny",
+            "feature_collection_link_text": "Shop Johnny Depp",
+            "feature_collection_link": "shopify:\/\/collections\/johnny-depp"
+          }
+        }
+      },
+      "block_order": [
+        "c070894c-d66c-42e1-a80d-348180eb0021",
+        "4d1beb71-d407-4ee3-a465-e90256bfc1dc"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main-1",
+    "main-2"
+  ]
+}

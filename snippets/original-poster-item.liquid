@@ -1,0 +1,31 @@
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_image_1x: item_image,
+    source_size_1x: '208x',
+    source_image_2x: item_image,
+    source_size_2x: '416x'
+  %}
+{% endcapture %}
+
+<div class="original-poster-item">
+  <a href="{{ item_link }}" class="image-link original-poster-item__image">
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: item_image,
+      default_size: '208x',
+      set_width: '208',
+      alt: item_text
+    %}
+  </a>
+
+  <div class="original-poster-item__content">
+    <h3>{{ item_text }}</h3>
+
+    {% include 'component-link',
+      link_url: item_link,
+      link_text: item_link_text,
+      has_icon: true,
+      classes: 'original-poster-item__action'
+    %}
+  </div>
+</div>

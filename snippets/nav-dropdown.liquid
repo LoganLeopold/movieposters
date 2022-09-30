@@ -1,0 +1,27 @@
+<nav class="{{ classes }}">
+  {% for childlink in linklists[link_list].links %}
+    {% assign column_even = forloop.index | modulo: 2 %}
+
+    {% if single_column or column_even != 0 or forloop.first %}
+      <ul>
+    {% endif %}
+
+      {% if childlink.links != blank %}
+        <li>
+          <h4>{{ childlink.title }}</h4>
+
+          <ul>
+            {% for grandchildlink in childlink.links %}
+              <li><a href="{{ grandchildlink.url }}">{{ grandchildlink.title | replace: ' x ', ' &times; '}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li><h4><a href="{{ childlink.url }}">{{ childlink.title }}</a></h4></li>
+      {% endif %}
+
+    {% if single_column or column_even == 0 or forloop.last %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</nav>

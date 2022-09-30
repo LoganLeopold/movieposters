@@ -1,0 +1,194 @@
+{% assign width = nil %}
+{% assign height = nil %}
+{% assign print_type = nil %}
+{% assign year = nil %}
+{% assign sided = nil %}
+{% assign packing_type = nil %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'width--' %}
+    {% assign width =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag contains 'height--' %}
+    {% assign height =  tag | split: '--' | last | plus: 0 %}
+  {% elsif tag == 'original' or tag == 'print' or tag == 'reprint' or tag ==  'DVD/Video' %}
+    {% assign print_type_handle = tag | split: '--' | last %}
+    {% assign print_type = print_type_handle | capitalize %}
+  {% elsif tag contains '19' or tag contains '20' %}
+      {% assign tag_numeric = tag | plus: 0 %}
+      {% if tag_numeric > 0 or tag contains 'year--' %}
+        {% assign year = tag | split: '--' | last %}
+      {% endif %}
+  {% elsif tag contains 'sided--' %}
+    {% assign sided = tag | split: '--' | last | capitalize | replace: ' sided', ' Sided' %}
+  {% elsif tag contains 'folded-or-rolled--' %}
+    {% assign packing_type = tag | split: '--' | last | capitalize %}
+  {% endif %}
+{% endfor %}
+
+{% if width == nil and product.metafields.dimensions.width != blank %}
+  {% assign width = product.metafields.dimensions.width | plus: 0 %}
+{% endif %}
+
+{% if height == nil and product.metafields.dimensions.height != blank %}
+  {% assign height = product.metafields.dimensions.height | plus: 0 %}
+{% endif %}
+
+{% assign product_meta = '' %}
+
+{% if width != nil and height != nil %}
+  {% capture dimensions %}{{ width }}&quot; &times; {{ height }}&quot;{% endcapture %}
+  {% assign product_meta = product_meta | append: dimensions %}
+{% endif %}
+
+{% if print_type != nil %}
+  {% if is_slide %}
+    {% assign print_type = print_type | prepend: '<span>, ' | append: '</span>' %}
+    {% assign product_meta = product_meta | append: print_type %}
+  {% else %}
+    {% assign product_meta = product_meta | append: ', ' | append: print_type %}
+  {% endif %}
+{% endif %}
+
+{% if year != nil %}
+  {% capture year_content %}<span>, {{ year }}</span>{% endcapture %}
+  {% assign product_meta = product_meta | append: year_content %}
+{% endif %}
+
+{% if sided != nil %}
+  {% assign product_meta = product_meta | append: ', ' | append: sided %}
+{% endif %}
+
+{% if packing_type != nil %}
+  {% assign product_meta = product_meta | append: ', ' | append: packing_type %}
+{% endif %}
+
+{% if product.available %}
+  {% assign button_text = 'products.product.add_to_cart' | t %}
+  {% assign button_class = 'btn btn--full btn--text' %}
+  {% assign button_attr = 'data-add-cart' %}
+  {% assign button_icon = true %}
+{% else %}
+  {% assign button_text = 'Sold Out' %}
+  {% assign button_class = 'btn btn--full btn--text btn--full disabled' %}
+  {% assign button_attr = 'disabled' %}
+  {% assign button_icon = false %}
+{% endif %}
+
+{%- capture button -%}
+  {%- include 'component-button',
+    is_action: true,
+    is_input: true,
+    has_icon: button_icon,
+    button_classes: button_class,
+    button_text: button_text,
+    button_attr: button_attr
+  -%}
+{%- endcapture -%}
+
+{% if has_large_image %}
+  {% assign mobile_1x = '288x432' %}
+  {% assign mobile_2x = '576x864' %}
+
+  {% assign desktop_1x = '320x472' %}
+  {% assign desktop_2x = '640x944' %}
+{% else %}
+  {% assign mobile_1x = '144x216' %}
+  {% assign mobile_2x = '288x432' %}
+
+  {% assign desktop_1x = '240x360' %}
+  {% assign desktop_2x = '480x720' %}
+{% endif %}
+
+{% unless width > height %}
+  {% assign crop_position = 'center' %}
+{% endunless %}
+
+{%- capture picture_sources %}
+  {% include 'component-source',
+    source_media: '(max-width: 767px)',
+    source_image_1x: product.featured_image,
+    source_size_1x: mobile_1x,
+    source_image_2x: product.featured_image,
+    source_size_2x: mobile_2x,
+    source_crop: crop_position
+  %}
+  {% include 'component-source',
+    source_image_1x: product.featured_image,
+    source_size_1x: desktop_1x,
+    source_image_2x: product.featured_image,
+    source_size_2x: desktop_2x,
+    source_crop: crop_position
+  %}
+{% endcapture %}
+
+{% if is_slide == nil %}
+  <div class="grid__item small--6 medium--6 large-up--4">
+{% endif %}
+
+<div class="collection-item   hjjghgjgjjgjgjjgj {% if is_slide %}collection-item--slide{% endif %}{% if has_large_image %} collection-item--large{% endif %}" {{ attrs }} data-product>
+  <a href="{{ product.url | within: collection }}" class="image-link collection-item__image{% if width > height %} collection-item__image--landscape{% endif %}">
+    {% for tag in product.tags %}
+      {% if tag contains 'original' %}
+        <span class="collection-item__badge">Original</span>
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% include 'component-picture',
+      sources: picture_sources,
+      resource: product.featured_image,
+      default_size: '240x360',
+      set_width: '240',
+      alt: product.title,
+      picture_crop: crop_position
+    %}
+  </a>
+
+  <a href="{{ product.url | within: collection }}" class="collection-item__details">
+    <p class="collection-item__sku">{{ product.selected_or_first_available_variant.sku | upcase }}</p>
+
+    <h3>{{ product.title | replace: "'", "&rsquo;" }}</h3>
+    <p class="collection-item__poster-details" data-product-meta>
+      {% if product.metafields.collection_item.poster_details != blank %}
+        {{ product.metafields.collection_item.poster_details | replace: ' x ', ' &times; ' }}
+      {% else %}
+        {{ product_meta }}
+      {% endif %}
+    </p>
+
+    <p class="collection-item__price{% if product.metafields.collection_item.poster_details == blank and product_meta == '' %} collection-item__price--padding{% endif %}">
+      {{ product.price | money_with_currency }}
+      {% if product.price < product.compare_at_price %}
+        <span class="sale">{{ product.compare_at_price | money_with_currency }}</span>
+      {% endif %}
+    </p>
+    {% if product.selected_or_first_available_variant.inventory_quantity < 3 and product.selected_or_first_available_variant.inventory_quantity > 0 %} 
+    <p class="left-only col-only" >Only&nbsp; {{ product.selected_or_first_available_variant.inventory_quantity }} &nbsp;Left!</p>
+    {% endif %}
+    
+  </a>
+  <div class="collection-item__form">
+    <form class="form-vertical"
+      action="/cart/add" method="post"
+      enctype="multipart/form-data"
+      data-product-form>
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-product-selected-variant/>
+      <input type="hidden" name="id" class="pdp__product-id" value="{{ current_variant.id }}" data-product-selected-variant>
+      
+      {% include 'product-tags' %}
+      {% comment %}
+      {% include 'product-properties' %}
+      {% endcomment %}
+      {{ button }}
+    </form>
+  </div>
+</div>
+
+{% if is_slide == nil %}
+  </div>
+{% endif %}
+
+{% assign is_slide = nil %}
+{% assign has_large_image = nil %}
+{% assign attrs = nil %}
+{% assign crop_position = nil %}

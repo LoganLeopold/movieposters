@@ -1,0 +1,22 @@
+<div class="summary">
+  <h3 class="small--hide">Summary</h3>
+  <div class="summary__details">
+    <p><span class="summary__title">{{ 'customer.order.subtotal' | t }}</span><span>{{ order.subtotal_price | money_with_currency }}</span></p>
+
+    {% for discount in order.discounts %}
+      <p><span class="summary__title">{{ discount.code }} {{ 'customer.order.discount' | t }}</span><span>{{ discount.savings | money_with_currency }}</span></p>
+    {% endfor %}
+
+    {% for shipping_method in order.shipping_methods %}
+      <p><span class="summary__title">{{ 'customer.order.shipping' | t }} <span class="summary__subline">({{ shipping_method.title }})</span></span><span>{{ shipping_method.price | money_with_currency }}</span></p>
+    {% endfor %}
+
+    {% for tax_line in order.tax_lines %}
+      <p><span class="summary__title">{{ 'customer.order.tax' | t }} <span class="summary__subline">({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span></span><span>{{ tax_line.price | money_with_currency }}</span></p>
+    {% endfor %}
+  </div>
+
+  <div class="summary__total">
+    <p><span class="summary__title">{{ 'customer.order.total' | t }}</span><span>{{ order.total_price | money_with_currency }}</span></p>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+{
+  "sections": {
+    "main-1": {
+      "type": "product-extra-main",
+      "settings": {
+      }
+    },
+    "main-2": {
+      "type": "readymade-social",
+      "blocks": {
+        "6bfbceb8-a461-4c59-886c-25198558d3ce": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Instagram",
+            "social_link": "https:\/\/www.instagram.com\/ilovemovieposters\/",
+            "social_handle": "@ilovemovieposters"
+          }
+        },
+        "03a30520-d439-4514-a6ad-d313bf747b19": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Twitter",
+            "social_link": "https:\/\/twitter.com\/iloveposters",
+            "social_handle": "@iloveposters"
+          }
+        },
+        "62929ef8-eb0f-4ef8-8987-43dc023aa94d": {
+          "type": "social",
+          "settings": {
+            "social_platform": "Facebook",
+            "social_link": "https:\/\/www.facebook.com\/iloveposters\/",
+            "social_handle": "@iloveposters"
+          }
+        }
+      },
+      "block_order": [
+        "6bfbceb8-a461-4c59-886c-25198558d3ce",
+        "03a30520-d439-4514-a6ad-d313bf747b19",
+        "62929ef8-eb0f-4ef8-8987-43dc023aa94d"
+      ],
+      "settings": {
+        "social_title": "Join Our Wall of Frame",
+        "social_content": "We love seeing your framed posters in action! Share a photo on social media and tag us to be featured in our Wall of Frame!"
+      }
+    },
+    "main-3": {
+      "type": "readymade-instagram",
+      "blocks": {
+        "c1fb958c-a18d-4dbd-bfad-a6614cb0645b": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_1.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "e35e085a-760f-4676-a7fa-d70a81cc8fda": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_2.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "adb92474-baf7-4310-8a6e-9be2672a4731": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_3.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "af4daeef-94d9-411e-b07f-6e2535c070c4": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_4.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        },
+        "36ff9808-57de-434c-a583-aa99ced2cec2": {
+          "type": "instagram-post",
+          "settings": {
+            "instagram_image": "shopify:\/\/shop_images\/insta_5.jpg",
+            "instagram_link": "https:\/\/www.instagram.com\/ilovemovieposters\/"
+          }
+        }
+      },
+      "block_order": [
+        "c1fb958c-a18d-4dbd-bfad-a6614cb0645b",
+        "e35e085a-760f-4676-a7fa-d70a81cc8fda",
+        "adb92474-baf7-4310-8a6e-9be2672a4731",
+        "af4daeef-94d9-411e-b07f-6e2535c070c4",
+        "36ff9808-57de-434c-a583-aa99ced2cec2"
+      ],
+      "settings": {
+        "enable_instagram_section": true
+      }
+    },
+    "main-4": {
+      "type": "product-extra-footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-1",
+    "main-2",
+    "main-3",
+    "main-4"
+  ]
+}

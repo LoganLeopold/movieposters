@@ -1,0 +1,84 @@
+{% assign tags_string = nil %}
+{% assign is_print = false %}
+{% for tag in product.tags %}
+  {% assign tag_string = tag | split: '--' | last | handleize | remove: '-' %}
+  {% assign tags_string = tags_string | append: ',' | append: tag_string %}
+
+  {% if tag == 'print' %}
+    {% assign is_print = true %}
+  {% endif %}
+{% endfor %}
+{% assign description_string = product.description | handleize | remove: '-' %}
+
+<ul class="glossary__terms">
+  {% for block in section.blocks %}
+    {% if template.suffix contains 'original' %}
+      {% if block.settings.glossary_term_op_visible %}
+        <li data-glossary-term>
+          <h4>
+            {{ block.settings.title }}
+
+            {% include 'component-icon',
+              icon_name: 'icon-arrow-down-16',
+              icon_classes: 'large-up--hide',
+              icon_attrs: 'data-glossary-term-trigger'
+            %}
+          </h4>
+          <p>{{ block.settings.glossary_term_content }}</p>
+        </li>
+      {% endif %}
+    {% elsif template.name contains 'product' %}
+      {% assign tag_keyword = block.settings.glossary_term_tag | split: '--' | last | handleize | remove: '-' %}
+      {% unless tag_keyword == 'print' %}
+        {% if tags_string contains tag_keyword or description_string contains tag_keyword %}
+          <li data-glossary-term>
+            <h4>{{ block.settings.title }}</h4>
+            <p>{{ block.settings.glossary_term_content }}</p>
+          </li>
+        {% endif %}
+      {% else %}
+        {% if is_print %}
+          <li data-glossary-term>
+            <h4>{{ block.settings.title }}</h4>
+            <p>{{ block.settings.glossary_term_content }}</p>
+          </li>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+</ul>
+
+{% schema %}
+  {
+    "name":"Glossary",
+    "blocks":[
+      {
+        "type":"glossary-term",
+        "name":"Glossary Term",
+        "settings":[
+          {
+            "type":"checkbox",
+            "id":"glossary_term_op_visible",
+            "label":"Glossary Term Visible on Original Posters Page"
+          },
+          {
+            "type":"text",
+            "id":"glossary_term_tag",
+            "label":"Associated Product Tag",
+            "info":"If a product has this tag, this glossary term will output under the glossary section of that product page"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Glossary Term Title"
+          },
+          {
+            "type":"textarea",
+            "id":"glossary_term_content",
+            "label":"Glossary Term Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

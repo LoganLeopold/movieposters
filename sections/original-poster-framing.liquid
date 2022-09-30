@@ -1,0 +1,115 @@
+{% if section.settings.section_enable %}
+  {%- capture picture_sources %}
+    {% include 'component-source',
+      source_image_1x: section.settings.mobile_image,
+      source_size_1x: '375x',
+      source_image_2x: section.settings.mobile_image,
+      source_size_2x: '750x'
+    %}
+  {% endcapture %}
+
+  <div class="original-poster-framing lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}" style="background-color: {{ section.settings.background_colour }}">
+    <div class="medium-up--hide">
+      {% include 'component-picture',
+        sources: picture_sources,
+        resource: section.settings.mobile_image,
+        default_size: '375x',
+        set_width: '375',
+        alt: section.settings.headline
+      %}
+    </div>
+    <div class="original-poster-framing__content">
+      <div class="wrapper">
+        <div class="grid">
+          <div class="grid__item all--12 xlarge-up--10 push--xlarge-up--1">
+            {% if section.settings.headline != blank %}
+              <h2 class="original-poster-framing__headline {{ section.settings.text_colour }}">{{ section.settings.headline }}</h2>
+            {% endif %}
+
+            {% if section.settings.content != blank %}
+              <p class="{{ section.settings.text_colour }}">{{ section.settings.content }}</p>
+            {% endif %}
+
+            {% if section.settings.cta_link != blank %}
+              {% assign component_classes = section.settings.text_colour | append: ' small--hide' %}
+              {% include 'component-link',
+                link_url: section.settings.cta_link,
+                link_text: section.settings.cta_link_text,
+                classes: section.settings.text_colour,
+                has_icon: true
+              %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Framing Section",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"section_enable",
+        "label":"Enable Framing Section",
+        "default":true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Mobile Image"
+      },
+      {
+        "type":"color",
+        "id":"background_colour",
+        "label":"Background Colour",
+        "default":"#F3F4F6"
+      },
+      {
+        "type":"select",
+        "id":"text_colour",
+        "label":"Text Colour",
+        "options": [
+          {
+            "value":"",
+            "label":"Dark"
+          },
+          {
+            "value":"text-light",
+            "label":"Light"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "headline",
+        "label": "Headline",
+        "default":"Framing &amp; Storage"
+      },
+      {
+        "type":"textarea",
+        "id":"content",
+        "label":"Content",
+        "default":"We recommend using high grade plexi-glass and a frame to protect your poster. It’s best to hang your poster in a dry, cool environment not in direct sunlight. For storage, we recommend rolling your poster in an acid free tube and/or plastics sleeve."
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_link_text",
+        "label": "CTA Link Text",
+        "default":"Shop Finishes"
+      }
+    ]
+  }
+{% endschema %}
